@@ -4,6 +4,8 @@ import pdfplumber
 from dotenv import load_dotenv
 from openai import OpenAI
 
+from src.parser.pdf_parser import PDFParser
+
 load_dotenv()
 
 
@@ -60,15 +62,20 @@ def ask_llm(question: str, context: str):
 
 if __name__=='__main__':
 
-    pdf_path = "./产业图谱构建指南（浙江省）.pdf"
+    # pdf_path = "data/产业图谱构建指南（浙江省）.pdf"
+    #
+    # print("load pdf text......")
+    # text = load_pdf_text(pdf_path)
+    # print(f"load finish, length={len(text)}")
+    #
+    # question = "这份文档里主要讲了什么？"
+    # print(f"\nquestion: {question}")
+    # print("thinking......")
+    #
+    # answer = ask_llm(question, text)
+    # print(f"\nanswer: {answer}")
 
-    print("load pdf text......")
-    text = load_pdf_text(pdf_path)
-    print(f"load finish, length={len(text)}")
+    pdf_path = "./data/pdf/GB+1589-2026.pdf"
 
-    question = "这份文档里主要讲了什么？"
-    print(f"\nquestion: {question}")
-    print("thinking......")
-
-    answer = ask_llm(question, text)
-    print(f"\nanswer: {answer}")
+    pdf_parser = PDFParser()
+    pdf_parser.parse(pdf_path)

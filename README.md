@@ -1,5 +1,15 @@
 # ChatRAG
 
+基于本地PDF文件构建智能问答系统
+
+### 步骤0：数据集
+
+采用汽车行业国家标准文件作为数据集，数据可以从官方平台下载。
+
+[全国标准信息公共服务平台](https://openstd.samr.gov.cn/bzgk/std/)
+
+
+
 ### 步骤1：准备Python环境
 ```aiignore
 git clone https://github.com/hren-ron/ChatRAG.git
@@ -15,3 +25,8 @@ pip install -r requirements.txt
 cp example.env .env
 ```
 在.env中配置模型信息（API_KEY, BASE_URL）
+
+
+### todo
+1. 中英文支持
+2. OCR识别
