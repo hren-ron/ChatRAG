@@ -1158,25 +1158,25 @@ class PDFTextParser:
 # 使用
 # ============================================================
 
-if __name__ == "__main__":
-
-    pdf_path = "../../data/pdf/GB+1589-2026.pdf"
-    output_path = "GB1589-2026.txt"
-
-    parser = PDFTextParser(
-        pdf_path
-    )
-
-    text = parser.parse()
-
-    with open(
-        output_path,
-        "w",
-        encoding="utf-8"
-    ) as f:
-
-        f.write(text)
-
-    print(
-        f"解析完成：{output_path}"
-    )
+# if __name__ == "__main__":
+#
+#     pdf_path = "../../data/pdf/GB+1589-2026.pdf"
+#     output_path = "GB1589-2026.txt"
+#
+#     parser = PDFTextParser(
+#         pdf_path
+#     )
+#
+#     text = parser.parse()
+#
+#     with open(
+#         output_path,
+#         "w",
+#         encoding="utf-8"
+#     ) as f:
+#
+#         f.write(text)
+#
+#     print(
+#         f"解析完成：{output_path}"
+#     )

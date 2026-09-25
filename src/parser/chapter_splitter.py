@@ -466,11 +466,11 @@ class ChapterSplitter:
 # 使用
 # ============================================================
 
-if __name__ == "__main__":
-
-    splitter = ChapterSplitter(
-        text_path="GB1589-2026.txt",
-        output_dir="chunks"
-    )
-
-    splitter.split()
+# if __name__ == "__main__":
+#
+#     splitter = ChapterSplitter(
+#         text_path="GB1589-2026.txt",
+#         output_dir="chunks"
+#     )
+#
+#     splitter.split()
