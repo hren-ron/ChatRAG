@@ -1,586 +1,1443 @@
 import re
-from pathlib import Path
-from typing import List, Dict, Tuple
-
 import fitz
-from sympy.physics.quantum.gate import normalized
-from typing_extensions import Counter
+
+from dataclasses import dataclass, field
+from typing import List, Optional, Dict
 
 
-class PDFParser:
+# ============================================================
+# 1. 数据模型
+# ============================================================
 
+@dataclass
+class LogicalLine:
     """
-    面向中文标准/技术文档的 PDF Parser。
+    PDF 中的一行逻辑文本。
 
-    主要功能：
-    1. PDF 文本提取
-    2. 页眉/页脚检测
-    3. 页码删除
-    4. 跨行文本合并
-    5. 标准编号修复
-    6. 中英文文本规范化
-    7. 章节结构识别
+    text : 文本
+    page : 页码，从 1 开始
+    x0/y0/x1/y1 : 文本区域坐标
     """
+    text: str
+    page: int
 
-    def __init__(
-            self,
-            header_footer_threshold: float=0.5,
-            header_lines: int=3,
-            footer_lines: int=3
-    ):
-        self.threshold = header_footer_threshold
-        self.header_lines = header_lines
-        self.footer_lines = footer_lines
-
-    def parse(self, pdf_path: str | Path) -> List[Dict]:
-        """
-        解析PDF
-        :param pdf_path: pdf路径
-        :return:
-        [
-            {
-                "page": 5,
-                "chapter": "3 术语和定义",
-                "section": "3.1 车辆长度",
-                "text": "依据附录A测得..."
-            }
-        ]
-        """
-
-        pdf_path = Path(pdf_path)
-
-        if not pdf_path:
-            raise FileNotFoundError(
-                f"PDF is not exists: {pdf_path}"
-            )
-
-        if pdf_path.suffix.lower() != '.pdf':
-            raise ValueError(
-                f"Not PDF file: {pdf_path}"
-            )
-
-        # -----------------------------------------------------
-        # Step 1：提取原始页面
-        # -----------------------------------------------------
-        raw_pages = self.extract_pages(pdf_path)
-
-        # -----------------------------------------------------
-        # Step 2：检测页眉 / 页脚
-        # -----------------------------------------------------
-        headers, footers = self.detect_headers_footers(raw_pages)
-
-        # -----------------------------------------------------
-        # Step 3：清洗页面
-        # -----------------------------------------------------
-        cleaned_pages = []
-        for page in raw_pages:
-
-            lines = page["lines"]
-
-            lines = self.remove_header_footer(lines, headers, footers)
-
-            lines = self.merge_broken_lines(lines)
-
-            lines = [self.normalize_line(line) for line in lines]
-
-            lines = [line for line in lines if line]
-
-            text = "\n".join(lines)
-            if not text:
-                continue
-
-            cleaned_pages.append(
-                {
-                    "page": page["page"],
-                    "text": text
-                }
-            )
-
-        # -----------------------------------------------------
-        # Step 4：识别章节结构
-        # -----------------------------------------------------
-        print(cleaned_pages)
-        structured_pages = self.detect_structure(cleaned_pages)
-        print(structured_pages)
-        return structured_pages
+    x0: float = 0.0
+    y0: float = 0.0
+    x1: float = 0.0
+    y1: float = 0.0
 
 
+@dataclass
+class Heading:
+    """
+    标题结构。
+
+    kind:
+        main    正文标题
+        appendix 附录标题
+        figure  图标题
+        table   表标题
+
+    number:
+        例如：
+        4
+        4.1
+        4.1.1
+        A
+        A.1
+        图 B.1
+        表 5.1
+
+    title:
+        标题名称
+
+    level:
+        1~4
+    """
+    kind: str
+    number: str
+    title: str
+    level: int
+
+    @property
+    def full_text(self) -> str:
+        if self.title:
+            return f"{self.number} {self.title}"
+        return self.number
 
 
-    # =========================================================
-    # 2. PDF 提取
-    # =========================================================
-    def extract_pages(self, path: Path) -> List[Dict]:
+@dataclass
+class DocumentBlock:
+    """
+    最终用于 RAG 的逻辑文档块。
+    """
+    document: str
 
-        pages = []
+    page_start: int
+    page_end: int
 
-        with fitz.open(path) as doc:
+    chapter: Optional[str]
 
-            for page_index, page in enumerate(doc):
-                page_number = page_index + 1
+    section: Optional[str]
 
-                lines = self.extract_lines_from_words(page)
+    heading_path: List[str]
 
-                pages.append(
-                    {
-                        "page": page_number,
-                        "lines": lines
-                    }
-                )
-        return pages
+    text: str
 
-    # =========================================================
-    # 3. 使用 words 提取文本
-    # =========================================================
+
+# ============================================================
+# 2. 配置
+# ============================================================
+
+@dataclass
+class ParserConfig:
+
+    # 同一行判断的 y 坐标误差
+    y_tolerance: float = 3.0
+
+    # 如果后一行距离前一行太远，则不认为是同一标题
+    max_merge_gap: float = 20.0
+
+    # 页面顶部区域
+    header_ratio: float = 0.05
+
+    # 页面底部区域
+    footer_ratio: float = 0.90
+
+    # 最大标题层级
+    max_heading_level: int = 4
+
+    # 是否规范化空格
+    normalize_space: bool = True
+
+    # 是否启用页眉页脚清理
+    remove_header_footer: bool = True
+
+
+# ============================================================
+# 3. PDF 提取器
+# ============================================================
+
+class PDFExtractor:
+
+    def __init__(self, pdf_path: str):
+        self.pdf_path = pdf_path
+
+    def open(self):
+        return fitz.open(self.pdf_path)
+
     @staticmethod
-    def extract_lines_from_words(page) -> List[str]:
+    def extract_words(page):
         """
-        使用 PyMuPDF words API 提取文本。
+        返回：
 
-        words 格式：
-            x0, y0, x1, y1,
+        (
+            x0,
+            y0,
+            x1,
+            y1,
             word,
             block_no,
             line_no,
             word_no
+        )
         """
+        return page.get_text("words")
 
-        words = page.get_text("words")
+
+# ============================================================
+# 4. Word -> LogicalLine
+# ============================================================
+
+class LineBuilder:
+
+    def __init__(self, config: ParserConfig):
+        self.config = config
+
+    def build(self, words, page_number: int) -> List[LogicalLine]:
 
         if not words:
             return []
 
-        # -----------------------------------------------------
-        # 按 block + line 分组
-        # -----------------------------------------------------
+        # ----------------------------------------------------
+        # 按 block / line 分组
+        # ----------------------------------------------------
 
-        line_groups = {}
+        grouped = {}
 
         for word in words:
-            x0, y0, x1, y1, text = word[:5]
 
-            block_no = word[5]
-            line_no = word[6]
+            x0, y0, x1, y1, text, block_no, line_no, word_no = word
 
             key = (block_no, line_no)
 
-            if key not in line_groups:
-                line_groups[key] = []
+            grouped.setdefault(key, []).append(word)
 
-            line_groups[key].append(
-                {
-                    "x0": x0,
-                    "x1": x1,
-                    "text": text
-                }
-            )
+        lines = []
 
-        # -----------------------------------------------------
-        # 按 block / line 顺序排列
-        # -----------------------------------------------------
+        # ----------------------------------------------------
+        # 每个 PDF line 组装成 LogicalLine
+        # ----------------------------------------------------
 
-        sorted_lines = []
-        for key, words_in_line in line_groups.items():
-            words_in_line.sort(
-                key=lambda x:x["x0"]
-            )
+        for _, word_list in grouped.items():
 
-            line_text = (
-                PDFParser.join_words(
-                    words_in_line
+            word_list.sort(key=lambda x: x[0])
+
+            text = self._join_words(word_list)
+
+            x0 = min(w[0] for w in word_list)
+            y0 = min(w[1] for w in word_list)
+
+            x1 = max(w[2] for w in word_list)
+            y1 = max(w[3] for w in word_list)
+
+            lines.append(
+                LogicalLine(
+                    text=text,
+                    page=page_number,
+                    x0=x0,
+                    y0=y0,
+                    x1=x1,
+                    y1=y1,
                 )
             )
 
-            sorted_lines.append(
-                (key[0], key[1], line_text)
+        # ----------------------------------------------------
+        # 按 y 坐标排序
+        # ----------------------------------------------------
+
+        lines.sort(
+            key=lambda line: (
+                round(line.y0 / self.config.y_tolerance),
+                line.x0,
             )
-
-        # -----------------------------------------------------
-        # block → line
-        # -----------------------------------------------------
-
-        sorted_lines.sort(
-            key=lambda x:(x[0], x[1])
         )
 
-        return [item[2] for item in sorted_lines]
+        return lines
 
-    # =========================================================
-    # 4. words 合并
-    # =========================================================
     @staticmethod
-    def join_words(words: List[Dict]) -> str:
-        """
-        根据 x 坐标判断两个 word 是否需要空格。
-        中文通常直接连接：车辆长度
+    def _join_words(words) -> str:
 
-        英文：vehicle length
+        result = ""
 
-        中英文：长度 vehicle
-        """
+        for word in words:
 
-        if not words:
-            return ""
+            text = word[4]
 
-        result = words[0]["text"]
-        for i in range(1, len(words)):
+            if not result:
+                result = text
+                continue
 
-            previous = words[i-1]
-            current = words[i]
+            previous = result[-1]
 
-            prev_text = previous["text"]
-            curr_text = current["text"]
+            # ------------------------------------------------
+            # 中文场景：
+            #
+            # 例如：
+            # "车辆" + "宽度"
+            #
+            # 不需要加空格
+            # ------------------------------------------------
 
-            gap = current["x0"] - previous["x1"]
-
-            if PDFParser.need_space(prev_text, curr_text, gap):
+            if LineBuilder._need_space(previous, text[0]):
                 result += " "
 
-            result += curr_text
+            result += text
+
         return result
 
-    # =========================================================
-    # 5. 判断是否需要空格
-    # =========================================================
     @staticmethod
-    def need_space(
-        previous: str,
-        current: str,
-        gap: float
-    ) -> bool:
-        """
-        判断两个 PDF word 之间是否需要空格。
-        """
+    def _need_space(left: str, right: str) -> bool:
 
-        if not previous or not current:
+        # 中文字符之间不加空格
+        if "\u4e00" <= left <= "\u9fff":
+            if "\u4e00" <= right <= "\u9fff":
+                return False
+
+        # 中文 + 标点
+        if right in "，。；：、）】》〉":
             return False
 
-        prev_char = previous[-1]
-        curr_char = current[0]
+        if left in "（【《〈":
+            return False
 
-        prev_is_chinese = (
-            "\u4e00" <= prev_char <= "\u9fff"
+        return True
+
+
+# ============================================================
+# 5. 标题解析器
+# ============================================================
+
+class HeadingParser:
+
+    # --------------------------------------------------------
+    # 正文标题
+    #
+    # 4
+    # 4.1
+    # 4.1.1
+    # 4.1.1.1
+    # --------------------------------------------------------
+
+    MAIN_PATTERN = re.compile(
+        r"^(\d+(?:\.\d+){0,3})\s*(.*)$"
+    )
+
+    # --------------------------------------------------------
+    # 附录
+    #
+    # A
+    # A.1
+    # A.1.1
+    # A.1.1.1
+    # --------------------------------------------------------
+
+    APPENDIX_PATTERN = re.compile(
+        r"^([A-Z](?:\.\d+){0,3})\s*(.*)$"
+    )
+
+    # --------------------------------------------------------
+    # 图
+    #
+    # 图 B.1
+    # 图 B.1.1
+    # 图 B.1.1.1
+    # 图 B.1.1.1.1
+    # --------------------------------------------------------
+
+    FIGURE_PATTERN = re.compile(
+        r"^(图\s*[A-Z](?:\.\d+){1,3})\s*(.*)$"
+    )
+
+    # --------------------------------------------------------
+    # 表
+    #
+    # 表 5
+    # 表 5.1
+    # 表 5.1.1
+    # 表 5.1.1.1
+    # --------------------------------------------------------
+
+    TABLE_PATTERN = re.compile(
+        r"^(表\s*\d+(?:\.\d+){0,3})\s*(.*)$"
+    )
+
+    def __init__(self, config: ParserConfig):
+        self.config = config
+
+    def parse(self, text: str) -> Optional[Heading]:
+
+        text = self.normalize(text)
+
+        if not text:
+            return None
+
+        # ----------------------------------------------------
+        # 图
+        # ----------------------------------------------------
+
+        match = self.FIGURE_PATTERN.match(text)
+
+        if match:
+
+            number = match.group(1)
+            title = match.group(2).strip()
+
+            level = self._calc_level(
+                number.replace("图", "").strip()
+            )
+
+            if 1 <= level <= self.config.max_heading_level:
+                return Heading(
+                    kind="figure",
+                    number=number,
+                    title=title,
+                    level=level,
+                )
+
+        # ----------------------------------------------------
+        # 表
+        # ----------------------------------------------------
+
+        match = self.TABLE_PATTERN.match(text)
+
+        if match:
+
+            number = match.group(1)
+            title = match.group(2).strip()
+
+            level = self._calc_level(
+                number.replace("表", "").strip()
+            )
+
+            if 1 <= level <= self.config.max_heading_level:
+                return Heading(
+                    kind="table",
+                    number=number,
+                    title=title,
+                    level=level,
+                )
+
+        # ----------------------------------------------------
+        # 正文
+        # ----------------------------------------------------
+
+        match = self.MAIN_PATTERN.match(text)
+
+        if match:
+
+            number = match.group(1)
+            title = match.group(2).strip()
+
+            level = number.count(".") + 1
+
+            if level <= self.config.max_heading_level:
+
+                # 避免：
+                #
+                # 4.4车辆通过性要求应符合GB1589的规定。
+                #
+                # 这种普通正文被全部识别成标题。
+                #
+                # 当前版本采用一个简单启发式：
+                # 如果标题过长，更可能是正文。
+                #
+                if self._looks_like_heading(title):
+
+                    return Heading(
+                        kind="main",
+                        number=number,
+                        title=title,
+                        level=level,
+                    )
+
+        # ----------------------------------------------------
+        # 附录
+        # ----------------------------------------------------
+
+        match = self.APPENDIX_PATTERN.match(text)
+
+        if match:
+
+            number = match.group(1)
+            title = match.group(2).strip()
+
+            level = number.count(".") + 1
+
+            if level <= self.config.max_heading_level:
+
+                if self._looks_like_heading(title):
+
+                    return Heading(
+                        kind="appendix",
+                        number=number,
+                        title=title,
+                        level=level,
+                    )
+
+        return None
+
+    @staticmethod
+    def normalize(text: str) -> str:
+
+        text = text.strip()
+
+        text = re.sub(
+            r"\s+",
+            " ",
+            text
         )
 
-        curr_is_chinese = (
-            "\u4e00" <= curr_char <= "\u9fff"
-        )
+        return text
 
-        prev_is_alpha = prev_char.isascii() and prev_char.isalpha()
-        curr_is_alpha = curr_char.isascii() and curr_char.isalpha()
-
-        # 中文 + 中文
-        if prev_is_chinese and curr_is_chinese:
-            return False
-
-        # 中文 + 英文
-        if prev_is_chinese and curr_is_alpha:
-            return True
-
-        # 英文 + 中文
-        if prev_is_alpha and curr_is_chinese:
-            return True
-
-        # 英文 + 英文
-        if prev_is_alpha and curr_is_alpha:
-            return True
-
-        # 数字 + 中文
-        if prev_char.isdigit() and curr_is_chinese:
-            return False
-
-        # 中文 + 数字
-        if prev_is_chinese and curr_char.isdigit():
-            return False
-
-        # 数字 + 英文
-        if prev_char.isdigit() and curr_is_alpha:
-            return False
-
-        # 英文 + 数字
-        if prev_is_alpha and curr_char.isdigit():
-            return False
-
-        # 如果 PDF 中两个 word 之间存在明显间距
-        if gap > 3:
-            return True
-
-        return False
-
-    # =========================================================
-    # 6. 页眉 / 页脚检测
-    # =========================================================
-    def detect_headers_footers(self, pages:List[Dict]) -> Tuple[set, set]:
-
-        page_count = len(pages)
-
-        if page_count < 3:
-            return set(), set()
-
-        header_counter = Counter()
-        footer_counter = Counter()
-
-        for page in pages:
-            lines = page["lines"]
-
-            # 页面前N行
-            header_part = lines[:self.header_lines]
-
-            # 页面后N行
-            footer_part = lines[-self.footer_lines:]
-
-            for line in header_part:
-                normalized = self.normalize_line(line)
-
-                if normalized:
-                    header_counter[normalized] += 1
-
-            for line in footer_part:
-                normalized = self.normalize_line(line)
-
-                if normalized:
-                    footer_counter[normalized] += 1
-
-        threshold_count = max(2, int(page_count * self.threshold))
-
-        headers = {
-            text for text,count in header_counter.items() if count > threshold_count
-        }
-
-        footers = {
-            text for text, count in footer_counter.items() if count > threshold_count
-        }
-
-        return headers, footers
-
-    # =========================================================
-    # 7. 删除页眉 / 页脚 / 页码
-    # =========================================================
-    def remove_header_footer(
-        self,
-        lines: List[str],
-        headers: set,
-        footers: set
-    ) -> List[str]:
-
-        result = []
-
-        for line in lines:
-            normalized = self.normalize_line(line)
-
-            # 页码
-            if self.is_page_number(normalized):
-                continue
-
-            if normalized in headers:
-                continue
-
-            if normalized in footers:
-                continue
-
-            result.append(line)
-        return result
-
-    # =========================================================
-    # 8. 页码判断
-    # =========================================================
     @staticmethod
-    def is_page_number(line: str) -> bool:
+    def _calc_level(number: str) -> int:
 
-        line = line.strip()
+        return number.count(".") + 1
 
-        patterns = [
-            # 1
-            r"^\d+$",
-            # - 1 -
-            r"^-\s*\d+\s*-$",
-            # — 1 —
-            r"^—\s*\d+\s*—$",
-            # 第 1 页
-            r"^第\s*\d+\s*页$",
-            # 1 / 100
-            r"^\d+\s*/\s*\d+$",
-        ]
-
-        return any(re.match(pattern, line) for pattern in patterns)
-
-    # =========================================================
-    # 9. 跨行文本合并
-    # =========================================================
     @staticmethod
-    def merge_broken_lines(lines: List[str]) -> List[str]:
+    def _looks_like_heading(title: str) -> bool:
+
+        if not title:
+            return True
+
+        # ----------------------------------------------------
+        # 太长一般不是标题
+        #
+        # 这个阈值只是初始值。
+        # 后续建议加入字体、字号、粗体等信息。
+        # ----------------------------------------------------
+
+        if len(title) > 100:
+            return False
+
+        # ----------------------------------------------------
+        # 明显句号结尾通常更像正文
+        # ----------------------------------------------------
+
+        if title.endswith(("。", "；")):
+            return False
+
+        return True
+
+
+# ============================================================
+# 6. 标题编号恢复
+# ============================================================
+
+class LineMerger:
+
+    # --------------------------------------------------------
+    # 例如：
+    #
+    # 4.7.2.最大允许总质量应不超过55000kg。
+    # 4
+    #
+    # ->
+    #
+    # 4.7.2.4 最大允许总质量应不超过55000kg。
+    # --------------------------------------------------------
+
+    MAIN_INCOMPLETE = re.compile(
+        r"^(\d+(?:\.\d+){0,2})\.(.*)$"
+    )
+
+    APPENDIX_INCOMPLETE = re.compile(
+        r"^([A-Z](?:\.\d+){0,2})\.(.*)$"
+    )
+
+    FIGURE_INCOMPLETE = re.compile(
+        r"^(图\s*[A-Z](?:\.\d+){0,2})\.(.*)$"
+    )
+
+    TABLE_INCOMPLETE = re.compile(
+        r"^(表\s*\d+(?:\.\d+){0,2})\.(.*)$"
+    )
+
+    PURE_NUMBER = re.compile(
+        r"^\d+$"
+    )
+
+    def __init__(self, config: ParserConfig):
+        self.config = config
+
+    def merge(self, lines: List[LogicalLine]) -> List[LogicalLine]:
+
+        if not lines:
+            return []
 
         result = []
 
         i = 0
 
         while i < len(lines):
-            current = lines[i].strip()
 
-            # -------------------------------------------------
-            # 3. + 1 → 3.1
-            # -------------------------------------------------
-            if (
-                re.fullmatch(r"\d+\.", current)
-                and i + 1 < len(lines)
-                and re.fullmatch(r"\d+", lines[i+1].strip())
-            ):
+            current = lines[i]
 
-                merged = (current + lines[i+1].strip())
+            # ------------------------------------------------
+            # 当前行是否可能是一个不完整标题
+            # ------------------------------------------------
 
-                result.append(merged)
+            if self._is_incomplete_heading(current.text):
 
-                i += 2
+                if i + 1 < len(lines):
 
-                continue
+                    next_line = lines[i + 1]
 
-            # -------------------------------------------------
-            # GB/T3730. + 1
-            # -------------------------------------------------
-            if (
-                re.search(r"(GB/T|GB)\s*\d+\.$", current, re.IGNORECASE)
-                and i + 1 < len(lines)
-                and re.fullmatch(r"\d+", lines[i+1].strip())
-            ):
-                merged = (current + lines[i+1].strip())
+                    if self._can_merge(current, next_line):
 
-                result.append(merged)
+                        merged = self._complete_heading(
+                            current,
+                            next_line
+                        )
 
-                i += 1
+                        if merged:
 
-                continue
+                            result.append(merged)
+
+                            i += 2
+                            continue
 
             result.append(current)
 
             i += 1
+
         return result
 
-    # =========================================================
-    # 11. 章节识别
-    # =========================================================
-    def detect_structure(self, pages: List[Dict]) -> List[Dict]:
+    def _is_incomplete_heading(self, text: str) -> bool:
 
-        current_chapter = None
-        current_section = None
+        text = text.strip()
+
+        patterns = [
+            self.MAIN_INCOMPLETE,
+            self.APPENDIX_INCOMPLETE,
+            self.FIGURE_INCOMPLETE,
+            self.TABLE_INCOMPLETE,
+        ]
+
+        for pattern in patterns:
+
+            if pattern.match(text):
+                return True
+
+        return False
+
+    def _can_merge(
+        self,
+        current: LogicalLine,
+        next_line: LogicalLine
+    ) -> bool:
+
+        # ----------------------------------------------------
+        # 必须是同一页
+        # ----------------------------------------------------
+
+        if current.page != next_line.page:
+            return False
+
+        # ----------------------------------------------------
+        # 下一行必须是纯数字
+        #
+        # 例如：
+        #
+        # 4
+        # 5
+        # 6
+        # ----------------------------------------------------
+
+        number = next_line.text.strip()
+
+        if not self.PURE_NUMBER.match(number):
+            return False
+
+        # ----------------------------------------------------
+        # 最多只能补一位数字
+        # ----------------------------------------------------
+
+        if len(number) != 1:
+            return False
+
+        # ----------------------------------------------------
+        # 垂直距离不能太大
+        # ----------------------------------------------------
+
+        gap = next_line.y0 - current.y1
+
+        if gap < 0:
+            return False
+
+        if gap > self.config.max_merge_gap:
+            return False
+
+        return True
+
+    def _complete_heading(
+        self,
+        current: LogicalLine,
+        next_line: LogicalLine
+    ) -> Optional[LogicalLine]:
+
+        text = current.text.strip()
+        suffix = next_line.text.strip()
+
+        # ----------------------------------------------------
+        # 4.7.2. + 4
+        #
+        # -> 4.7.2.4
+        # ----------------------------------------------------
+
+        match = self.MAIN_INCOMPLETE.match(text)
+
+        if match:
+
+            prefix = match.group(1)
+            title = match.group(2).strip()
+
+            level = prefix.count(".") + 2
+
+            if level <= self.config.max_heading_level:
+
+                new_text = (
+                    f"{prefix}.{suffix} {title}"
+                )
+
+                return LogicalLine(
+                    text=new_text,
+                    page=current.page,
+                    x0=current.x0,
+                    y0=current.y0,
+                    x1=max(current.x1, next_line.x1),
+                    y1=next_line.y1,
+                )
+
+        # ----------------------------------------------------
+        # A.4.2. + 2
+        #
+        # -> A.4.2.2
+        # ----------------------------------------------------
+
+        match = self.APPENDIX_INCOMPLETE.match(text)
+
+        if match:
+
+            prefix = match.group(1)
+            title = match.group(2).strip()
+
+            level = prefix.count(".") + 2
+
+            if level <= self.config.max_heading_level:
+
+                new_text = (
+                    f"{prefix}.{suffix} {title}"
+                )
+
+                return LogicalLine(
+                    text=new_text,
+                    page=current.page,
+                    x0=current.x0,
+                    y0=current.y0,
+                    x1=max(current.x1, next_line.x1),
+                    y1=next_line.y1,
+                )
+
+        # ----------------------------------------------------
+        # 图B. + 1
+        #
+        # -> 图 B.1
+        # ----------------------------------------------------
+
+        match = self.FIGURE_INCOMPLETE.match(text)
+
+        if match:
+
+            prefix = match.group(1)
+            title = match.group(2).strip()
+
+            level = prefix.replace("图", "").strip().count(".") + 2
+
+            if level <= self.config.max_heading_level:
+
+                new_text = (
+                    f"{prefix}{suffix} {title}"
+                )
+
+                # 标准化 "图B.1"
+                new_text = re.sub(
+                    r"^图\s*",
+                    "图 ",
+                    new_text
+                )
+
+                return LogicalLine(
+                    text=new_text,
+                    page=current.page,
+                    x0=current.x0,
+                    y0=current.y0,
+                    x1=max(current.x1, next_line.x1),
+                    y1=next_line.y1,
+                )
+
+        # ----------------------------------------------------
+        # 表5. + 1
+        # ----------------------------------------------------
+
+        match = self.TABLE_INCOMPLETE.match(text)
+
+        if match:
+
+            prefix = match.group(1)
+            title = match.group(2).strip()
+
+            level = prefix.replace("表", "").strip().count(".") + 2
+
+            if level <= self.config.max_heading_level:
+
+                new_text = (
+                    f"{prefix}{suffix} {title}"
+                )
+
+                new_text = re.sub(
+                    r"^表\s*",
+                    "表 ",
+                    new_text
+                )
+
+                return LogicalLine(
+                    text=new_text,
+                    page=current.page,
+                    x0=current.x0,
+                    y0=current.y0,
+                    x1=max(current.x1, next_line.x1),
+                    y1=next_line.y1,
+                )
+
+        return None
+
+
+# ============================================================
+# 7. 清理页眉、页脚、页码
+# ============================================================
+
+class LineCleaner:
+
+    STANDARD_HEADER_PATTERN = re.compile(
+        r"^(GB\s*/?\s*T?\s*\d+.*|GB\d+.*)[—\-]\d{4}$",
+        re.IGNORECASE
+    )
+
+    def __init__(self, config: ParserConfig):
+        self.config = config
+
+    def clean_page(
+        self,
+        lines: List[LogicalLine],
+        page_height: float
+    ) -> List[LogicalLine]:
 
         result = []
 
-        for page in pages:
+        for line in lines:
 
-            page_number = page["page"]
-
-            lines = page["text"].splitlines()
-
-            content_lines = []
-            for line in lines:
-
-                line = line.strip()
-                if not line:
-                    continue
-
-                # -------------------------------------------------
-                # 一级章节
-                #
-                # 1 范围
-                # 2 规范性引用文件
-                # 3 术语和定义
-                # -------------------------------------------------
-
-                chapter_match = re.match(r"^(\d+)\s+(.+)$", line)
-
-                if chapter_match:
-                    number = chapter_match.group(1)
-                    title = chapter_match.group(2)
-
-                    current_chapter = (f"{number} {title}")
-                    current_section =  None
-                    continue
-
-                # -------------------------------------------------
-                # 二级章节
-                #
-                # 3.1 车辆长度
-                # 3.2 车辆宽度
-                # -------------------------------------------------
-                section_match = re.match(r"^(\d+\.\d+)\s*(.*)$", line)
-
-                if section_match:
-                    number = section_match.group(1)
-                    title = section_match.group(2).strip()
-
-                    # 如果标题被拆到下一行
-                    if not title:
-                        current_section = number
-                    else:
-                        current_section = (f"{number} {title}")
-
-                    continue
-
-                # -------------------------------------------------
-                # 如果上一行只有 3.1
-                #
-                # 下一行是：
-                #
-                # 车辆长度 vehicle length
-                # -------------------------------------------------
-
-                if (
-                    current_section
-                    and re.fullmatch(r"\d+\.\d+", current_section)
-                ):
-                    current_section = (f"{current_section} {line}")
-                    continue
-
-                content_lines.append(line)
-
-            # -----------------------------------------------------
-            # 处理当前页面正文
-            # -----------------------------------------------------
-
-            text = "\n".join(content_lines)
+            text = line.text.strip()
 
             if not text:
                 continue
 
-            result.append(
-                {
-                    "page": page_number,
-                    "chapter": current_chapter,
-                    "section": current_section,
-                    "text": text
-                }
-            )
+            # ------------------------------------------------
+            # 页码
+            #
+            # 注意：
+            #
+            # 标题编号恢复已经在前面完成。
+            #
+            # 所以这里再删除底部纯数字才安全。
+            # ------------------------------------------------
+
+            if self._is_page_number(
+                line,
+                page_height
+            ):
+                continue
+
+            # ------------------------------------------------
+            # 页眉
+            # ------------------------------------------------
+
+            if self._is_header(
+                line,
+                page_height
+            ):
+                continue
+
+            result.append(line)
 
         return result
 
-    @staticmethod
-    def normalize_line(text: str) -> str:
+    def _is_page_number(
+        self,
+        line: LogicalLine,
+        page_height: float
+    ) -> bool:
 
-        # 去掉首位空白
-        text = text.strip()
+        if line.y0 < page_height * self.config.footer_ratio:
+            return False
 
-        # 全角空格 --> 普通空格
-        text = text.replace("\u3000", " ")
+        text = line.text.strip()
 
-        # 连续空格压缩
-        text = re.sub(r"[ \t]+", " ", text)
-
-        # 标准编号处理
-        # -----------------------------------------------------
-        # GB/T3730.1
-        #
-        # →
-        #
-        # GB/T 3730.1
-        # -----------------------------------------------------
-        text = re.sub(
-            r"GB/T\s*(\d+).\s*(\d+)",
-            r"GB/T \1.\2",
-            text
+        return bool(
+            re.fullmatch(r"\d+", text)
         )
 
+    def _is_header(
+        self,
+        line: LogicalLine,
+        page_height: float
+    ) -> bool:
 
-        return text
+        if line.y0 > page_height * self.config.header_ratio:
+            return False
+
+        text = line.text.strip()
+
+        if self.STANDARD_HEADER_PATTERN.match(text):
+            return True
+
+        return False
 
 
+# ============================================================
+# 8. 文档块构建器
+# ============================================================
 
+class DocumentBlockBuilder:
+
+    def __init__(
+        self,
+        document_name: str,
+        heading_parser: HeadingParser
+    ):
+
+        self.document_name = document_name
+        self.heading_parser = heading_parser
+
+    def build(
+        self,
+        lines: List[LogicalLine]
+    ) -> List[DocumentBlock]:
+
+        blocks = []
+
+        # ----------------------------------------------------
+        # 当前标题上下文
+        #
+        # {
+        #     1: "4 车辆外廓尺寸要求",
+        #     2: "4.4 车辆通过性要求",
+        #     3: "4.4.1 最小离地间隙"
+        # }
+        # ----------------------------------------------------
+
+        headings: Dict[int, str] = {}
+
+        buffer: List[LogicalLine] = []
+
+        def flush():
+
+            nonlocal buffer
+
+            if not buffer:
+                return
+
+            text = self._join_buffer(buffer)
+
+            if not text:
+                buffer = []
+                return
+
+            heading_path = [
+                headings[level]
+                for level in sorted(headings)
+            ]
+
+            chapter = (
+                headings.get(1)
+            )
+
+            section = (
+                headings.get(
+                    max(headings)
+                )
+                if headings
+                else None
+            )
+
+            blocks.append(
+                DocumentBlock(
+                    document=self.document_name,
+
+                    page_start=buffer[0].page,
+
+                    page_end=buffer[-1].page,
+
+                    chapter=chapter,
+
+                    section=section,
+
+                    heading_path=heading_path,
+
+                    text=text,
+                )
+            )
+
+            buffer = []
+
+        # ----------------------------------------------------
+        # 一行一行处理
+        # ----------------------------------------------------
+
+        for line in lines:
+
+            heading = self.heading_parser.parse(
+                line.text
+            )
+
+            # ------------------------------------------------
+            # 标题
+            # ------------------------------------------------
+
+            if heading:
+
+                # 先把前面的正文保存
+                flush()
+
+                # ------------------------------------------------
+                # 图、表暂时作为正文内容
+                #
+                # 因为图/表通常不应该改变正文章节层级。
+                # ------------------------------------------------
+
+                if heading.kind in (
+                    "figure",
+                    "table",
+                ):
+
+                    buffer.append(
+                        LogicalLine(
+                            text=heading.full_text,
+                            page=line.page,
+                            x0=line.x0,
+                            y0=line.y0,
+                            x1=line.x1,
+                            y1=line.y1,
+                        )
+                    )
+
+                    continue
+
+                # ------------------------------------------------
+                # 更新标题上下文
+                # ------------------------------------------------
+
+                headings[heading.level] = (
+                    heading.full_text
+                )
+
+                # 删除更深层标题
+                for level in list(headings):
+
+                    if level > heading.level:
+                        del headings[level]
+
+                continue
+
+            # ------------------------------------------------
+            # 普通正文
+            # ------------------------------------------------
+
+            buffer.append(line)
+
+        # ----------------------------------------------------
+        # 最后一块
+        # ----------------------------------------------------
+
+        flush()
+
+        return blocks
+
+    @staticmethod
+    def _join_buffer(
+        lines: List[LogicalLine]
+    ) -> str:
+
+        texts = []
+
+        for line in lines:
+
+            text = line.text.strip()
+
+            if text:
+                texts.append(text)
+
+        return "\n".join(texts)
+
+
+# ============================================================
+# 9. 总解析器
+# ============================================================
+
+class PDFParser:
+
+    def __init__(
+        self,
+        pdf_path: str,
+        config: Optional[ParserConfig] = None
+    ):
+
+        self.pdf_path = pdf_path
+
+        self.config = (
+            config
+            if config is not None
+            else ParserConfig()
+        )
+
+        self.extractor = PDFExtractor(
+            pdf_path
+        )
+
+        self.line_builder = LineBuilder(
+            self.config
+        )
+
+        self.line_merger = LineMerger(
+            self.config
+        )
+
+        self.cleaner = LineCleaner(
+            self.config
+        )
+
+        self.heading_parser = HeadingParser(
+            self.config
+        )
+
+    def parse(self) -> List[DocumentBlock]:
+
+        document_name = self.pdf_path.split("/")[-1]
+
+        all_lines = []
+
+        with self.extractor.open() as doc:
+
+            for page_index in range(
+                len(doc)
+            ):
+
+                page = doc[page_index]
+
+                page_number = page_index + 1
+
+                # ------------------------------------------------
+                # 1. 提取 words
+                # ------------------------------------------------
+
+                words = (
+                    self.extractor.extract_words(
+                        page
+                    )
+                )
+
+                # ------------------------------------------------
+                # 2. words -> LogicalLine
+                # ------------------------------------------------
+
+                lines = (
+                    self.line_builder.build(
+                        words,
+                        page_number
+                    )
+                )
+
+                # ------------------------------------------------
+                # 3. 恢复被 PDF 拆开的标题编号
+                #
+                # 非常重要：
+                #
+                # 必须先做。
+                # ------------------------------------------------
+
+                lines = (
+                    self.line_merger.merge(
+                        lines
+                    )
+                )
+
+                # ------------------------------------------------
+                # 4. 删除页眉、页脚、页码
+                # ------------------------------------------------
+
+                if self.config.remove_header_footer:
+
+                    lines = (
+                        self.cleaner.clean_page(
+                            lines,
+                            page.rect.height
+                        )
+                    )
+
+                all_lines.extend(lines)
+
+        # --------------------------------------------------------
+        # 5. 按逻辑标题构建 DocumentBlock
+        # --------------------------------------------------------
+
+        builder = DocumentBlockBuilder(
+            document_name=document_name,
+            heading_parser=self.heading_parser
+        )
+
+        blocks = builder.build(
+            all_lines
+        )
+
+        return blocks
+
+
+# ============================================================
+# 10. JSON 输出
+# ============================================================
+
+def blocks_to_dict(
+    blocks: List[DocumentBlock]
+):
+
+    result = []
+
+    for block in blocks:
+
+        result.append(
+            {
+                "document": block.document,
+
+                "page_start": block.page_start,
+
+                "page_end": block.page_end,
+
+                "chapter": block.chapter,
+
+                "section": block.section,
+
+                "heading_path": block.heading_path,
+
+                "text": block.text,
+            }
+        )
+
+    return result
+
+
+# ============================================================
+# 11. 测试标题识别
+# ============================================================
+
+def test_heading_parser():
+
+    config = ParserConfig()
+
+    parser = HeadingParser(config)
+
+    test_cases = [
+
+        # 正文
+        "4 车辆外廓尺寸要求",
+
+        "4.1 车辆长度要求",
+
+        "4.4车辆通过性要求",
+
+        "4.4.1 最小离地间隙",
+
+        "4.4.1.1 特殊车辆要求",
+
+        # 附录
+        "A 附录",
+
+        "A.1 测量方法",
+
+        "A.4.2.2 以下装置不在车辆宽度测量范围:",
+
+        # 图
+        "图 B.1 车辆外摆值示意图",
+
+        "图 B.1.1 测量示意图",
+
+        # 表
+        "表 5 车辆尺寸要求",
+
+        "表 5.1 车辆长度",
+
+        # 普通正文
+        "车辆长度应符合4.1的规定。",
+
+    ]
+
+    for text in test_cases:
+
+        heading = parser.parse(text)
+
+        print("=" * 70)
+
+        print(
+            f"输入: {text}"
+        )
+
+        if heading:
+
+            print(
+                f"类型: {heading.kind}"
+            )
+
+            print(
+                f"编号: {heading.number}"
+            )
+
+            print(
+                f"标题: {heading.title}"
+            )
+
+            print(
+                f"层级: {heading.level}"
+            )
+
+        else:
+
+            print("不是标题")
+
+
+# ============================================================
+# 12. 测试标题编号恢复
+# ============================================================
+
+def test_line_merger():
+
+    config = ParserConfig()
+
+    merger = LineMerger(config)
+
+    examples = [
+
+        (
+            "4.7.2.最大允许总质量应不超过55000kg。",
+            "4",
+        ),
+
+        (
+            "4.7.2.后悬应符合4.5的要求。",
+            "5",
+        ),
+
+        (
+            "4.7.2.驱动轴的轴荷应符合4.6.1的要求。",
+            "6",
+        ),
+
+        (
+            "A.4.2.以下装置不在车辆宽度测量范围:",
+            "2",
+        ),
+
+        (
+            "A.2.车辆横向平面(X基准平面)",
+            "3",
+        ),
+
+        (
+            "图B.车辆外摆值示意图(汽车)",
+            "1",
+        ),
+
+        (
+            "图B.车辆外摆值示意图(汽车列车)",
+            "2",
+        ),
+
+        (
+            "B.2.上述过程顺时针及逆时针各进行一次。",
+            "5",
+        ),
+
+        (
+            "B.2.汽车或汽车列车起步,由直线行驶过渡到B.1.2所述的圆周内运动,至少车辆尾部进入",
+            "3",
+        ),
+    ]
+
+    for first, second in examples:
+
+        lines = [
+
+            LogicalLine(
+                text=first,
+                page=1,
+                x0=100,
+                y0=100,
+                x1=500,
+                y1=110,
+            ),
+
+            LogicalLine(
+                text=second,
+                page=1,
+                x0=100,
+                y0=112,
+                x1=110,
+                y1=122,
+            ),
+        ]
+
+        result = merger.merge(lines)
+
+        print("=" * 70)
+
+        print("原始:")
+
+        print(first)
+
+        print(second)
+
+        print()
+
+        print("恢复后:")
+
+        for line in result:
+
+            print(line.text)
+
+
+# ============================================================
+# 13. 实际运行
+# ============================================================
+
+if __name__ == "__main__":
+
+    # --------------------------------------------------------
+    # 修改成你的 PDF
+    # --------------------------------------------------------
+
+    PDF_PATH = "../../data/pdf/GB+1589-2026.pdf"
+
+    # --------------------------------------------------------
+    # 运行解析
+    # --------------------------------------------------------
+
+    parser = PDFParser(
+        PDF_PATH
+    )
+
+    blocks = parser.parse()
+
+    print(
+        f"\n解析完成，共 {len(blocks)} 个 DocumentBlock\n"
+    )
+
+    # --------------------------------------------------------
+    # 输出前 20 个 block
+    # --------------------------------------------------------
+
+    for index, block in enumerate(
+        blocks[:40]
+    ):
+
+        print("=" * 80)
+
+        print(
+            f"Block {index + 1}"
+        )
+
+        print(
+            f"文档: {block.document}"
+        )
+
+        print(
+            f"页码: {block.page_start} - "
+            f"{block.page_end}"
+        )
+
+        print(
+            f"Chapter: {block.chapter}"
+        )
+
+        print(
+            f"Section: {block.section}"
+        )
+
+        print(
+            f"Heading Path: "
+            f"{block.heading_path}"
+        )
+
+        print()
+
+        print(block.text[:1000])
+
+        print()

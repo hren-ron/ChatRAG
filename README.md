@@ -27,6 +27,9 @@ cp example.env .env
 在.env中配置模型信息（API_KEY, BASE_URL）
 
 
+### 注意
+1. 后续使用若需进一步提升效果，可以根据文档格式修改文档解析方法。
+
 ### todo
 1. 中英文支持
 2. OCR识别

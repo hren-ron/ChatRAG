@@ -4,7 +4,7 @@ import pdfplumber
 from dotenv import load_dotenv
 from openai import OpenAI
 
-from src.parser.pdf_parser import PDFParser
+from src.parser.pdf_parser_old import PDFParser
 
 load_dotenv()
 
