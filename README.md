@@ -98,6 +98,149 @@ ChapterSplitter
 多个章节TXT
 ```
 
+### Chunker
+Chunker 负责将已经按照章节划分好的 TXT 文档，进一步处理为适合 RAG 检索的 Retrieval Chunk。
+
+整体流程如下：
+
+```aiignore
+章节 TXT
+   │
+   ▼
+ChunkLoader
+   │
+   ▼
+Structured Chunk
+   │
+   ▼
+SecondaryChunker
+   │
+   ├── 标题层级识别
+   ├── 上下文构建
+   ├── 段落切分
+   ├── 句子切分
+   ├── Token 切分
+   └── Overlap
+   │
+   ▼
+Retrieval Chunk
+   │
+   ├── Embedding
+   ├── BM25
+   └── Vector DB
+```
+
+#### ChunkLoader
+ChunkLoader 负责读取已经生成好的章节 TXT 文件，并转换成统一的 Chunk 对象。
+
+输入目录：
+```aiignore
+data/output/
+├── GB+1589-2026/
+│   ├── 001_1_范围.txt
+│   ├── 002_2_规范性引用文件.txt
+│   ├── 003_3_术语和定义.txt
+│   └── ...
+│
+└── GB+7258-2017/
+    ├── 001_1_范围.txt
+    └── ...
+```
+例如：
+```
+004_4_技术要求.txt
+```
+会被加载成一个 Structured Chunk。
+
+
+#### Structured Chunk
+
+Structured Chunk 保留原始章节的完整内容。
+
+例如：
+```aiignore
+4 技术要求
+
+4.1 制动系统
+
+4.1.1 制动性能
+
+车辆的制动性能应满足……
+
+4.1.2 制动距离
+
+车辆的制动距离应满足……
+
+4.2 转向系统
+
+……
+```
+一个章节对应一个 Structured Chunk。
+
+Structured Chunk 的特点：
+- 保留完整章节内容
+- 保留标题层级
+- 适合保存原始文档结构
+- 不一定适合直接进行 Embedding
+
+因为某些章节可能包含数千甚至上万个 Token。
+
+#### SecondaryChunker
+SecondaryChunker 负责将 Structured Chunk 进一步切分成适合检索的 Retrieval Chunk。
+
+核心目标：
+```aiignore
+Structured Chunk
+        │
+        ▼
+多个 Retrieval Chunk
+```
+例如：
+```
+4 技术要求
+```
+可能最终变成：
+```
+gb_1589_2026_004_4_001
+gb_1589_2026_004_4_002
+gb_1589_2026_004_4_003
+```
+
+
+##### 二次切分策略
+SecondaryChunker 按以下顺序进行切分：
+```
+段落
+ ↓
+句子
+ ↓
+Token
+```
+1. 优先按照段落进行切分。如果当前 Chunk 还能容纳整个段落，则直接加入。
+2. 如果一个段落本身超过 Chunk 最大 Token 数，则进一步按照句子切分。
+3. 如果单个句子仍然超过 Token 限制，则最终按照 Token 进行切分。
+
+因此整体策略是： 优先保持语义完整
+
+##### Retrieval Chunk
+最终生成的 Retrieval Chunk 包含：
+```aiignore
+Chunk 
+├── chunk_id 
+├── document_id 
+├── source 
+├── version 
+├── chapter 
+├── title 
+├── level 
+├── parent_path 
+├── content 
+├── content_hash 
+├── chunk_strategy 
+├── chunk_index 
+├── token_count 
+└── ...
+```
 
 ### 注意
 1. 后续使用若需进一步提升效果，可以根据文档格式修改文档解析方法。
