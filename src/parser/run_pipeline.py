@@ -106,6 +106,63 @@ class PDFPipeline:
         print(f"文件数量：{len(chunk_files)}")
 
 
+class BatchPDFPipeline:
+    """
+        批量 PDF 文档处理流水线
+
+        自动遍历 PDF 目录中的所有 PDF 文件，
+        每个 PDF 独立执行 PDFPipeline。
+    """
+
+    def __init__(self, pdf_dir: str, output_dir: str):
+        self.pdf_dir = Path(pdf_dir)
+        self.output_dir = Path(output_dir)
+
+    def run(self):
+
+        # 获取所有pdf文件
+        pdf_files = sorted(self.pdf_dir.glob("*.pdf"))
+
+        if not pdf_files:
+            print(f"no find pdf files:{self.pdf_dir}")
+            return
+
+        print("=" * 60)
+        print("process pdf files")
+        print("=" * 60)
+
+        print(f"pfd files dir: {self.pdf_dir}")
+        print(f"the number of pdf files: {len(pdf_files)}")
+
+        success = 0
+        failed = 0
+
+        for index, pdf_file in enumerate(pdf_files, start=1):
+            print("\n")
+
+            print(f"=========== [{index}/{len(pdf_files)}] ===========")
+
+            try:
+                pipeline = PDFPipeline(pdf_path=str(pdf_file), output_dir=str(self.output_dir))
+
+                pipeline.run()
+
+                success += 1
+            except Exception as e:
+                failed += 1
+                print(e)
+                print(f"process {pdf_file.name} failed")
+
+
+        print("\n")
+        print("=" * 60)
+        print(f"process pdf files finished")
+        print("=" * 60)
+
+        print(f"total number of pdf files: {len(pdf_files)}")
+        print(f"success number: {success}")
+        print(f"failed number: {failed}")
+
 if __name__ == "__main__":
 
     # 当前文件：
@@ -119,20 +176,37 @@ if __name__ == "__main__":
     #     └── pdf/
     #         └── GB+1589-2026.pdf
 
+    # current_dir = Path(__file__).resolve().parent
+
+    # pdf_path = (
+    #     current_dir
+    #     / "../../data/pdf/GB+1589-2026.pdf"
+    # ).resolve()
+    #
+    # output_dir = (
+    #     current_dir
+    #     / "../../data/output"
+    # ).resolve()
+    #
+    # pipeline = PDFPipeline(
+    #     pdf_path=str(pdf_path),
+    #     output_dir=str(output_dir)
+    # )
+    #
+    # pipeline.run()
+
     current_dir = Path(__file__).resolve().parent
 
-    pdf_path = (
-        current_dir
-        / "../../data/pdf/GB+1589-2026.pdf"
+    pdf_dir = (
+            current_dir / "../../data/pdf"
     ).resolve()
 
     output_dir = (
-        current_dir
-        / "../../data/output"
+            current_dir / "../../data/output"
     ).resolve()
 
-    pipeline = PDFPipeline(
-        pdf_path=str(pdf_path),
+    pipeline = BatchPDFPipeline(
+        pdf_dir=str(pdf_dir),
         output_dir=str(output_dir)
     )
 
