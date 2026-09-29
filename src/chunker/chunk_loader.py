@@ -263,7 +263,7 @@ class ChunkLoader:
         if re.fullmatch(r'\d+', chapter):
             return 1
 
-        if re.fullmatch("r\d+\.\d+", chapter):
+        if re.fullmatch(r"\d+\.\d+", chapter):
             return 2
 
             # 1.1.1
