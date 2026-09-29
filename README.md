@@ -98,7 +98,7 @@ ChapterSplitter
 多个章节TXT
 ```
 
-### Chunker
+### 3.Chunker
 Chunker 负责将已经按照章节划分好的 TXT 文档，进一步处理为适合 RAG 检索的 Retrieval Chunk。
 
 整体流程如下：
@@ -130,7 +130,7 @@ Retrieval Chunk
    └── Vector DB
 ```
 
-#### ChunkLoader
+#### 3.1 ChunkLoader
 ChunkLoader 负责读取已经生成好的章节 TXT 文件，并转换成统一的 Chunk 对象。
 
 输入目录：
@@ -153,7 +153,7 @@ data/output/
 会被加载成一个 Structured Chunk。
 
 
-#### Structured Chunk
+#### 3.2 Structured Chunk
 
 Structured Chunk 保留原始章节的完整内容。
 
@@ -185,7 +185,7 @@ Structured Chunk 的特点：
 
 因为某些章节可能包含数千甚至上万个 Token。
 
-#### SecondaryChunker
+#### 3.3 SecondaryChunker
 SecondaryChunker 负责将 Structured Chunk 进一步切分成适合检索的 Retrieval Chunk。
 
 核心目标：
@@ -207,7 +207,7 @@ gb_1589_2026_004_4_003
 ```
 
 
-##### 二次切分策略
+##### 3.3.1 二次切分策略
 SecondaryChunker 按以下顺序进行切分：
 ```
 段落
@@ -222,7 +222,7 @@ Token
 
 因此整体策略是： 优先保持语义完整
 
-##### Retrieval Chunk
+##### 3.3.2 Retrieval Chunk
 最终生成的 Retrieval Chunk 包含：
 ```aiignore
 Chunk 
