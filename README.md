@@ -26,7 +26,10 @@ pip install -r requirements.txt
 ```aiignore
 cp example.env .env
 ```
-在.env中配置模型信息（API_KEY, BASE_URL）
+1. 在.env中配置模型信息（API_KEY, BASE_URL）
+
+2. 在config.py中配置本地Embedding模型路径，目前使用bge-m3模型。
+
 
 ## 功能模块
 
