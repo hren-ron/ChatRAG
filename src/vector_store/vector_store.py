@@ -1,15 +1,20 @@
+import json
 from pathlib import Path
 
+from src.chunker.models import Chunk
 from src.vector_store.faiss_store import FaissStore
-from src.vector_store.metadata_store import MetadataStore
 
 
 class VectorStore:
 
-    def __init__(self, dimension: int):
+    def __init__(self, dimension: int, chunks=None):
 
         self.faiss_store = FaissStore(dimension)
-        self.metadata_store = MetadataStore()
+        self.chunks = chunks or []
+
+    @property
+    def size(self):
+        return self.faiss_store.size
 
     def add(self, chunks, embeddings):
 
@@ -18,7 +23,7 @@ class VectorStore:
 
         self.faiss_store.add(embeddings)
 
-        self.metadata_store.build(chunks)
+        self.chunks = chunks
 
     def search(self, query_embedding, top_k=5):
 
@@ -27,16 +32,19 @@ class VectorStore:
         results = []
 
         for score, vector_id in zip(scores[0], indices[0]):
-            if vector_id < 0:
+            index = int(vector_id)
+
+            if index < 0:
                 continue
 
-            chunk_id = self.metadata_store.get_chunk_id(int(vector_id))
+            if index > len(self.chunks):
+                continue
+
 
             results.append(
                 {
-                    "vector_id": int(vector_id),
-                    "chunk_id":chunk_id,
-                    "score": float(score)
+                    "score": float(score),
+                    "chunk": self.chunks[index]
                 }
             )
         return results
@@ -47,6 +55,45 @@ class VectorStore:
 
         directory.parent.mkdir(parents=True, exist_ok=True)
 
+        # 1. 保存 FAISS
         self.faiss_store.save(str(directory / "index.faiss"))
 
-        self.metadata_store.save(str(directory / "metadata.json"))
+        chunks_path = (directory / "chunks.json")
+
+        datas = [chunk.model_dump() for chunk in self.chunks]
+
+        with chunks_path.open("w", encoding="utf-8") as f:
+            json.dump(datas, f, ensure_ascii=False, indent=2)
+
+        print(f"VectorStore has been saved")
+
+    @classmethod
+    def load(cls, directory):
+
+        directory = Path(directory)
+
+        index_path = (directory / "index.faiss")
+
+        chunks_path = (directory / "chunks.json")
+
+        if not index_path.exists():
+            raise FileNotFoundError(f"FAISS index not exists")
+
+        if not chunks_path.exists():
+            raise FileNotFoundError(f"chunks json not exists")
+
+        # 1. 加载 FAISS
+        faiss_store = FaissStore.load(str(index_path))
+
+        with chunks_path.open("r", encoding="utf-8") as f:
+            data = json.load(chunks_path)
+
+        chunks = [Chunk.model_validate(item) for item in data]
+
+        store = cls(dimension=faiss_store.dimension, chunks=chunks)
+
+        store.faiss_store = faiss_store
+        if store.size != len(store.chunks):
+            raise ValueError(f"the number of FAISS and Chunks is mismatch: vectors={store.size}, chunks={len(store.chunks)}")
+
+        return store

@@ -38,6 +38,12 @@ class FaissStore:
         if query_embedding.shape[1] != self.dimension:
             raise ValueError(f"embedding dimension mismatch: expected={self.dimension}, got={query_embedding.shape[1]}")
 
+        if self.size == 0:
+            return (
+                np.empty((1, 0), dtype=np.float32),
+                np.empty((1, 0), dtype=np.int64),
+            )
+
         top_k = min(top_k, self.size)
 
         scores, indices = self.index.search(query_embedding, top_k)

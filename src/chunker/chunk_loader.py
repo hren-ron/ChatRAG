@@ -12,7 +12,7 @@ class ChunkLoader:
 
         输入结构：
 
-            data/output/
+            data/txt/
             ├── GB+1589-2026/
             │   ├── 001_1_范围.txt
             │   ├── 002_2_规范性引用文件.txt

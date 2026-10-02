@@ -34,7 +34,7 @@ class PDFPipeline:
 
         # 当前文档的输出目录
         #
-        # output/
+        # txt/
         # └── GB+1589-2026/
         self.document_dir = (
             Path(output_dir) / self.document_name
@@ -185,7 +185,7 @@ if __name__ == "__main__":
     #
     # output_dir = (
     #     current_dir
-    #     / "../../data/output"
+    #     / "../../data/txt"
     # ).resolve()
     #
     # pipeline = PDFPipeline(
@@ -202,7 +202,7 @@ if __name__ == "__main__":
     ).resolve()
 
     output_dir = (
-            current_dir / "../../data/output"
+            current_dir / "../../data/txt"
     ).resolve()
 
     pipeline = BatchPDFPipeline(

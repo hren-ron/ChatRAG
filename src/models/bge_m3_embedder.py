@@ -12,14 +12,14 @@ class BGEEmbedder:
 
     def __init__(self, model_path):
 
-        device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
 
         self.model_path = str(model_path)
 
         self.model = SentenceTransformer(
             self.model_path,
             local_files_only=True,
-            device=device
+            device=self.device
         )
 
         self.tokenizer = AutoTokenizer.from_pretrained(
@@ -41,12 +41,12 @@ class BGEEmbedder:
 
         print("=" * 50)
 
-    def encode(self, texts: List[str], batch_size: int=32):
+    def encode(self, texts: List[str], batch_size: int=32, show_progress_bar: bool=True):
         return self.model.encode(
             texts,
             batch_size=batch_size,
             normalize_embeddings=True,
-            show_progress_bar=True
+            show_progress_bar=show_progress_bar
         )
 
     def count_token(self, text):

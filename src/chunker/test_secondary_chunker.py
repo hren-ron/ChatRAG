@@ -5,7 +5,7 @@ from src.chunker.secondary_chunker import SecondaryChunker
 
 
 loader = ChunkLoader(
-    input_dir="../../data/output"
+    input_dir="../../data/txt"
 )
 
 structured_chunks = loader.load()

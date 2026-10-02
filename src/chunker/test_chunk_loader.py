@@ -2,7 +2,7 @@ from chunk_loader import ChunkLoader
 
 
 loader = ChunkLoader(
-    "../../data/output"
+    "../../data/txt"
 )
 
 chunks = loader.load()

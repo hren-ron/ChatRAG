@@ -12,7 +12,7 @@ from src.chunker.secondary_chunker import SecondaryChunker
 MODEL_NAME = "BAAI/bge-m3"
 
 # Structured Chunk 输入目录
-INPUT_DIR = "../../data/output"
+INPUT_DIR = ("../../data/txt")
 
 # Secondary Chunker 参数
 MAX_TOKENS = 600

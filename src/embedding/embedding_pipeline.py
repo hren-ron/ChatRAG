@@ -1,23 +1,67 @@
 
-from config import OUTPUT_PATH, BGE_M3_PATH
-from src.chunker.run_chunker import ChunkPipeline
-from src.models.bge_m3_embedder import BGEEmbedder
+import numpy as np
 
 
-embedder = BGEEmbedder(BGE_M3_PATH)
+class EmbeddingPipeline:
 
+    def __init__(
+        self,
+        embedder,
+        batch_size: int = 32,
+        embedding_model: str="BAAI/bge-m3",
+        embedding_model_version=None
+    ):
+        self.embedder = embedder
+        self.batch_size = batch_size
 
-chunker_pipeline = ChunkPipeline(
-    input_dir=OUTPUT_PATH,
-    tokenizer=embedder.tokenizer,
-    max_tokens=600,
-    overlap_tokens=80,
-)
+        self.embedding_model = embedding_model
+        self.embedding_model_version = embedding_model_version
 
-chunks = chunker_pipeline.run()
+    def run(self, chunks):
+        """
+        对 Retrieval Chunk 进行 Embedding。
 
-texts = [chunk.content for chunk in chunks]
-print(len(chunks))
+        Returns
+        -------
+        chunks:
+            原始 Chunk
 
-embeddings = embedder.encode(texts=texts, batch_size=32)
-print(embeddings.shape)
+        embeddings:
+            shape = (N, dimension)
+        """
+
+        if not chunks:
+            raise ValueError("Not found Retrieval Chunk")
+
+        texts = [chunk.content for chunk in chunks]
+
+        print(f"Start Embedding：{len(texts)} 个 chunks")
+
+        embeddings = self.embedder.encode(
+            texts,
+            batch_size=self.batch_size,
+        )
+
+        embeddings = np.asarray(
+            embeddings,
+            dtype=np.float32,
+        )
+
+        if len(embeddings) != len(chunks):
+            raise ValueError(
+                f"Embedding number is mismatch："
+                f"chunks={len(chunks)}, "
+                f"embeddings={len(embeddings)}"
+            )
+
+        print(f"Embedding finished：shape={embeddings.shape}")
+
+        dimension = embeddings.shape[1]
+
+        # 给 Chunk 补充 Embedding 元数据
+        for chunk in chunks:
+            chunk.embedding_model = self.embedding_model
+            chunk.embedding_model_version = self.embedding_model_version
+            chunk.embedding_dimension = dimension
+
+        return chunks, embeddings
