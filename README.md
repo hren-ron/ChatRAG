@@ -251,3 +251,6 @@ Chunk
 ### todo
 1. 中英文支持
 2. OCR识别
+3. RAG链路监控
+4. RAG优化：embedding层优化（缓存，推理加速，top-K）、检索(元数据过滤)、rerank（小模型、微调）、LLM (上下文大小，stream、vLLM、缓存)
+5. 架构层优化：文档预打分（高频问题、明确关键词） 、数据库分片、三级缓存、Hot data放内存

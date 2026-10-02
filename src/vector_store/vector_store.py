@@ -86,7 +86,7 @@ class VectorStore:
         faiss_store = FaissStore.load(str(index_path))
 
         with chunks_path.open("r", encoding="utf-8") as f:
-            data = json.load(chunks_path)
+            data = json.load(f)
 
         chunks = [Chunk.model_validate(item) for item in data]
 

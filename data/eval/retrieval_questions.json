@@ -1,0 +1,2879 @@
+[
+{
+"id": "R001",
+"query": "汽车、挂车和汽车列车的外廓尺寸、轴荷及质量限值主要由哪个标准规定？",
+"expected_documents": ["GB+1589-2026"],
+"expected_keywords": ["外廓尺寸", "轴荷", "质量限值"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R002",
+"query": "GB 1589-2026 对车辆外廓尺寸主要有哪些方面的限制？",
+"expected_documents": ["GB+1589-2026"],
+"expected_keywords": ["外廓尺寸", "长度", "宽度", "高度"],
+"category": "概念检索",
+"difficulty": "easy"
+},
+{
+"id": "R003",
+"query": "新能源商用车的轴荷限制有哪些要求？",
+"expected_documents": ["GB+1589-2026"],
+"expected_keywords": ["新能源", "商用车", "轴荷"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R004",
+"query": "车辆安装雷达、摄像头等感知设备后，外廓尺寸是否存在特殊规定？",
+"expected_documents": ["GB+1589-2026"],
+"expected_keywords": ["雷达", "摄像头", "感知", "外廓尺寸"],
+"category": "语义改写",
+"difficulty": "medium"
+},
+{
+"id": "R005",
+"query": "汽车列车的质量限值应该查询什么标准？",
+"expected_documents": ["GB+1589-2026"],
+"expected_keywords": ["汽车列车", "质量限值"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R006",
+"query": "GB 1589 中轴荷和质量分别针对车辆的哪些参数进行限制？",
+"expected_documents": ["GB+1589-2026"],
+"expected_keywords": ["轴荷", "质量", "限值"],
+"category": "术语检索",
+"difficulty": "medium"
+},
+{
+"id": "R007",
+"query": "车辆外摆值的测量与车辆外廓尺寸要求有什么关系？",
+"expected_documents": ["GB+1589-2026"],
+"expected_keywords": ["外摆值", "外廓尺寸", "测量"],
+"category": "关联概念",
+"difficulty": "hard"
+},
+{
+"id": "R008",
+"query": "GB1589-2026 相比旧版标准主要涉及哪些车辆尺寸和质量方面的要求？",
+"expected_documents": ["GB+1589-2026"],
+"expected_keywords": ["GB1589", "尺寸", "质量", "轴荷"],
+"category": "版本检索",
+"difficulty": "hard"
+},
+
+{
+"id": "R009",
+"query": "如何防止汽车转向机构在碰撞过程中对驾驶员造成伤害？",
+"expected_documents": ["GB+11557-2026"],
+"expected_keywords": ["转向机构", "驾驶员", "伤害"],
+"category": "语义检索",
+"difficulty": "easy"
+},
+{
+"id": "R010",
+"query": "GB 11557-2026 主要解决汽车哪个部位对驾驶员的伤害问题？",
+"expected_documents": ["GB+11557-2026"],
+"expected_keywords": ["转向机构", "驾驶员", "伤害"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R011",
+"query": "汽车发生正面碰撞时，转向系统对驾驶员的安全影响有哪些要求？",
+"expected_documents": ["GB+11557-2026"],
+"expected_keywords": ["正面碰撞", "转向机构", "驾驶员"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R012",
+"query": "方向盘或转向柱发生碰撞后，如何评价驾驶员受到的伤害风险？",
+"expected_documents": ["GB+11557-2026"],
+"expected_keywords": ["方向盘", "转向柱", "碰撞", "伤害"],
+"category": "语义改写",
+"difficulty": "medium"
+},
+{
+"id": "R013",
+"query": "汽车转向机构的安全防护要求属于哪个国家标准？",
+"expected_documents": ["GB+11557-2026"],
+"expected_keywords": ["转向机构", "安全防护"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R014",
+"query": "GB 11557-2026 的适用对象是什么？",
+"expected_documents": ["GB+11557-2026"],
+"expected_keywords": ["适用范围", "汽车", "转向机构"],
+"category": "范围检索",
+"difficulty": "medium"
+},
+{
+"id": "R015",
+"query": "转向机构与驾驶员伤害防护相关的试验应该关注哪些方面？",
+"expected_documents": ["GB+11557-2026"],
+"expected_keywords": ["转向机构", "驾驶员", "试验", "伤害"],
+"category": "方法检索",
+"difficulty": "hard"
+},
+{
+"id": "R016",
+"query": "汽车转向机构发生变形时，标准重点关注什么安全问题？",
+"expected_documents": ["GB+11557-2026"],
+"expected_keywords": ["转向机构", "变形", "驾驶员", "伤害"],
+"category": "语义检索",
+"difficulty": "hard"
+},
+
+{
+"id": "R017",
+"query": "轻型汽车驾驶员前方视野有哪些要求？",
+"expected_documents": ["GB+11562-2025"],
+"expected_keywords": ["轻型汽车", "驾驶员", "前方视野"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R018",
+"query": "GB 11562-2025 规定的驾驶员前方视野如何进行测量？",
+"expected_documents": ["GB+11562-2025"],
+"expected_keywords": ["前方视野", "测量方法", "驾驶员"],
+"category": "方法检索",
+"difficulty": "easy"
+},
+{
+"id": "R019",
+"query": "A柱对驾驶员前方视野有什么影响，标准如何评价？",
+"expected_documents": ["GB+11562-2025"],
+"expected_keywords": ["A柱", "前方视野"],
+"category": "部件检索",
+"difficulty": "medium"
+},
+{
+"id": "R020",
+"query": "后视镜、雨刮器等部件是否会影响驾驶员前方视野？",
+"expected_documents": ["GB+11562-2025"],
+"expected_keywords": ["后视镜", "雨刮器", "前方视野"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R021",
+"query": "轻型汽车驾驶员前方视野的评价对象是什么？",
+"expected_documents": ["GB+11562-2025"],
+"expected_keywords": ["轻型汽车", "驾驶员", "前方视野"],
+"category": "概念检索",
+"difficulty": "medium"
+},
+{
+"id": "R022",
+"query": "如果车辆前方存在结构件遮挡驾驶员视线，应该依据什么标准进行判断？",
+"expected_documents": ["GB+11562-2025"],
+"expected_keywords": ["遮挡", "驾驶员", "视线", "前方视野"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R023",
+"query": "驾驶员前方视野的测量方法属于尺寸要求还是试验方法？",
+"expected_documents": ["GB+11562-2025"],
+"expected_keywords": ["前方视野", "测量方法"],
+"category": "概念辨析",
+"difficulty": "hard"
+},
+{
+"id": "R024",
+"query": "如何评价轻型汽车驾驶员看到车辆前方道路区域的能力？",
+"expected_documents": ["GB+11562-2025"],
+"expected_keywords": ["轻型汽车", "驾驶员", "前方视野"],
+"category": "语义改写",
+"difficulty": "hard"
+},
+
+{
+"id": "R025",
+"query": "汽车转向系统的基本要求由哪个标准规定？",
+"expected_documents": ["GB+17675-2025"],
+"expected_keywords": ["汽车转向系", "基本要求"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R026",
+"query": "GB 17675-2025 对汽车转向系统有哪些技术要求？",
+"expected_documents": ["GB+17675-2025"],
+"expected_keywords": ["转向系统", "技术要求"],
+"category": "概念检索",
+"difficulty": "easy"
+},
+{
+"id": "R027",
+"query": "汽车转向系统发生失效时，标准有哪些相关规定？",
+"expected_documents": ["GB+17675-2025"],
+"expected_keywords": ["转向系统", "失效", "规定"],
+"category": "故障场景",
+"difficulty": "medium"
+},
+{
+"id": "R028",
+"query": "转向系统出现故障后，驾驶员应该如何获得报警提示？",
+"expected_documents": ["GB+17675-2025"],
+"expected_keywords": ["转向系统", "失效", "报警信号"],
+"category": "故障场景",
+"difficulty": "medium"
+},
+{
+"id": "R029",
+"query": "GB 17675-2025 对挂车转向系统有什么要求？",
+"expected_documents": ["GB+17675-2025"],
+"expected_keywords": ["挂车", "转向系统", "要求"],
+"category": "对象检索",
+"difficulty": "medium"
+},
+{
+"id": "R030",
+"query": "汽车转向系统的试验方法包括哪些内容？",
+"expected_documents": ["GB+17675-2025"],
+"expected_keywords": ["试验方法", "汽车试验", "挂车试验"],
+"category": "方法检索",
+"difficulty": "medium"
+},
+{
+"id": "R031",
+"query": "全动力转向系统是否有额外的试验要求？",
+"expected_documents": ["GB+17675-2025"],
+"expected_keywords": ["全动力转向系统", "附加试验"],
+"category": "细节检索",
+"difficulty": "hard"
+},
+{
+"id": "R032",
+"query": "转向电子控制系统的功能安全要求在哪里可以查到？",
+"expected_documents": ["GB+17675-2025"],
+"expected_keywords": ["转向电子控制系统", "功能安全"],
+"category": "跨章节检索",
+"difficulty": "hard"
+},
+
+{
+"id": "R033",
+"query": "轻型汽车电子稳定性控制系统 ESC 的性能要求由哪个标准规定？",
+"expected_documents": ["GB+30677-2026"],
+"expected_keywords": ["ESC", "电子稳定性控制系统", "性能要求"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R034",
+"query": "GB 30677-2026 主要针对什么类型的车辆？",
+"expected_documents": ["GB+30677-2026"],
+"expected_keywords": ["轻型汽车", "适用范围", "ESC"],
+"category": "范围检索",
+"difficulty": "easy"
+},
+{
+"id": "R035",
+"query": "汽车的电子稳定性控制系统主要是通过什么方式提高车辆稳定性的？",
+"expected_documents": ["GB+30677-2026"],
+"expected_keywords": ["电子稳定性控制系统", "车轮", "制动力", "驱动力"],
+"category": "原理检索",
+"difficulty": "medium"
+},
+{
+"id": "R036",
+"query": "ESC 系统的性能应该如何进行试验验证？",
+"expected_documents": ["GB+30677-2026"],
+"expected_keywords": ["ESC", "试验", "性能"],
+"category": "方法检索",
+"difficulty": "medium"
+},
+{
+"id": "R037",
+"query": "电子稳定性控制系统和 ABS、TCS 有什么关系？",
+"expected_documents": ["GB+30677-2026"],
+"expected_keywords": ["ESC", "ABS", "TCS"],
+"category": "关联概念",
+"difficulty": "medium"
+},
+{
+"id": "R038",
+"query": "车辆在极限工况下出现方向稳定性问题时，应该关注哪个系统？",
+"expected_documents": ["GB+30677-2026"],
+"expected_keywords": ["极限工况", "方向稳定性", "ESC"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R039",
+"query": "轻型汽车 ESC 系统的性能要求和试验方法在哪个章节？",
+"expected_documents": ["GB+30677-2026"],
+"expected_keywords": ["性能要求", "试验方法", "ESC"],
+"category": "章节定位",
+"difficulty": "hard"
+},
+{
+"id": "R040",
+"query": "GB 30677-2026 与 GB/T 30677-2014 是什么关系？",
+"expected_documents": ["GB+30677-2026"],
+"expected_keywords": ["GB/T 30677-2014", "代替", "GB 30677-2026"],
+"category": "版本检索",
+"difficulty": "hard"
+},
+
+{
+"id": "R041",
+"query": "汽车和摩托车用车速表的要求由哪个标准规定？",
+"expected_documents": ["GB+15082-2026"],
+"expected_keywords": ["车速表", "汽车", "摩托车"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R042",
+"query": "GB 15082-2026 适用于哪些车辆上的车速表？",
+"expected_documents": ["GB+15082-2026"],
+"expected_keywords": ["汽车", "摩托车", "车速表"],
+"category": "范围检索",
+"difficulty": "easy"
+},
+{
+"id": "R043",
+"query": "汽车仪表盘上的车速显示是否有国家标准要求？",
+"expected_documents": ["GB+15082-2026"],
+"expected_keywords": ["车速表", "车速显示"],
+"category": "语义改写",
+"difficulty": "medium"
+},
+{
+"id": "R044",
+"query": "车速表的示值和实际车辆速度之间有什么要求？",
+"expected_documents": ["GB+15082-2026"],
+"expected_keywords": ["车速表", "示值", "实际速度"],
+"category": "性能检索",
+"difficulty": "medium"
+},
+{
+"id": "R045",
+"query": "车速表应该如何进行检验或试验？",
+"expected_documents": ["GB+15082-2026"],
+"expected_keywords": ["车速表", "试验", "检验"],
+"category": "方法检索",
+"difficulty": "medium"
+},
+{
+"id": "R046",
+"query": "汽车车速表的准确性应该依据什么标准判断？",
+"expected_documents": ["GB+15082-2026"],
+"expected_keywords": ["车速表", "准确性"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R047",
+"query": "GB 15082-2026 的标准名称是什么？",
+"expected_documents": ["GB+15082-2026"],
+"expected_keywords": ["汽车", "摩托车", "车速表"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R048",
+"query": "车辆仪表显示的行驶速度属于哪个汽车标准的内容？",
+"expected_documents": ["GB+15082-2026"],
+"expected_keywords": ["行驶速度", "车速表", "仪表"],
+"category": "语义检索",
+"difficulty": "hard"
+},
+
+{
+"id": "R049",
+"query": "汽车转向系统基本要求应该查询 GB 17675 还是 GB 30677？",
+"expected_documents": ["GB+17675-2025"],
+"expected_keywords": ["转向系统", "GB 17675"],
+"category": "标准区分",
+"difficulty": "medium"
+},
+{
+"id": "R050",
+"query": "如果问题是轻型汽车 ESC 的试验方法，应该查询哪个标准？",
+"expected_documents": ["GB+30677-2026"],
+"expected_keywords": ["ESC", "试验方法", "GB 30677"],
+"category": "标准区分",
+"difficulty": "easy"
+},
+{
+"id": "R051",
+"query": "如果问题是驾驶员前方视野的测量方法，应该查询哪个标准？",
+"expected_documents": ["GB+11562-2025"],
+"expected_keywords": ["驾驶员", "前方视野", "测量方法"],
+"category": "标准区分",
+"difficulty": "easy"
+},
+{
+"id": "R052",
+"query": "如果问题是汽车转向机构碰撞时对驾驶员的伤害防护，应该查询哪个标准？",
+"expected_documents": ["GB+11557-2026"],
+"expected_keywords": ["转向机构", "驾驶员", "伤害"],
+"category": "标准区分",
+"difficulty": "easy"
+},
+{
+"id": "R053",
+"query": "如果需要查询汽车外廓尺寸和轴荷限值，应该使用哪个标准？",
+"expected_documents": ["GB+1589-2026"],
+"expected_keywords": ["外廓尺寸", "轴荷", "质量限值"],
+"category": "标准区分",
+"difficulty": "easy"
+},
+{
+"id": "R054",
+"query": "如果问题涉及汽车仪表上的车速表要求，应该查询哪个标准？",
+"expected_documents": ["GB+15082-2026"],
+"expected_keywords": ["车速表", "汽车仪表"],
+"category": "标准区分",
+"difficulty": "easy"
+},
+{
+"id": "R055",
+"query": "转向系统和电子稳定性控制系统虽然都与车辆安全有关，但分别应该查询哪些标准？",
+"expected_documents": ["GB+17675-2025", "GB+30677-2026"],
+"expected_keywords": ["转向系统", "电子稳定性控制系统", "ESC"],
+"category": "跨标准检索",
+"difficulty": "hard"
+},
+{
+"id": "R056",
+"query": "驾驶员视野和转向机构驾驶员伤害防护分别属于哪两个标准？",
+"expected_documents": ["GB+11562-2025", "GB+11557-2026"],
+"expected_keywords": ["驾驶员前方视野", "转向机构", "伤害防护"],
+"category": "跨标准检索",
+"difficulty": "hard"
+},
+{
+"id": "R057",
+"query": "GBZ 214-2026 主要规定什么内容？",
+"expected_documents": ["GBZ+214-2026"],
+"expected_keywords": ["GBZ 214-2026"],
+"category": "标准号精确检索",
+"difficulty": "easy"
+},
+{
+"id": "R058",
+"query": "如果我要查询 GBZ 214-2026，应该从哪个标准文件中查找？",
+"expected_documents": ["GBZ+214-2026"],
+"expected_keywords": ["GBZ 214-2026"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R059",
+"query": "有没有关于 GBZ 214-2026 所涉及技术内容的国家标准？",
+"expected_documents": ["GBZ+214-2026"],
+"expected_keywords": ["GBZ 214-2026"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R060",
+"query": "用户只知道标准编号 GBZ 214-2026，但不知道标准名称，应该检索哪个文档？",
+"expected_documents": ["GBZ+214-2026"],
+"expected_keywords": ["GBZ 214-2026"],
+"category": "标准号检索",
+"difficulty": "easy"
+},
+
+{
+"id": "R061",
+"query": "GBT 32796-2026 主要规定什么内容？",
+"expected_documents": ["GBT+32796-2026"],
+"expected_keywords": ["GBT 32796-2026"],
+"category": "标准号精确检索",
+"difficulty": "easy"
+},
+{
+"id": "R062",
+"query": "如果我要查找 GBT 32796-2026，应该检索哪个标准文件？",
+"expected_documents": ["GBT+32796-2026"],
+"expected_keywords": ["GBT 32796-2026"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R063",
+"query": "关于 GBT 32796-2026 的技术要求应该去哪里查询？",
+"expected_documents": ["GBT+32796-2026"],
+"expected_keywords": ["GBT 32796-2026", "技术要求"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R064",
+"query": "如果只知道 GBT 32796-2026 这个编号，如何在标准库中找到对应内容？",
+"expected_documents": ["GBT+32796-2026"],
+"expected_keywords": ["GBT 32796-2026"],
+"category": "标准号检索",
+"difficulty": "easy"
+},
+
+{
+"id": "R065",
+"query": "GBT 34013-2026 主要规定什么内容？",
+"expected_documents": ["GBT+34013-2026"],
+"expected_keywords": ["GBT 34013-2026"],
+"category": "标准号精确检索",
+"difficulty": "easy"
+},
+{
+"id": "R066",
+"query": "如果我要查询 GBT 34013-2026，应该使用哪个标准文件？",
+"expected_documents": ["GBT+34013-2026"],
+"expected_keywords": ["GBT 34013-2026"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R067",
+"query": "关于 GBT 34013-2026 的具体技术要求应该从哪里查找？",
+"expected_documents": ["GBT+34013-2026"],
+"expected_keywords": ["GBT 34013-2026", "技术要求"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R068",
+"query": "用户只知道 GBT 34013-2026 这个标准编号，如何找到对应的标准正文？",
+"expected_documents": ["GBT+34013-2026"],
+"expected_keywords": ["GBT 34013-2026"],
+"category": "标准号检索",
+"difficulty": "easy"
+},
+
+{
+"id": "R069",
+"query": "GBT 40711.3-2026 主要规定什么内容？",
+"expected_documents": ["GBT+40711.3-2026"],
+"expected_keywords": ["GBT 40711.3-2026"],
+"category": "标准号精确检索",
+"difficulty": "easy"
+},
+{
+"id": "R070",
+"query": "如果需要查询 GBT 40711.3-2026，应该检索哪个标准？",
+"expected_documents": ["GBT+40711.3-2026"],
+"expected_keywords": ["GBT 40711.3-2026"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R071",
+"query": "GBT 40711.3-2026 涉及的技术内容应该在哪里查询？",
+"expected_documents": ["GBT+40711.3-2026"],
+"expected_keywords": ["GBT 40711.3-2026"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R072",
+"query": "如果只知道标准编号 GBT 40711.3-2026，如何定位到对应标准？",
+"expected_documents": ["GBT+40711.3-2026"],
+"expected_keywords": ["GBT 40711.3-2026"],
+"category": "标准号检索",
+"difficulty": "easy"
+},
+
+{
+"id": "R073",
+"query": "GBT 46439-2025 主要规定什么内容？",
+"expected_documents": ["GBT+46439-2025"],
+"expected_keywords": ["GBT 46439-2025"],
+"category": "标准号精确检索",
+"difficulty": "easy"
+},
+{
+"id": "R074",
+"query": "如果我要查询 GBT 46439-2025，应该从哪个标准文件开始查找？",
+"expected_documents": ["GBT+46439-2025"],
+"expected_keywords": ["GBT 46439-2025"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R075",
+"query": "GBT 46439-2025 中的相关技术要求应该去哪里查询？",
+"expected_documents": ["GBT+46439-2025"],
+"expected_keywords": ["GBT 46439-2025", "技术要求"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R076",
+"query": "如果只记得 GBT 46439-2025 这个标准编号，如何找到对应文档？",
+"expected_documents": ["GBT+46439-2025"],
+"expected_keywords": ["GBT 46439-2025"],
+"category": "标准号检索",
+"difficulty": "easy"
+},
+
+{
+"id": "R077",
+"query": "GBT 46926-2025 主要规定什么内容？",
+"expected_documents": ["GBT+46926-2025"],
+"expected_keywords": ["GBT 46926-2025"],
+"category": "标准号精确检索",
+"difficulty": "easy"
+},
+{
+"id": "R078",
+"query": "如果需要查询 GBT 46926-2025 的技术要求，应该检索哪个标准？",
+"expected_documents": ["GBT+46926-2025"],
+"expected_keywords": ["GBT 46926-2025", "技术要求"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R079",
+"query": "如果需要查询 GBT 46926-2025 的试验方法，应该从哪个文档中查找？",
+"expected_documents": ["GBT+46926-2025"],
+"expected_keywords": ["GBT 46926-2025", "试验方法"],
+"category": "方法检索",
+"difficulty": "medium"
+},
+{
+"id": "R080",
+"query": "用户不知道标准名称，只知道 GBT 46926-2025，如何定位对应标准？",
+"expected_documents": ["GBT+46926-2025"],
+"expected_keywords": ["GBT 46926-2025"],
+"category": "标准号检索",
+"difficulty": "easy"
+},
+
+{
+"id": "R081",
+"query": "GBT 46991.1-2025 主要规定什么内容？",
+"expected_documents": ["GBT+46991.1-2025"],
+"expected_keywords": ["GBT 46991.1-2025"],
+"category": "标准号精确检索",
+"difficulty": "easy"
+},
+{
+"id": "R082",
+"query": "如果我要查询 GBT 46991.1-2025，应该查哪个标准文件？",
+"expected_documents": ["GBT+46991.1-2025"],
+"expected_keywords": ["GBT 46991.1-2025"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R083",
+"query": "GBT 46991.1-2025 的技术要求应该在哪里查询？",
+"expected_documents": ["GBT+46991.1-2025"],
+"expected_keywords": ["GBT 46991.1-2025", "技术要求"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R084",
+"query": "如果只知道 GBT 46991.1-2025 这个编号，如何找到对应标准正文？",
+"expected_documents": ["GBT+46991.1-2025"],
+"expected_keywords": ["GBT 46991.1-2025"],
+"category": "标准号检索",
+"difficulty": "easy"
+},
+
+{
+"id": "R085",
+"query": "GBT 47001-2025 主要规定什么内容？",
+"expected_documents": ["GBT+47001-2025"],
+"expected_keywords": ["GBT 47001-2025"],
+"category": "标准号精确检索",
+"difficulty": "easy"
+},
+{
+"id": "R086",
+"query": "如果我要查询 GBT 47001-2025，应该检索哪个标准？",
+"expected_documents": ["GBT+47001-2025"],
+"expected_keywords": ["GBT 47001-2025"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R087",
+"query": "GBT 47001-2025 中的相关技术要求应该从哪里查找？",
+"expected_documents": ["GBT+47001-2025"],
+"expected_keywords": ["GBT 47001-2025", "技术要求"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R088",
+"query": "用户只知道 GBT 47001-2025 这个标准编号，如何找到对应文档？",
+"expected_documents": ["GBT+47001-2025"],
+"expected_keywords": ["GBT 47001-2025"],
+"category": "标准号检索",
+"difficulty": "easy"
+},
+
+{
+"id": "R089",
+"query": "GBT 47025-2025 主要规定什么内容？",
+"expected_documents": ["GBT+47025-2025"],
+"expected_keywords": ["GBT 47025-2025"],
+"category": "标准号精确检索",
+"difficulty": "easy"
+},
+{
+"id": "R090",
+"query": "如果需要查询 GBT 47025-2025，应该从哪个标准文件中查找？",
+"expected_documents": ["GBT+47025-2025"],
+"expected_keywords": ["GBT 47025-2025"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R091",
+"query": "GBT 47025-2025 涉及的技术要求应该在哪里查询？",
+"expected_documents": ["GBT+47025-2025"],
+"expected_keywords": ["GBT 47025-2025", "技术要求"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R092",
+"query": "如果只知道 GBT 47025-2025 这个编号，如何定位对应的标准正文？",
+"expected_documents": ["GBT+47025-2025"],
+"expected_keywords": ["GBT 47025-2025"],
+"category": "标准号检索",
+"difficulty": "easy"
+},
+
+{
+"id": "R093",
+"query": "在动力电池相关问题中，如何区分 GBT 34013-2026 和 GBT 46991.1-2025？",
+"expected_documents": ["GBT+34013-2026", "GBT+46991.1-2025"],
+"expected_keywords": ["GBT 34013-2026", "GBT 46991.1-2025"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R094",
+"query": "如果一个问题涉及 GBT 46926-2025 和 GBT 47025-2025，应该如何区分对应的标准？",
+"expected_documents": ["GBT+46926-2025", "GBT+47025-2025"],
+"expected_keywords": ["GBT 46926-2025", "GBT 47025-2025"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R095",
+"query": "如何区分 GBT 40711.3-2026 和其他汽车相关标准？",
+"expected_documents": ["GBT+40711.3-2026"],
+"expected_keywords": ["GBT 40711.3-2026"],
+"category": "标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R096",
+"query": "如果用户只提供标准编号而没有提供标准名称，系统应该能够找到对应的标准文档吗？例如 GBT 47025-2025。",
+"expected_documents": ["GBT+47025-2025"],
+"expected_keywords": ["GBT 47025-2025"],
+"category": "标准号检索",
+"difficulty": "easy"
+},
+{
+"id": "R097",
+"query": "GB/T 47031-2026 主要规定什么内容？",
+"expected_documents": ["GBT+47031-2026"],
+"expected_keywords": ["自动泊车系统", "性能要求", "试验方法"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R098",
+"query": "自动泊车系统的性能要求和试验方法应该查哪个标准？",
+"expected_documents": ["GBT+47031-2026"],
+"expected_keywords": ["自动泊车系统", "性能要求", "试验方法"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R099",
+"query": "如果需要对汽车自动泊车功能进行标准化测试，应该参考哪个标准？",
+"expected_documents": ["GBT+47031-2026"],
+"expected_keywords": ["自动泊车", "试验"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R100",
+"query": "GB/T 47031-2026 和自动驾驶功能仿真相关标准有什么区别？",
+"expected_documents": ["GBT+47031-2026", "GBT+47025-2026"],
+"expected_keywords": ["自动泊车", "自动驾驶", "功能仿真"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+
+{
+"id": "R101",
+"query": "GB/T 47136-2026 主要规定什么内容？",
+"expected_documents": ["GBT+47136-2026"],
+"expected_keywords": ["动力蓄电池", "健康", "安全状态", "评估"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R102",
+"query": "纯电动汽车动力蓄电池的健康状态和安全状态应该参考哪个标准？",
+"expected_documents": ["GBT+47136-2026"],
+"expected_keywords": ["纯电动汽车", "动力蓄电池", "健康状态", "安全状态"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R103",
+"query": "如果需要评估纯电动汽车动力电池的健康状态，应该查哪个标准？",
+"expected_documents": ["GBT+47136-2026"],
+"expected_keywords": ["健康状态", "动力电池", "评估"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R104",
+"query": "动力蓄电池健康安全状态评估和动力电池安全评价指南分别应该查什么标准？",
+"expected_documents": ["GBT+47136-2026", "GBT+47971.1-2026", "GBT+47971.2-2026"],
+"expected_keywords": ["健康安全状态", "安全评价", "单体", "模块", "电池包", "系统"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+
+{
+"id": "R105",
+"query": "GB/T 47315-2026 主要规定什么内容？",
+"expected_documents": ["GBT+47315-2026"],
+"expected_keywords": ["汽车结构耐久性", "道路模拟", "台架试验"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R106",
+"query": "汽车结构耐久性道路模拟台架试验应该参考哪个标准？",
+"expected_documents": ["GBT+47315-2026"],
+"expected_keywords": ["结构耐久性", "道路模拟", "台架试验"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R107",
+"query": "如果不直接在道路上进行耐久性试验，而是在台架上模拟道路载荷，应该查哪个标准？",
+"expected_documents": ["GBT+47315-2026"],
+"expected_keywords": ["耐久性", "台架", "道路模拟"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R108",
+"query": "GB/T 47315-2026 属于汽车结构耐久性方面的什么类型标准？",
+"expected_documents": ["GBT+47315-2026"],
+"expected_keywords": ["汽车结构耐久性", "道路模拟", "试验方法"],
+"category": "标准理解",
+"difficulty": "medium"
+},
+
+{
+"id": "R109",
+"query": "GB/T 47341-2026 主要规定什么内容？",
+"expected_documents": ["GBT+47341-2026"],
+"expected_keywords": ["智能网联汽车", "车载操作系统", "技术要求", "试验方法"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R110",
+"query": "智能网联汽车车载操作系统的技术要求和试验方法应该查哪个标准？",
+"expected_documents": ["GBT+47341-2026"],
+"expected_keywords": ["车载操作系统", "技术要求", "试验方法"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R111",
+"query": "如果关注智能网联汽车的车载操作系统，应该参考哪个国家标准？",
+"expected_documents": ["GBT+47341-2026"],
+"expected_keywords": ["智能网联汽车", "车载操作系统"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R112",
+"query": "车载操作系统和车控操作系统分别应该查哪个标准？",
+"expected_documents": ["GBT+47341-2026", "GBT+47351-2026"],
+"expected_keywords": ["车载操作系统", "车控操作系统"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+
+{
+"id": "R113",
+"query": "GB/T 47351-2026 主要规定什么内容？",
+"expected_documents": ["GBT+47351-2026"],
+"expected_keywords": ["智能网联汽车", "车控操作系统", "技术要求", "试验方法"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R114",
+"query": "智能网联汽车车控操作系统的技术要求和试验方法应该查哪个标准？",
+"expected_documents": ["GBT+47351-2026"],
+"expected_keywords": ["车控操作系统", "技术要求", "试验方法"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R115",
+"query": "如果关注汽车控制相关操作系统，应该参考哪个标准？",
+"expected_documents": ["GBT+47351-2026"],
+"expected_keywords": ["车控操作系统"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R116",
+"query": "车载操作系统和车控操作系统的标准是否相同？分别对应哪些标准？",
+"expected_documents": ["GBT+47341-2026", "GBT+47351-2026"],
+"expected_keywords": ["车载操作系统", "车控操作系统"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+
+{
+"id": "R117",
+"query": "GB/T 47439-2026 主要规定什么内容？",
+"expected_documents": ["GBT+47439-2026"],
+"expected_keywords": ["新能源汽车", "维修作业", "安全要求"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R118",
+"query": "新能源汽车进行维修作业时的安全要求应该参考哪个标准？",
+"expected_documents": ["GBT+47439-2026"],
+"expected_keywords": ["新能源汽车", "维修作业", "安全要求"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R119",
+"query": "如果维修新能源汽车，需要查哪个标准来了解维修作业安全要求？",
+"expected_documents": ["GBT+47439-2026"],
+"expected_keywords": ["新能源汽车", "维修", "安全"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R120",
+"query": "GB/T 47439-2026 是针对新能源汽车的什么活动制定的安全要求？",
+"expected_documents": ["GBT+47439-2026"],
+"expected_keywords": ["新能源汽车", "维修作业", "安全要求"],
+"category": "标准理解",
+"difficulty": "medium"
+},
+
+{
+"id": "R121",
+"query": "GB/T 47503-2026 主要规定什么内容？",
+"expected_documents": ["GBT+47503-2026"],
+"expected_keywords": ["电动汽车", "有序充电", "系统建设", "运行"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R122",
+"query": "电动汽车有序充电系统的建设和运行应该参考哪个标准？",
+"expected_documents": ["GBT+47503-2026"],
+"expected_keywords": ["有序充电系统", "建设", "运行"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R123",
+"query": "如果需要建设和运行电动汽车有序充电系统，应该查哪个标准？",
+"expected_documents": ["GBT+47503-2026"],
+"expected_keywords": ["电动汽车", "有序充电", "建设运行"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R124",
+"query": "电动汽车有序充电系统建设运行和充电设备碳足迹评价分别应该查什么标准？",
+"expected_documents": ["GBT+47503-2026", "GBT+47645-2026"],
+"expected_keywords": ["有序充电", "建设运行", "碳足迹", "充电设备"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+
+{
+"id": "R125",
+"query": "GB/T 47645-2026 主要规定什么内容？",
+"expected_documents": ["GBT+47645-2026"],
+"expected_keywords": ["温室气体", "产品碳足迹", "电动汽车", "充电设备"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R126",
+"query": "电动汽车充电设备的产品碳足迹应该参考哪个标准？",
+"expected_documents": ["GBT+47645-2026"],
+"expected_keywords": ["产品碳足迹", "电动汽车", "充电设备"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R127",
+"query": "如果要对电动汽车充电设备进行碳足迹量化，应该查哪个标准？",
+"expected_documents": ["GBT+47645-2026"],
+"expected_keywords": ["碳足迹", "量化", "充电设备"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R128",
+"query": "GB/T 47645-2026 关注的是新能源汽车维修安全还是充电设备碳足迹？",
+"expected_documents": ["GBT+47645-2026", "GBT+47439-2026"],
+"expected_keywords": ["充电设备", "碳足迹", "维修安全"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+
+{
+"id": "R129",
+"query": "GB/T 47971.1-2026 主要规定什么内容？",
+"expected_documents": ["GBT+47971.1-2026"],
+"expected_keywords": ["动力蓄电池", "安全评价", "单体", "模块"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R130",
+"query": "电动汽车动力蓄电池单体和模块的安全评价应该参考哪个标准？",
+"expected_documents": ["GBT+47971.1-2026"],
+"expected_keywords": ["动力蓄电池", "安全评价", "单体", "模块"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R131",
+"query": "如果只关注动力电池单体及模块，而不是整个电池包，应该查哪个标准？",
+"expected_documents": ["GBT+47971.1-2026"],
+"expected_keywords": ["单体", "模块", "电池包"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R132",
+"query": "动力蓄电池单体及模块和电池包及系统的安全评价分别对应哪些标准？",
+"expected_documents": ["GBT+47971.1-2026", "GBT+47971.2-2026"],
+"expected_keywords": ["单体", "模块", "电池包", "系统"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+
+{
+"id": "R133",
+"query": "GB/T 47971.2-2026 主要规定什么内容？",
+"expected_documents": ["GBT+47971.2-2026"],
+"expected_keywords": ["动力蓄电池", "安全评价", "电池包", "系统"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R134",
+"query": "电动汽车动力蓄电池电池包和系统的安全评价应该参考哪个标准？",
+"expected_documents": ["GBT+47971.2-2026"],
+"expected_keywords": ["动力蓄电池", "安全评价", "电池包", "系统"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R135",
+"query": "如果需要评价整个动力电池包及电池系统的安全性，应该查询哪个标准？",
+"expected_documents": ["GBT+47971.2-2026"],
+"expected_keywords": ["电池包", "系统", "安全评价"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R136",
+"query": "GB/T 47971.2-2026 和 GB/T 47971.1-2026 最大的对象范围区别是什么？",
+"expected_documents": ["GBT+47971.2-2026", "GBT+47971.1-2026"],
+"expected_keywords": ["电池包", "系统", "单体", "模块"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+
+{
+"id": "R137",
+"query": "GB/T 48093.1-2026 主要规定什么内容？",
+"expected_documents": ["GBT+48093.1-2026"],
+"expected_keywords": ["电动汽车", "固态电池", "术语", "分类"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R138",
+"query": "电动汽车用固态电池的术语和分类应该参考哪个标准？",
+"expected_documents": ["GBT+48093.1-2026"],
+"expected_keywords": ["固态电池", "术语", "分类"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R139",
+"query": "如果想了解电动汽车固态电池相关术语以及分类方法，应该查哪个标准？",
+"expected_documents": ["GBT+48093.1-2026"],
+"expected_keywords": ["固态电池", "术语", "分类"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R140",
+"query": "固态电池的术语分类与固体电解质技术规范分别应该查哪个标准？",
+"expected_documents": ["GBT+48093.1-2026", "GBZ+214-2026"],
+"expected_keywords": ["固态电池", "术语", "分类", "固体电解质"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+
+{
+"id": "R141",
+"query": "GB/T 48100-2026 主要规定什么内容？",
+"expected_documents": ["GBT+48100-2026"],
+"expected_keywords": ["电动汽车", "动力蓄电池", "在役检测", "试验方法"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R142",
+"query": "电动汽车动力蓄电池在役检测应该参考哪个标准？",
+"expected_documents": ["GBT+48100-2026"],
+"expected_keywords": ["动力蓄电池", "在役检测", "试验方法"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R143",
+"query": "如果需要对已经投入使用的电动汽车动力蓄电池进行检测，应该查哪个标准？",
+"expected_documents": ["GBT+48100-2026"],
+"expected_keywords": ["在役", "动力蓄电池", "检测"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R144",
+"query": "动力蓄电池在役检测和动力蓄电池安全评价分别应该参考哪些标准？",
+"expected_documents": ["GBT+48100-2026", "GBT+47971.1-2026", "GBT+47971.2-2026"],
+"expected_keywords": ["在役检测", "安全评价", "单体", "模块", "电池包", "系统"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+
+{
+"id": "R145",
+"query": "GB/T 48166-2026 主要规定什么内容？",
+"expected_documents": ["GBT+48166-2026"],
+"expected_keywords": ["汽车", "多芯片模组", "MCM", "应力试验"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R146",
+"query": "汽车用多芯片模组 MCM 的应力试验应该参考哪个标准？",
+"expected_documents": ["GBT+48166-2026"],
+"expected_keywords": ["多芯片模组", "MCM", "应力试验"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R147",
+"query": "如果需要对汽车用 MCM 进行应力试验，应该查哪个标准？",
+"expected_documents": ["GBT+48166-2026"],
+"expected_keywords": ["汽车用", "MCM", "应力试验"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R148",
+"query": "GB/T 48166-2026 主要针对汽车中的哪类器件进行应力试验？",
+"expected_documents": ["GBT+48166-2026"],
+"expected_keywords": ["多芯片模组", "MCM", "应力试验"],
+"category": "标准理解",
+"difficulty": "medium"
+},
+
+{
+"id": "R149",
+"query": "如果关注自动泊车系统性能测试和自动驾驶功能仿真，分别应该查哪些标准？",
+"expected_documents": ["GBT+47031-2026", "GBT+47025-2026"],
+"expected_keywords": ["自动泊车", "性能测试", "自动驾驶", "功能仿真"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R150",
+"query": "如果关注车载操作系统和车控操作系统，分别应该查哪些标准？",
+"expected_documents": ["GBT+47341-2026", "GBT+47351-2026"],
+"expected_keywords": ["车载操作系统", "车控操作系统"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R151",
+"query": "如果关注动力蓄电池单体模块、电池包系统以及在役电池检测，应该分别查询哪些标准？",
+"expected_documents": [
+"GBT+47971.1-2026",
+"GBT+47971.2-2026",
+"GBT+48100-2026"
+],
+"expected_keywords": ["单体", "模块", "电池包", "系统", "在役检测"],
+"category": "多标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R152",
+"query": "动力蓄电池健康安全状态评估和动力蓄电池安全评价有什么区别，分别对应哪些标准？",
+"expected_documents": [
+"GBT+47136-2026",
+"GBT+47971.1-2026",
+"GBT+47971.2-2026"
+],
+"expected_keywords": ["健康安全状态", "安全评价", "单体", "模块", "电池包", "系统"],
+"category": "多标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R153",
+"query": "固态电池术语分类、固体电解质技术规范分别对应什么标准？",
+"expected_documents": [
+"GBT+48093.1-2026",
+"GBZ+214-2026"
+],
+"expected_keywords": ["固态电池", "术语", "分类", "固体电解质"],
+"category": "多标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R154",
+"query": "新能源汽车维修安全、有序充电系统建设运行、充电设备碳足迹分别对应哪些标准？",
+"expected_documents": [
+"GBT+47439-2026",
+"GBT+47503-2026",
+"GBT+47645-2026"
+],
+"expected_keywords": ["维修安全", "有序充电", "建设运行", "碳足迹", "充电设备"],
+"category": "多标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R155",
+"query": "汽车结构耐久性道路模拟台架试验和汽车 MCM 应力试验分别应该查哪些标准？",
+"expected_documents": [
+"GBT+47315-2026",
+"GBT+48166-2026"
+],
+"expected_keywords": ["结构耐久性", "道路模拟", "台架试验", "MCM", "应力试验"],
+"category": "多标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R156",
+"query": "如果问题涉及智能网联汽车的自动泊车、车载操作系统和车控操作系统，应该分别检索哪些标准？",
+"expected_documents": [
+"GBT+47031-2026",
+"GBT+47341-2026",
+"GBT+47351-2026"
+],
+"expected_keywords": ["自动泊车", "车载操作系统", "车控操作系统"],
+"category": "多标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R157",
+"query": "如果一个用户的问题是关于电动汽车动力电池的健康状态、单体安全、电池包安全和在役检测，应该分别检索哪些标准？",
+"expected_documents": [
+"GBT+47136-2026",
+"GBT+47971.1-2026",
+"GBT+47971.2-2026",
+"GBT+48100-2026"
+],
+"expected_keywords": [
+"健康状态",
+"单体",
+"模块",
+"电池包",
+"系统",
+"在役检测"
+],
+"category": "多标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R158",
+"query": "如果用户问的是电动汽车固态电池相关内容，如何区分术语分类标准和固体电解质技术规范？",
+"expected_documents": [
+"GBT+48093.1-2026",
+"GBZ+214-2026"
+],
+"expected_keywords": ["固态电池", "术语分类", "固体电解质"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R159",
+"query": "GB/T 3273-2026 是什么标准？",
+"expected_documents": ["GBT+3273-2026"],
+"expected_keywords": ["汽车大梁", "热轧钢板", "钢带"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R160",
+"query": "汽车大梁用热轧钢板及钢带应该查哪个标准？",
+"expected_documents": ["GBT+3273-2026"],
+"expected_keywords": ["汽车大梁", "热轧钢板", "钢带"],
+"category": "语义检索",
+"difficulty": "easy"
+},
+{
+"id": "R161",
+"query": "汽车车架纵梁和横梁使用的热轧钢板钢带应该参考什么标准？",
+"expected_documents": ["GBT+3273-2026"],
+"expected_keywords": ["汽车车架", "纵梁", "横梁", "热轧钢板"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R162",
+"query": "如果需要查询汽车大梁用钢板的分类、牌号、制造过程和技术要求，应该查哪个标准？",
+"expected_documents": ["GBT+3273-2026"],
+"expected_keywords": ["分类", "牌号", "制造过程", "技术要求"],
+"category": "多关键词检索",
+"difficulty": "medium"
+},
+{
+"id": "R163",
+"query": "汽车大梁用钢板的试验方法和检验规则应该在哪里查询？",
+"expected_documents": ["GBT+3273-2026"],
+"expected_keywords": ["试验方法", "检验规则", "汽车大梁"],
+"category": "章节定位",
+"difficulty": "medium"
+},
+{
+"id": "R164",
+"query": "如果问题同时涉及汽车大梁热轧钢板和普通汽车零部件减振器，应该分别检索哪些标准？",
+"expected_documents": ["GBT+3273-2026", "GBT+23919-2025"],
+"expected_keywords": ["汽车大梁", "热轧钢板", "减振器"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R165",
+"query": "汽车车架使用的热轧钢板钢带与三轮汽车减振器分别属于什么标准对象？",
+"expected_documents": ["GBT+3273-2026", "GBT+23919-2025"],
+"expected_keywords": ["热轧钢板", "钢带", "三轮汽车", "减振器"],
+"category": "跨标准理解",
+"difficulty": "hard"
+},
+{
+"id": "R166",
+"query": "GB/T 3273-2026 与 GB/T 3273-2015 是什么关系？",
+"expected_documents": ["GBT+3273-2026"],
+"expected_keywords": ["GB/T 3273-2015", "替代"],
+"category": "版本关系",
+"difficulty": "hard"
+},
+{
+"id": "R167",
+"query": "如果用户说的是汽车大梁钢材，而不是汽车大梁总成的试验，应该优先检索哪个标准？",
+"expected_documents": ["GBT+3273-2026"],
+"expected_keywords": ["汽车大梁", "钢材", "热轧钢板", "钢带"],
+"category": "语义消歧",
+"difficulty": "hard"
+},
+{
+"id": "R168",
+"query": "某汽车制造企业需要采购用于车架纵梁和横梁的热轧钢板及钢带，同时需要确认其技术要求、试验方法和检验规则，应该从哪个标准开始检索？",
+"expected_documents": ["GBT+3273-2026"],
+"expected_keywords": ["车架纵梁", "横梁", "热轧钢板", "技术要求", "试验方法", "检验规则"],
+"category": "复杂场景检索",
+"difficulty": "expert"
+},
+
+{
+"id": "R169",
+"query": "GB/T 17676-2025 是什么标准？",
+"expected_documents": ["GBT+17676-2025"],
+"expected_keywords": ["气体燃料汽车", "标志"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R170",
+"query": "气体燃料汽车的标志应该查哪个标准？",
+"expected_documents": ["GBT+17676-2025"],
+"expected_keywords": ["气体燃料汽车", "标志"],
+"category": "语义检索",
+"difficulty": "easy"
+},
+{
+"id": "R171",
+"query": "天然气汽车或者其他气体燃料汽车的识别标志应该参考什么标准？",
+"expected_documents": ["GBT+17676-2025"],
+"expected_keywords": ["天然气汽车", "气体燃料汽车", "标志"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R172",
+"query": "如果需要查询气体燃料汽车标志相关要求，应该检索哪个标准文件？",
+"expected_documents": ["GBT+17676-2025"],
+"expected_keywords": ["气体燃料汽车", "标志"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R173",
+"query": "用户没有提供标准号，只问气体燃料汽车的标志要求，BGE-M3 应该召回哪个标准？",
+"expected_documents": ["GBT+17676-2025"],
+"expected_keywords": ["气体燃料汽车", "标志"],
+"category": "语义召回",
+"difficulty": "medium"
+},
+{
+"id": "R174",
+"query": "气体燃料汽车标志和天然气汽车定型试验是同一个标准吗？分别应该查什么？",
+"expected_documents": ["GBT+17676-2025", "GBT+23335-2025"],
+"expected_keywords": ["气体燃料汽车", "标志", "天然气汽车", "定型试验"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R175",
+"query": "如果问题只涉及气体燃料汽车的外部识别信息，而不是整车定型试验，应该检索哪个标准？",
+"expected_documents": ["GBT+17676-2025"],
+"expected_keywords": ["气体燃料汽车", "标志"],
+"category": "语义消歧",
+"difficulty": "hard"
+},
+{
+"id": "R176",
+"query": "一个天然气汽车项目既需要确定车辆标志，又需要进行定型试验，两个问题分别应该查哪些标准？",
+"expected_documents": ["GBT+17676-2025", "GBT+23335-2025"],
+"expected_keywords": ["标志", "定型试验"],
+"category": "多标准检索",
+"difficulty": "hard"
+},
+{
+"id": "R177",
+"query": "如果检索词只有“气体燃料汽车 标志”，为什么不应该优先返回天然气汽车减压调节器标准？",
+"expected_documents": ["GBT+17676-2025", "GBT+20735-2025"],
+"expected_keywords": ["气体燃料汽车", "标志", "减压调节器"],
+"category": "难负样本",
+"difficulty": "expert"
+},
+{
+"id": "R178",
+"query": "用户需要查询气体燃料汽车的识别标志，但同时知识库中存在天然气汽车定型试验和压缩天然气减压调节器两个相近标准，系统应该如何区分？",
+"expected_documents": ["GBT+17676-2025", "GBT+23335-2025", "GBT+20735-2025"],
+"expected_keywords": ["标志", "定型试验", "减压调节器"],
+"category": "复杂语义区分",
+"difficulty": "expert"
+},
+
+{
+"id": "R179",
+"query": "GB/T 20735-2025 是什么标准？",
+"expected_documents": ["GBT+20735-2025"],
+"expected_keywords": ["压缩天然气", "减压调节器"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R180",
+"query": "汽车用压缩天然气减压调节器应该查哪个标准？",
+"expected_documents": ["GBT+20735-2025"],
+"expected_keywords": ["汽车", "压缩天然气", "减压调节器"],
+"category": "语义检索",
+"difficulty": "easy"
+},
+{
+"id": "R181",
+"query": "CNG 汽车上的减压调节器应该参考哪个国家标准？",
+"expected_documents": ["GBT+20735-2025"],
+"expected_keywords": ["CNG", "压缩天然气", "减压调节器"],
+"category": "术语改写",
+"difficulty": "medium"
+},
+{
+"id": "R182",
+"query": "如果需要查询汽车用压缩天然气减压调节器的性能要求，应该检索哪个标准？",
+"expected_documents": ["GBT+20735-2025"],
+"expected_keywords": ["减压调节器", "性能要求"],
+"category": "章节定位",
+"difficulty": "medium"
+},
+{
+"id": "R183",
+"query": "汽车用压缩天然气减压调节器有哪些试验方法可以查？",
+"expected_documents": ["GBT+20735-2025"],
+"expected_keywords": ["减压调节器", "试验方法"],
+"category": "方法检索",
+"difficulty": "medium"
+},
+{
+"id": "R184",
+"query": "如果需要查询减压调节器的泄漏试验、耐振动试验等内容，应该查哪个标准？",
+"expected_documents": ["GBT+20735-2025"],
+"expected_keywords": ["泄漏试验", "耐振动试验", "减压调节器"],
+"category": "细粒度检索",
+"difficulty": "hard"
+},
+{
+"id": "R185",
+"query": "汽车用压缩天然气减压调节器和天然气汽车整车定型试验分别属于什么标准？",
+"expected_documents": ["GBT+20735-2025", "GBT+23335-2025"],
+"expected_keywords": ["减压调节器", "定型试验"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R186",
+"query": "如果用户问的是 CNG 系统中的减压调节器性能，而不是整车定型试验，应该召回哪个标准？",
+"expected_documents": ["GBT+20735-2025"],
+"expected_keywords": ["CNG", "减压调节器", "性能"],
+"category": "语义消歧",
+"difficulty": "hard"
+},
+{
+"id": "R187",
+"query": "某 CNG 汽车零部件企业需要确认减压调节器的性能、泄漏、耐压、耐振动等试验要求，应该查询哪个标准？",
+"expected_documents": ["GBT+20735-2025"],
+"expected_keywords": ["CNG", "减压调节器", "性能", "泄漏", "耐压", "耐振动"],
+"category": "复杂场景检索",
+"difficulty": "expert"
+},
+{
+"id": "R188",
+"query": "如果问题同时涉及压缩天然气减压调节器、气体燃料汽车标志和天然气汽车定型试验，如何分别定位三个标准？",
+"expected_documents": ["GBT+20735-2025", "GBT+17676-2025", "GBT+23335-2025"],
+"expected_keywords": ["减压调节器", "标志", "定型试验"],
+"category": "多标准区分",
+"difficulty": "expert"
+},
+
+{
+"id": "R189",
+"query": "GB/T 23335-2025 是什么标准？",
+"expected_documents": ["GBT+23335-2025"],
+"expected_keywords": ["天然气汽车", "定型试验"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R190",
+"query": "天然气汽车定型试验应该查哪个标准？",
+"expected_documents": ["GBT+23335-2025"],
+"expected_keywords": ["天然气汽车", "定型试验"],
+"category": "语义检索",
+"difficulty": "easy"
+},
+{
+"id": "R191",
+"query": "CNG 或 LNG 汽车进行整车型式试验时应该参考什么标准？",
+"expected_documents": ["GBT+23335-2025"],
+"expected_keywords": ["CNG", "LNG", "天然气汽车", "定型试验"],
+"category": "术语改写",
+"difficulty": "medium"
+},
+{
+"id": "R192",
+"query": "如果要查询天然气汽车的定型试验规程，应该从哪个标准文件中查找？",
+"expected_documents": ["GBT+23335-2025"],
+"expected_keywords": ["天然气汽车", "定型试验", "试验规程"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R193",
+"query": "天然气汽车定型试验涉及整车哪些方面的测试内容？",
+"expected_documents": ["GBT+23335-2025"],
+"expected_keywords": ["天然气汽车", "定型试验"],
+"category": "内容检索",
+"difficulty": "medium"
+},
+{
+"id": "R194",
+"query": "如果需要查询天然气汽车燃气系统、气密性、性能以及安全相关的定型试验，应该查哪个标准？",
+"expected_documents": ["GBT+23335-2025"],
+"expected_keywords": ["燃气系统", "气密性", "性能", "安全", "定型试验"],
+"category": "细粒度检索",
+"difficulty": "hard"
+},
+{
+"id": "R195",
+"query": "天然气汽车定型试验和压缩天然气减压调节器试验有什么区别？分别应该查询什么标准？",
+"expected_documents": ["GBT+23335-2025", "GBT+20735-2025"],
+"expected_keywords": ["定型试验", "减压调节器", "试验"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R196",
+"query": "如果问题只针对整车定型，而不是某一个 CNG 零部件的性能测试，应该优先检索哪个标准？",
+"expected_documents": ["GBT+23335-2025", "GBT+20735-2025"],
+"expected_keywords": ["整车", "定型", "CNG", "零部件"],
+"category": "语义消歧",
+"difficulty": "hard"
+},
+{
+"id": "R197",
+"query": "一个天然气汽车研发项目需要同时完成整车定型试验和减压调节器性能试验，这两个任务分别应该查什么标准？",
+"expected_documents": ["GBT+23335-2025", "GBT+20735-2025"],
+"expected_keywords": ["整车定型试验", "减压调节器", "性能试验"],
+"category": "复杂场景检索",
+"difficulty": "expert"
+},
+
+{
+"id": "R198",
+"query": "GB/T 23919-2025 是什么标准？",
+"expected_documents": ["GBT+23919-2025"],
+"expected_keywords": ["三轮汽车", "减振器"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R199",
+"query": "三轮汽车减振器应该查哪个标准？",
+"expected_documents": ["GBT+23919-2025"],
+"expected_keywords": ["三轮汽车", "减振器"],
+"category": "语义检索",
+"difficulty": "easy"
+},
+{
+"id": "R200",
+"query": "三轮汽车减振器的结构尺寸和技术要求应该参考什么标准？",
+"expected_documents": ["GBT+23919-2025"],
+"expected_keywords": ["三轮汽车", "减振器", "结构尺寸", "技术要求"],
+"category": "章节定位",
+"difficulty": "medium"
+},
+{
+"id": "R201",
+"query": "如果需要查询三轮汽车减振器的试验方法和检验规则，应该查哪个标准？",
+"expected_documents": ["GBT+23919-2025"],
+"expected_keywords": ["减振器", "试验方法", "检验规则"],
+"category": "方法检索",
+"difficulty": "medium"
+},
+{
+"id": "R202",
+"query": "三轮汽车用减振器的设计、制造和检验检测应该参考哪个标准？",
+"expected_documents": ["GBT+23919-2025"],
+"expected_keywords": ["三轮汽车", "减振器", "设计", "制造", "检验检测"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R203",
+"query": "GB/T 23919-2025 与 GB/T 23919-2009 是什么关系？",
+"expected_documents": ["GBT+23919-2025"],
+"expected_keywords": ["GB/T 23919-2009", "替代"],
+"category": "版本关系",
+"difficulty": "hard"
+},
+{
+"id": "R204",
+"query": "如果我要查询三轮汽车减振器的结构尺寸、技术要求、检验规则以及包装运输贮存要求，应该从哪个标准开始？",
+"expected_documents": ["GBT+23919-2025"],
+"expected_keywords": ["结构尺寸", "技术要求", "检验规则", "包装", "运输", "贮存"],
+"category": "多章节检索",
+"difficulty": "hard"
+},
+{
+"id": "R205",
+"query": "三轮汽车减振器和汽车大梁用热轧钢板及钢带分别应该查询什么标准？",
+"expected_documents": ["GBT+23919-2025", "GBT+3273-2026"],
+"expected_keywords": ["三轮汽车", "减振器", "汽车大梁", "热轧钢板"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R206",
+"query": "如果用户问的是三轮汽车减振器，而不是普通汽车车架钢板，系统应该如何进行标准区分？",
+"expected_documents": ["GBT+23919-2025", "GBT+3273-2026"],
+"expected_keywords": ["三轮汽车", "减振器", "车架", "钢板"],
+"category": "语义消歧",
+"difficulty": "hard"
+},
+{
+"id": "R207",
+"query": "某三轮汽车零部件企业准备进行减振器设计、制造和检验，同时还需要采购汽车大梁用热轧钢板。两个问题分别应该检索哪些标准？",
+"expected_documents": ["GBT+23919-2025", "GBT+3273-2026"],
+"expected_keywords": ["三轮汽车", "减振器", "设计", "制造", "检验", "汽车大梁", "热轧钢板"],
+"category": "复杂场景检索",
+"difficulty": "expert"
+},
+
+{
+"id": "R208",
+"query": "一个用户说“天然气汽车相关标准”，但没有进一步说明具体问题，知识库中至少有哪些标准可能相关？",
+"expected_documents": [
+"GBT+17676-2025",
+"GBT+20735-2025",
+"GBT+23335-2025"
+],
+"expected_keywords": ["气体燃料汽车", "压缩天然气", "减压调节器", "天然气汽车", "定型试验"],
+"category": "多标准召回",
+"difficulty": "expert"
+},
+{
+"id": "R209",
+"query": "GB/T 31150-2025 是什么标准？",
+"expected_documents": ["GBT+31150-2025"],
+"expected_keywords": ["汽车零部件物流", "塑料周转箱", "尺寸系列", "技术要求"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R210",
+"query": "汽车零部件物流中的塑料周转箱应该参考哪个标准？",
+"expected_documents": ["GBT+31150-2025"],
+"expected_keywords": ["汽车零部件物流", "塑料周转箱"],
+"category": "语义检索",
+"difficulty": "easy"
+},
+{
+"id": "R211",
+"query": "如果需要查询汽车零部件物流用塑料周转箱的尺寸系列，应该查哪个标准？",
+"expected_documents": ["GBT+31150-2025"],
+"expected_keywords": ["塑料周转箱", "尺寸系列"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R212",
+"query": "汽车零部件运输过程中使用的塑料周转箱，其技术要求应该从哪个标准中查询？",
+"expected_documents": ["GBT+31150-2025"],
+"expected_keywords": ["汽车零部件物流", "塑料周转箱", "技术要求"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R213",
+"query": "如果企业要建立汽车零部件塑料周转箱的规格体系，应该参考什么标准？",
+"expected_documents": ["GBT+31150-2025"],
+"expected_keywords": ["塑料周转箱", "尺寸系列", "汽车零部件物流"],
+"category": "业务场景",
+"difficulty": "medium"
+},
+{
+"id": "R214",
+"query": "GB/T 31150-2025 关注的是汽车零部件本身，还是零部件物流过程中使用的周转箱？",
+"expected_documents": ["GBT+31150-2025"],
+"expected_keywords": ["汽车零部件物流", "塑料周转箱"],
+"category": "语义理解",
+"difficulty": "hard"
+},
+{
+"id": "R215",
+"query": "如果问题是汽车排气系统钢板的材料要求，而不是零部件物流周转箱要求，应该如何区分标准？",
+"expected_documents": ["GBT+31150-2025", "GBT+32796-2026"],
+"expected_keywords": ["塑料周转箱", "排气系统", "钢板"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R216",
+"query": "汽车零部件物流中的塑料周转箱和汽车排气系统用不锈钢钢板分别应该查询哪些标准？",
+"expected_documents": ["GBT+31150-2025", "GBT+32796-2026"],
+"expected_keywords": ["塑料周转箱", "排气系统", "不锈钢钢板"],
+"category": "跨标准检索",
+"difficulty": "hard"
+},
+{
+"id": "R217",
+"query": "一个汽车零部件企业同时负责零部件物流包装和排气系统材料采购，这两个业务分别应该从哪些标准开始查询？",
+"expected_documents": ["GBT+31150-2025", "GBT+32796-2026"],
+"expected_keywords": ["零部件物流", "塑料周转箱", "排气系统", "材料"],
+"category": "复杂业务场景",
+"difficulty": "expert"
+},
+{
+"id": "R218",
+"query": "如果用户只输入“汽车零部件物流 塑料箱 尺寸 技术要求”，系统应该优先召回哪个标准？",
+"expected_documents": ["GBT+31150-2025"],
+"expected_keywords": ["汽车零部件物流", "塑料箱", "尺寸", "技术要求"],
+"category": "复杂语义召回",
+"difficulty": "expert"
+},
+
+{
+"id": "R219",
+"query": "GB/T 32796-2026 是什么标准？",
+"expected_documents": ["GBT+32796-2026"],
+"expected_keywords": ["汽车排气系统", "冷轧", "铁素体不锈钢", "钢板", "钢带"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R220",
+"query": "汽车排气系统用冷轧铁素体不锈钢钢板及钢带应该查哪个标准？",
+"expected_documents": ["GBT+32796-2026"],
+"expected_keywords": ["汽车排气系统", "冷轧铁素体不锈钢", "钢板", "钢带"],
+"category": "语义检索",
+"difficulty": "easy"
+},
+{
+"id": "R221",
+"query": "如果我要查询汽车排气系统使用的不锈钢板材标准，应该查哪个标准？",
+"expected_documents": ["GBT+32796-2026"],
+"expected_keywords": ["汽车排气系统", "不锈钢", "钢板"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R222",
+"query": "汽车排气系统用钢带材料应该参考什么国家标准？",
+"expected_documents": ["GBT+32796-2026"],
+"expected_keywords": ["排气系统", "钢带", "材料"],
+"category": "语义检索",
+"difficulty": "medium"
+},
+{
+"id": "R223",
+"query": "如果关注汽车排气系统用冷轧铁素体不锈钢材料，而不是动力电池材料，应该查询哪个标准？",
+"expected_documents": ["GBT+32796-2026", "GBT+34013-2026"],
+"expected_keywords": ["排气系统", "铁素体不锈钢", "动力电池"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R224",
+"query": "GB/T 32796-2026 的标准对象是汽车整车、动力电池还是排气系统用钢板钢带？",
+"expected_documents": ["GBT+32796-2026"],
+"expected_keywords": ["排气系统", "钢板", "钢带"],
+"category": "标准理解",
+"difficulty": "hard"
+},
+{
+"id": "R225",
+"query": "汽车排气系统材料和汽车大梁材料属于同一类标准对象吗？应该分别检索什么标准？",
+"expected_documents": ["GBT+32796-2026", "GBT+3273-2026"],
+"expected_keywords": ["排气系统", "钢板", "汽车大梁"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R226",
+"query": "如果采购部门需要为汽车排气系统寻找冷轧铁素体不锈钢钢板和钢带，应当从哪个标准开始确认材料要求？",
+"expected_documents": ["GBT+32796-2026"],
+"expected_keywords": ["采购", "排气系统", "冷轧铁素体不锈钢", "钢板", "钢带"],
+"category": "业务场景",
+"difficulty": "hard"
+},
+{
+"id": "R227",
+"query": "一个汽车企业同时需要查询排气系统不锈钢材料和动力蓄电池规格尺寸，两个问题分别应该匹配哪些标准？",
+"expected_documents": ["GBT+32796-2026", "GBT+34013-2026"],
+"expected_keywords": ["排气系统", "不锈钢", "动力蓄电池", "规格尺寸"],
+"category": "多标准检索",
+"difficulty": "expert"
+},
+{
+"id": "R228",
+"query": "用户只说“汽车排气管用不锈钢板”，没有给出标准号，知识库应该优先召回哪个标准？",
+"expected_documents": ["GBT+32796-2026"],
+"expected_keywords": ["汽车排气系统", "不锈钢钢板"],
+"category": "自然语言召回",
+"difficulty": "expert"
+},
+
+{
+"id": "R229",
+"query": "GB/T 34013-2026 是什么标准？",
+"expected_documents": ["GBT+34013-2026"],
+"expected_keywords": ["电动汽车", "动力蓄电池", "产品规格", "尺寸"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R230",
+"query": "电动汽车动力蓄电池产品规格尺寸应该参考哪个标准？",
+"expected_documents": ["GBT+34013-2026"],
+"expected_keywords": ["动力蓄电池", "产品规格", "尺寸"],
+"category": "语义检索",
+"difficulty": "easy"
+},
+{
+"id": "R231",
+"query": "如果需要查询电动汽车动力电池的产品尺寸，应该查哪个标准？",
+"expected_documents": ["GBT+34013-2026"],
+"expected_keywords": ["动力电池", "产品尺寸"],
+"category": "场景检索",
+"difficulty": "medium"
+},
+{
+"id": "R232",
+"query": "电动汽车动力蓄电池的规格和尺寸应该从哪个标准中查询？",
+"expected_documents": ["GBT+34013-2026"],
+"expected_keywords": ["动力蓄电池", "规格", "尺寸"],
+"category": "语义改写",
+"difficulty": "medium"
+},
+{
+"id": "R233",
+"query": "如果关注的是动力蓄电池的产品规格尺寸，而不是电池安全评价，应该选择哪个标准？",
+"expected_documents": ["GBT+34013-2026"],
+"expected_keywords": ["产品规格尺寸", "安全评价"],
+"category": "语义消歧",
+"difficulty": "hard"
+},
+{
+"id": "R234",
+"query": "动力蓄电池产品规格尺寸与动力蓄电池安全评价分别应该查询哪些标准？",
+"expected_documents": [
+"GBT+34013-2026",
+"GBT+47971.1-2026",
+"GBT+47971.2-2026"
+],
+"expected_keywords": ["产品规格尺寸", "安全评价", "单体", "模块", "电池包", "系统"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R235",
+"query": "如果工程师只需要确认动力电池外形尺寸和产品规格，而不需要进行安全测试，应该检索哪个标准？",
+"expected_documents": ["GBT+34013-2026"],
+"expected_keywords": ["动力电池", "外形尺寸", "产品规格"],
+"category": "业务场景",
+"difficulty": "hard"
+},
+{
+"id": "R236",
+"query": "电动汽车动力蓄电池的产品规格尺寸和在役检测分别属于什么问题，应该查询哪些标准？",
+"expected_documents": ["GBT+34013-2026", "GBT+48100-2026"],
+"expected_keywords": ["产品规格尺寸", "在役检测"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R237",
+"query": "某电池企业需要根据国家标准确认动力蓄电池的规格尺寸，同时还需要了解电池包及系统安全评价要求，这两个任务应该分别检索什么？",
+"expected_documents": ["GBT+34013-2026", "GBT+47971.2-2026"],
+"expected_keywords": ["动力蓄电池", "规格尺寸", "电池包", "系统", "安全评价"],
+"category": "复杂业务场景",
+"difficulty": "expert"
+},
+{
+"id": "R238",
+"query": "用户问“电动汽车动力电池尺寸标准是什么”，但知识库中还有多个动力电池安全标准，系统应该如何进行标准区分？",
+"expected_documents": [
+"GBT+34013-2026",
+"GBT+47971.1-2026",
+"GBT+47971.2-2026"
+],
+"expected_keywords": ["动力电池", "尺寸", "安全标准"],
+"category": "难负样本",
+"difficulty": "expert"
+},
+
+{
+"id": "R239",
+"query": "GB/T 38775.9-2025 是什么标准？",
+"expected_documents": ["GBT+38775.9-2025"],
+"expected_keywords": ["电动汽车无线充电系统", "通信协议", "应用层", "数据链路层"],
+"category": "标准定位",
+"difficulty": "easy"
+},
+{
+"id": "R240",
+"query": "电动汽车无线充电系统中车载充电机和无线充电设备之间的通信协议应该查哪个标准？",
+"expected_documents": ["GBT+38775.9-2025"],
+"expected_keywords": ["无线充电", "车载充电机", "无线充电设备", "通信协议"],
+"category": "语义检索",
+"difficulty": "easy"
+},
+{
+"id": "R241",
+"query": "如果我要查询无线充电系统通信协议的应用层和数据链路层，应该查哪个标准？",
+"expected_documents": ["GBT+38775.9-2025"],
+"expected_keywords": ["通信协议", "应用层", "数据链路层"],
+"category": "章节定位",
+"difficulty": "medium"
+},
+{
+"id": "R242",
+"query": "电动汽车无线充电时，车载充电机与无线充电设备之间的通信应该参考什么标准？",
+"expected_documents": ["GBT+38775.9-2025"],
+"expected_keywords": ["车载充电机", "无线充电设备", "通信"],
+"category": "业务场景",
+"difficulty": "medium"
+},
+{
+"id": "R243",
+"query": "如果关注无线充电系统的通信协议本身，而不是协议一致性测试，应该查哪个标准？",
+"expected_documents": ["GBT+38775.9-2025", "GBT+38775.10-2025"],
+"expected_keywords": ["通信协议", "一致性测试"],
+"category": "语义消歧",
+"difficulty": "hard"
+},
+{
+"id": "R244",
+"query": "GB/T 38775.9-2025 和 GB/T 38775.10-2025 分别解决什么问题？",
+"expected_documents": ["GBT+38775.9-2025", "GBT+38775.10-2025"],
+"expected_keywords": ["通信协议", "应用层", "数据链路层", "一致性测试"],
+"category": "跨标准区分",
+"difficulty": "hard"
+},
+{
+"id": "R245",
+"query": "研发人员需要了解无线充电车载充电机和充电设备之间的通信协议，应该优先查第9部分还是第10部分？",
+"expected_documents": ["GBT+38775.9-2025", "GBT+38775.10-2025"],
+"expected_keywords": ["第9部分", "第10部分", "通信协议"],
+"category": "难负样本",
+"difficulty": "hard"
+},
+{
+"id": "R246",
+"query": "如果测试人员需要验证无线充电系统通信协议是否满足一致性要求，应该查哪个标准？",
+"expected_documents": ["GBT+38775.10-2025"],
+"expected_keywords": ["通信协议", "一致性测试"],
+"category": "测试场景",
+"difficulty": "hard"
+},
+{
+"id": "R247",
+"query": "一个无线充电系统项目既需要实现车载充电机与无线充电设备之间的通信，又需要进行通信协议一致性测试，这两个阶段分别应该查哪些标准？",
+"expected_documents": ["GBT+38775.9-2025", "GBT+38775.10-2025"],
+"expected_keywords": ["通信协议", "应用层", "数据链路层", "一致性测试"],
+"category": "复杂业务场景",
+"difficulty": "expert"
+},
+{
+"id": "R248",
+"query": "用户输入“电动汽车无线充电 通信 应用层 数据链路层 一致性测试”，系统应该同时考虑哪些标准，并如何区分它们？",
+"expected_documents": ["GBT+38775.9-2025", "GBT+38775.10-2025"],
+"expected_keywords": ["无线充电", "通信", "应用层", "数据链路层", "一致性测试"],
+"category": "复杂语义检索",
+"difficulty": "expert"
+},
+  {
+    "id": "R249",
+    "query": "GB/T 46926-2025主要针对哪一类汽车的视野辅助系统？",
+    "expected_documents": ["GBT+46926-2025"],
+    "expected_keywords": ["轻型汽车", "视野辅助系统"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R250",
+    "query": "GB/T 46926-2025规定的主要内容是什么？",
+    "expected_documents": ["GBT+46926-2025"],
+    "expected_keywords": ["视野辅助系统", "技术要求", "试验方法"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R251",
+    "query": "如果需要查询轻型汽车视野辅助系统的技术要求，应查哪个标准？",
+    "expected_documents": ["GBT+46926-2025"],
+    "expected_keywords": ["轻型汽车", "视野辅助系统", "技术要求"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R252",
+    "query": "GB/T 46926-2025是否同时涉及视野辅助系统的试验方法？",
+    "expected_documents": ["GBT+46926-2025"],
+    "expected_keywords": ["试验方法", "视野辅助系统"],
+    "category": "内容定位",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R253",
+    "query": "想了解轻型汽车视野辅助系统的技术要求和试验方法，应该从哪个标准开始检索？",
+    "expected_documents": ["GBT+46926-2025"],
+    "expected_keywords": ["轻型汽车", "视野辅助系统", "技术要求", "试验方法"],
+    "category": "场景检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R254",
+    "query": "GB/T 46926-2025的主题是动力电池耐久性还是视野辅助系统？",
+    "expected_documents": ["GBT+46926-2025"],
+    "expected_keywords": ["视野辅助系统"],
+    "category": "标准区分",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R255",
+    "query": "如果问题涉及汽车视野辅助系统的试验方法，而不是自动驾驶仿真试验，应优先检索哪个标准？",
+    "expected_documents": ["GBT+46926-2025"],
+    "expected_keywords": ["视野辅助系统", "试验方法"],
+    "category": "相似标准区分",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R256",
+    "query": "GB/T 46926-2025与GB/T 47031-2026的主要关注对象分别是什么？",
+    "expected_documents": ["GBT+46926-2025", "GBT+47031-2026"],
+    "expected_keywords": ["视野辅助系统", "自动泊车系统"],
+    "category": "跨标准对比",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R257",
+    "query": "轻型汽车的视野辅助系统技术要求和自动驾驶功能仿真试验分别对应哪些标准？",
+    "expected_documents": ["GBT+46926-2025", "GBT+47025-2026"],
+    "expected_keywords": ["视野辅助系统", "自动驾驶功能", "仿真试验"],
+    "category": "跨标准定位",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R258",
+    "query": "下面哪个标准与轻型汽车视野辅助系统的技术要求及试验方法直接相关：GB/T 46926-2025、GB/T 46991.1-2025还是GB/T 47001-2025？",
+    "expected_documents": ["GBT+46926-2025"],
+    "expected_keywords": ["轻型汽车", "视野辅助系统", "技术要求", "试验方法"],
+    "category": "标准辨识",
+    "difficulty": "hard"
+  },
+
+  {
+    "id": "R259",
+    "query": "GB/T 46991.1-2025主要针对什么类型的车辆？",
+    "expected_documents": ["GBT+46991.1-2025"],
+    "expected_keywords": ["电动汽车", "轻型汽车"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R260",
+    "query": "GB/T 46991.1-2025主要研究的是电动汽车车载动力电池的什么性能？",
+    "expected_documents": ["GBT+46991.1-2025"],
+    "expected_keywords": ["车载动力电池", "耐久性"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R261",
+    "query": "GB/T 46991.1-2025的标准名称中为什么有“第1部分:轻型汽车”？",
+    "expected_documents": ["GBT+46991.1-2025"],
+    "expected_keywords": ["第1部分", "轻型汽车"],
+    "category": "标准结构",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R262",
+    "query": "如果需要查询电动汽车车载动力电池耐久性要求，应检索哪个标准？",
+    "expected_documents": ["GBT+46991.1-2025"],
+    "expected_keywords": ["车载动力电池", "耐久性要求"],
+    "category": "场景检索",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R263",
+    "query": "GB/T 46991.1-2025是否包含动力电池耐久性的试验方法？",
+    "expected_documents": ["GBT+46991.1-2025"],
+    "expected_keywords": ["耐久性", "试验方法"],
+    "category": "内容定位",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R264",
+    "query": "如果一个问题同时出现“电动汽车”“车载动力电池”“耐久性”“轻型汽车”，最可能对应哪个标准？",
+    "expected_documents": ["GBT+46991.1-2025"],
+    "expected_keywords": ["电动汽车", "车载动力电池", "耐久性", "轻型汽车"],
+    "category": "语义检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R265",
+    "query": "GB/T 46991.1-2025与GB/T 34013-2026相比，前者关注动力电池的哪个方面？",
+    "expected_documents": ["GBT+46991.1-2025"],
+    "expected_keywords": ["耐久性"],
+    "category": "相似标准区分",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R266",
+    "query": "如果问题关注的是动力电池在车辆使用过程中的耐久性，而不是动力蓄电池产品规格尺寸，应检索哪个标准？",
+    "expected_documents": ["GBT+46991.1-2025"],
+    "expected_keywords": ["动力电池", "耐久性"],
+    "category": "相似标准区分",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R267",
+    "query": "GB/T 46991.1-2025和GB/T 47025-2026分别属于动力电池耐久性和自动驾驶仿真两个不同领域吗？",
+    "expected_documents": ["GBT+46991.1-2025", "GBT+47025-2026"],
+    "expected_keywords": ["动力电池耐久性", "自动驾驶", "仿真试验"],
+    "category": "跨标准对比",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R268",
+    "query": "针对轻型电动汽车，如果问题是车载动力电池耐久性要求及试验方法，而不是自动泊车性能要求，应选择哪个标准？",
+    "expected_documents": ["GBT+46991.1-2025"],
+    "expected_keywords": ["轻型汽车", "动力电池", "耐久性", "试验方法"],
+    "category": "标准辨识",
+    "difficulty": "hard"
+  },
+
+  {
+    "id": "R269",
+    "query": "GB/T 47001-2025主要针对智能网联汽车的什么问题？",
+    "expected_documents": ["GBT+47001-2025"],
+    "expected_keywords": ["智能网联汽车", "数字身份", "认证"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R270",
+    "query": "GB/T 47001-2025的标准名称是什么？",
+    "expected_documents": ["GBT+47001-2025"],
+    "expected_keywords": ["智能网联汽车", "数字身份", "认证", "通用规范"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R271",
+    "query": "如果需要查询智能网联汽车数字身份相关要求，应检索哪个标准？",
+    "expected_documents": ["GBT+47001-2025"],
+    "expected_keywords": ["数字身份", "智能网联汽车"],
+    "category": "场景检索",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R272",
+    "query": "GB/T 47001-2025是否同时涉及数字身份和认证？",
+    "expected_documents": ["GBT+47001-2025"],
+    "expected_keywords": ["数字身份", "认证"],
+    "category": "内容定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R273",
+    "query": "如果一个智能网联汽车系统需要解决车辆数字身份识别与认证问题，应该优先检索哪个标准？",
+    "expected_documents": ["GBT+47001-2025"],
+    "expected_keywords": ["智能网联汽车", "数字身份", "认证"],
+    "category": "场景检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R274",
+    "query": "GB/T 47001-2025关注的是数字身份及认证，还是自动驾驶功能仿真？",
+    "expected_documents": ["GBT+47001-2025"],
+    "expected_keywords": ["数字身份", "认证"],
+    "category": "标准区分",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R275",
+    "query": "GB/T 47001-2025与GB/T 47025-2026分别解决智能网联汽车中的什么问题？",
+    "expected_documents": ["GBT+47001-2025", "GBT+47025-2026"],
+    "expected_keywords": ["数字身份", "认证", "自动驾驶", "仿真试验"],
+    "category": "跨标准对比",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R276",
+    "query": "如果用户问的是智能网联汽车身份认证，而不是车辆自动泊车性能，应返回哪个标准？",
+    "expected_documents": ["GBT+47001-2025"],
+    "expected_keywords": ["身份认证", "智能网联汽车"],
+    "category": "相似标准区分",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R277",
+    "query": "一个问题同时涉及智能网联汽车数字身份和认证机制，应如何定位到GB/T 47001-2025？",
+    "expected_documents": ["GBT+47001-2025"],
+    "expected_keywords": ["数字身份", "认证", "通用规范"],
+    "category": "语义检索",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R278",
+    "query": "在46926、46991.1、47001、47025、47031这五个标准中，哪个标准直接面向智能网联汽车数字身份及认证？",
+    "expected_documents": ["GBT+47001-2025"],
+    "expected_keywords": ["智能网联汽车", "数字身份", "认证"],
+    "category": "多标准辨识",
+    "difficulty": "hard"
+  },
+
+  {
+    "id": "R279",
+    "query": "GB/T 47025-2026主要针对什么功能的仿真试验？",
+    "expected_documents": ["GBT+47025-2026"],
+    "expected_keywords": ["自动驾驶功能", "仿真试验"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R280",
+    "query": "GB/T 47025-2026的标准名称是什么？",
+    "expected_documents": ["GBT+47025-2026"],
+    "expected_keywords": ["智能网联汽车", "自动驾驶功能", "仿真试验", "方法及要求"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R281",
+    "query": "如果需要查询智能网联汽车自动驾驶功能的仿真试验方法，应查哪个标准？",
+    "expected_documents": ["GBT+47025-2026"],
+    "expected_keywords": ["自动驾驶功能", "仿真试验方法"],
+    "category": "场景检索",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R282",
+    "query": "GB/T 47025-2026关注的是自动驾驶功能仿真，还是自动泊车系统实际性能？",
+    "expected_documents": ["GBT+47025-2026"],
+    "expected_keywords": ["自动驾驶功能", "仿真试验"],
+    "category": "标准区分",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R283",
+    "query": "如果研发人员希望通过仿真环境对自动驾驶功能进行试验，应优先参考哪个标准？",
+    "expected_documents": ["GBT+47025-2026"],
+    "expected_keywords": ["自动驾驶功能", "仿真环境", "试验"],
+    "category": "场景检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R284",
+    "query": "GB/T 47025-2026的核心对象是自动驾驶功能还是动力电池？",
+    "expected_documents": ["GBT+47025-2026"],
+    "expected_keywords": ["自动驾驶功能"],
+    "category": "标准辨识",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R285",
+    "query": "GB/T 47025-2026和GB/T 47031-2026都涉及智能网联汽车，但前者主要关注什么？",
+    "expected_documents": ["GBT+47025-2026"],
+    "expected_keywords": ["自动驾驶功能", "仿真试验"],
+    "category": "相似标准区分",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R286",
+    "query": "如果问题要求区分自动驾驶功能仿真试验和自动泊车系统性能试验，应分别检索哪些标准？",
+    "expected_documents": ["GBT+47025-2026", "GBT+47031-2026"],
+    "expected_keywords": ["自动驾驶功能", "仿真试验", "自动泊车系统", "性能要求", "试验方法"],
+    "category": "跨标准对比",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R287",
+    "query": "对于一个需要评价自动驾驶功能的仿真测试场景，为什么GB/T 47025-2026比GB/T 46926-2025更直接相关？",
+    "expected_documents": ["GBT+47025-2026"],
+    "expected_keywords": ["自动驾驶功能", "仿真试验"],
+    "category": "相似标准区分",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R288",
+    "query": "在五个标准中，哪个标准明确以“自动驾驶功能仿真试验方法及要求”为主题？",
+    "expected_documents": ["GBT+47025-2026"],
+    "expected_keywords": ["自动驾驶功能", "仿真试验方法及要求"],
+    "category": "多标准辨识",
+    "difficulty": "hard"
+  },
+
+  {
+    "id": "R289",
+    "query": "GB/T 47031-2026主要针对什么系统？",
+    "expected_documents": ["GBT+47031-2026"],
+    "expected_keywords": ["自动泊车系统"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R290",
+    "query": "GB/T 47031-2026主要规定自动泊车系统的哪些内容？",
+    "expected_documents": ["GBT+47031-2026"],
+    "expected_keywords": ["自动泊车系统", "性能要求", "试验方法"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R291",
+    "query": "如果需要查询智能网联汽车自动泊车系统的性能要求，应检索哪个标准？",
+    "expected_documents": ["GBT+47031-2026"],
+    "expected_keywords": ["智能网联汽车", "自动泊车系统", "性能要求"],
+    "category": "场景检索",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R292",
+    "query": "GB/T 47031-2026是否同时涉及自动泊车系统的试验方法？",
+    "expected_documents": ["GBT+47031-2026"],
+    "expected_keywords": ["自动泊车系统", "试验方法"],
+    "category": "内容定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R293",
+    "query": "如果研发人员需要验证自动泊车系统性能，应优先参考哪个标准？",
+    "expected_documents": ["GBT+47031-2026"],
+    "expected_keywords": ["自动泊车系统", "性能", "试验"],
+    "category": "场景检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R294",
+    "query": "GB/T 47031-2026与GB/T 47025-2026的核心测试对象有什么区别？",
+    "expected_documents": ["GBT+47031-2026", "GBT+47025-2026"],
+    "expected_keywords": ["自动泊车系统", "自动驾驶功能", "仿真试验"],
+    "category": "跨标准对比",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R295",
+    "query": "如果问题是自动泊车系统性能要求，而不是自动驾驶功能仿真方法，应检索哪个标准？",
+    "expected_documents": ["GBT+47031-2026"],
+    "expected_keywords": ["自动泊车系统", "性能要求"],
+    "category": "相似标准区分",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R296",
+    "query": "GB/T 47031-2026和GB/T 46926-2025分别关注自动泊车系统和什么系统？",
+    "expected_documents": ["GBT+47031-2026", "GBT+46926-2025"],
+    "expected_keywords": ["自动泊车系统", "视野辅助系统"],
+    "category": "跨标准对比",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R297",
+    "query": "对于智能网联汽车自动泊车功能的性能测试，应重点检索GB/T 47031-2026还是GB/T 47001-2025？",
+    "expected_documents": ["GBT+47031-2026"],
+    "expected_keywords": ["自动泊车系统", "性能要求", "试验方法"],
+    "category": "标准辨识",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R298",
+    "query": "在46926、46991.1、47001、47025、47031这五个标准中，哪个标准直接对应“自动泊车系统性能要求与试验方法”？",
+    "expected_documents": ["GBT+47031-2026"],
+    "expected_keywords": ["自动泊车系统", "性能要求", "试验方法"],
+    "category": "多标准辨识",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R299",
+    "query": "GB/T 47136-2026主要针对什么对象？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["纯电动汽车", "动力蓄电池", "健康", "安全状态评估"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R300",
+    "query": "GB/T 47136-2026主要解决动力蓄电池的什么问题？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["动力蓄电池", "健康状态", "安全状态", "评估"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R301",
+    "query": "如果需要查询纯电动汽车动力蓄电池健康状态评估，应检索哪个标准？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["纯电动汽车", "动力蓄电池", "健康状态评估"],
+    "category": "场景检索",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R302",
+    "query": "GB/T 47136-2026是否同时涉及动力蓄电池的健康状态和安全状态？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["健康", "安全状态", "动力蓄电池"],
+    "category": "内容定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R303",
+    "query": "如果问题关注纯电动汽车动力蓄电池的状态评估，而不是电池产品规格尺寸，应优先检索哪个标准？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["状态评估", "动力蓄电池"],
+    "category": "相似标准区分",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R304",
+    "query": "GB/T 47136-2026关注的是动力蓄电池健康与安全状态评估还是汽车结构耐久性？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["动力蓄电池", "健康", "安全状态评估"],
+    "category": "标准辨识",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R305",
+    "query": "GB/T 47136-2026与GB/T 46991.1-2025有什么主题上的区别？",
+    "expected_documents": ["GBT+47136-2026", "GBT+46991.1-2025"],
+    "expected_keywords": ["健康与安全状态评估", "耐久性"],
+    "category": "相似标准区分",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R306",
+    "query": "如果需要区分动力蓄电池健康安全状态评估和动力电池耐久性试验，应分别检索哪些标准？",
+    "expected_documents": ["GBT+47136-2026", "GBT+46991.1-2025"],
+    "expected_keywords": ["健康", "安全状态", "耐久性"],
+    "category": "跨标准对比",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R307",
+    "query": "在GB/T 47136-2026和GB/T 47315-2026之间，哪个标准直接面向动力蓄电池健康与安全状态评估？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["动力蓄电池", "健康", "安全状态评估"],
+    "category": "多标准辨识",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R308",
+    "query": "一个关于纯电动汽车动力蓄电池健康状态和安全状态的评估问题，最应该召回哪个标准？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["纯电动汽车", "动力蓄电池", "健康状态", "安全状态"],
+    "category": "语义检索",
+    "difficulty": "hard"
+  },
+
+  {
+    "id": "R309",
+    "query": "GB/T 47315-2026主要针对汽车的什么性能？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["汽车结构", "耐久性"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R310",
+    "query": "GB/T 47315-2026采用什么形式开展汽车结构耐久性试验？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["道路模拟", "台架试验"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R311",
+    "query": "如果需要查询汽车结构耐久性的道路模拟台架试验方法，应查哪个标准？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["汽车结构耐久性", "道路模拟", "台架试验方法"],
+    "category": "场景检索",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R312",
+    "query": "GB/T 47315-2026属于汽车结构耐久性方面的试验方法标准吗？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["结构耐久性", "试验方法"],
+    "category": "标准定位",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R313",
+    "query": "如果工程师希望通过道路模拟台架开展汽车结构耐久性试验，应优先参考哪个标准？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["道路模拟", "台架", "结构耐久性"],
+    "category": "场景检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R314",
+    "query": "GB/T 47315-2026关注的是汽车结构耐久性还是动力蓄电池健康状态？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["汽车结构耐久性"],
+    "category": "标准辨识",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R315",
+    "query": "GB/T 47315-2026和GB/T 47136-2026分别针对汽车结构耐久性和什么问题？",
+    "expected_documents": ["GBT+47315-2026", "GBT+47136-2026"],
+    "expected_keywords": ["结构耐久性", "动力蓄电池", "健康", "安全状态"],
+    "category": "跨标准对比",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R316",
+    "query": "如果问题中同时出现“道路模拟”“台架”“结构耐久性”，应该优先检索哪个标准？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["道路模拟", "台架", "结构耐久性"],
+    "category": "语义检索",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R317",
+    "query": "GB/T 47315-2026与一般的汽车动力电池耐久性标准相比，其测试对象有什么不同？",
+    "expected_documents": ["GBT+47315-2026", "GBT+46991.1-2025"],
+    "expected_keywords": ["汽车结构", "耐久性", "动力电池"],
+    "category": "相似标准区分",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R318",
+    "query": "在本组五个标准中，哪个标准的核心关键词是“汽车结构耐久性道路模拟台架试验”？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["结构耐久性", "道路模拟", "台架试验"],
+    "category": "多标准辨识",
+    "difficulty": "hard"
+  },
+
+  {
+    "id": "R319",
+    "query": "GB/T 47341-2026主要针对智能网联汽车的什么系统？",
+    "expected_documents": ["GBT+47341-2026"],
+    "expected_keywords": ["智能网联汽车", "车载操作系统"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R320",
+    "query": "GB/T 47341-2026主要规定车载操作系统的哪些内容？",
+    "expected_documents": ["GBT+47341-2026"],
+    "expected_keywords": ["车载操作系统", "技术要求", "试验方法"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R321",
+    "query": "如果需要查询智能网联汽车车载操作系统的技术要求，应检索哪个标准？",
+    "expected_documents": ["GBT+47341-2026"],
+    "expected_keywords": ["智能网联汽车", "车载操作系统", "技术要求"],
+    "category": "场景检索",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R322",
+    "query": "GB/T 47341-2026是否同时涉及车载操作系统的试验方法？",
+    "expected_documents": ["GBT+47341-2026"],
+    "expected_keywords": ["车载操作系统", "试验方法"],
+    "category": "内容定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R323",
+    "query": "GB/T 47341-2026与GB/T 47351-2026最大的主题区别是什么？",
+    "expected_documents": ["GBT+47341-2026", "GBT+47351-2026"],
+    "expected_keywords": ["车载操作系统", "车控操作系统"],
+    "category": "相似标准区分",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R324",
+    "query": "如果问题明确涉及“车载操作系统”，而不是“车控操作系统”，应该召回哪个标准？",
+    "expected_documents": ["GBT+47341-2026"],
+    "expected_keywords": ["车载操作系统"],
+    "category": "标准辨识",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R325",
+    "query": "GB/T 47341-2026和GB/T 47351-2026是否都是智能网联汽车操作系统相关标准？",
+    "expected_documents": ["GBT+47341-2026", "GBT+47351-2026"],
+    "expected_keywords": ["智能网联汽车", "车载操作系统", "车控操作系统"],
+    "category": "跨标准对比",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R326",
+    "query": "如果一个问题同时提到车载操作系统的技术要求和试验方法，应优先检索哪个标准？",
+    "expected_documents": ["GBT+47341-2026"],
+    "expected_keywords": ["车载操作系统", "技术要求", "试验方法"],
+    "category": "场景检索",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R327",
+    "query": "在GB/T 47341-2026和GB/T 47001-2025之间，哪个标准直接面向车载操作系统？",
+    "expected_documents": ["GBT+47341-2026"],
+    "expected_keywords": ["车载操作系统"],
+    "category": "相似标准区分",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R328",
+    "query": "在本组标准中，哪个标准的核心对象是智能网联汽车车载操作系统？",
+    "expected_documents": ["GBT+47341-2026"],
+    "expected_keywords": ["智能网联汽车", "车载操作系统"],
+    "category": "多标准辨识",
+    "difficulty": "hard"
+  },
+
+  {
+    "id": "R329",
+    "query": "GB/T 47351-2026主要针对智能网联汽车的什么系统？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["智能网联汽车", "车控操作系统"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R330",
+    "query": "GB/T 47351-2026主要规定车控操作系统的哪些内容？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["车控操作系统", "技术要求", "试验方法"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R331",
+    "query": "如果需要查询智能网联汽车车控操作系统技术要求，应查哪个标准？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["智能网联汽车", "车控操作系统", "技术要求"],
+    "category": "场景检索",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R332",
+    "query": "GB/T 47351-2026是否包含车控操作系统的试验方法？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["车控操作系统", "试验方法"],
+    "category": "内容定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R333",
+    "query": "如果问题明确提到“车控操作系统”，应该优先召回GB/T 47341-2026还是GB/T 47351-2026？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["车控操作系统"],
+    "category": "标准辨识",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R334",
+    "query": "GB/T 47351-2026与GB/T 47341-2026在操作系统对象上有什么区别？",
+    "expected_documents": ["GBT+47351-2026", "GBT+47341-2026"],
+    "expected_keywords": ["车控操作系统", "车载操作系统"],
+    "category": "相似标准区分",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R335",
+    "query": "如果研发人员正在研究智能网联汽车车控操作系统的技术要求和试验方法，应参考哪个标准？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["车控操作系统", "技术要求", "试验方法"],
+    "category": "场景检索",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R336",
+    "query": "GB/T 47351-2026和GB/T 47025-2026分别关注车控操作系统和什么问题？",
+    "expected_documents": ["GBT+47351-2026", "GBT+47025-2026"],
+    "expected_keywords": ["车控操作系统", "自动驾驶功能", "仿真试验"],
+    "category": "跨标准对比",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R337",
+    "query": "在车载操作系统和车控操作系统两个相近主题中，GB/T 47351-2026对应哪一个？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["车控操作系统"],
+    "category": "相似标准区分",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R338",
+    "query": "在本组五个标准中，哪个标准的核心关键词是“智能网联汽车 车控操作系统”？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["智能网联汽车", "车控操作系统"],
+    "category": "多标准辨识",
+    "difficulty": "hard"
+  },
+
+  {
+    "id": "R339",
+    "query": "GB/T 47439-2026主要针对什么类型车辆的维修作业？",
+    "expected_documents": ["GBT+47439-2026"],
+    "expected_keywords": ["新能源汽车", "维修作业", "安全要求"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R340",
+    "query": "GB/T 47439-2026主要解决新能源汽车维修过程中的什么问题？",
+    "expected_documents": ["GBT+47439-2026"],
+    "expected_keywords": ["新能源汽车", "维修作业", "安全要求"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R341",
+    "query": "如果需要查询新能源汽车维修作业安全要求，应检索哪个标准？",
+    "expected_documents": ["GBT+47439-2026"],
+    "expected_keywords": ["新能源汽车", "维修作业安全"],
+    "category": "场景检索",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R342",
+    "query": "GB/T 47439-2026的核心对象是新能源汽车维修作业还是动力蓄电池状态评估？",
+    "expected_documents": ["GBT+47439-2026"],
+    "expected_keywords": ["新能源汽车", "维修作业", "安全要求"],
+    "category": "标准辨识",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R343",
+    "query": "如果维修人员需要查询新能源汽车维修过程中的安全要求，应优先参考哪个标准？",
+    "expected_documents": ["GBT+47439-2026"],
+    "expected_keywords": ["新能源汽车", "维修人员", "维修作业", "安全要求"],
+    "category": "场景检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R344",
+    "query": "GB/T 47439-2026与GB/T 47136-2026的关注对象有什么区别？",
+    "expected_documents": ["GBT+47439-2026", "GBT+47136-2026"],
+    "expected_keywords": ["新能源汽车维修", "维修作业安全", "动力蓄电池健康", "安全状态评估"],
+    "category": "相似标准区分",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R345",
+    "query": "如果问题是新能源汽车维修作业安全，而不是动力蓄电池健康状态评估，应检索哪个标准？",
+    "expected_documents": ["GBT+47439-2026"],
+    "expected_keywords": ["新能源汽车", "维修作业安全"],
+    "category": "相似标准区分",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R346",
+    "query": "GB/T 47439-2026与GB/T 47315-2026分别关注新能源汽车维修安全和什么内容？",
+    "expected_documents": ["GBT+47439-2026", "GBT+47315-2026"],
+    "expected_keywords": ["维修作业安全", "汽车结构耐久性", "道路模拟台架试验"],
+    "category": "跨标准对比",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R347",
+    "query": "当查询语句同时出现“新能源汽车”“维修”“作业”“安全”时，哪个标准最可能是目标文档？",
+    "expected_documents": ["GBT+47439-2026"],
+    "expected_keywords": ["新能源汽车", "维修作业", "安全"],
+    "category": "语义检索",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R348",
+    "query": "在本组五个标准中，哪个标准直接对应“新能源汽车维修作业安全要求”？",
+    "expected_documents": ["GBT+47439-2026"],
+    "expected_keywords": ["新能源汽车", "维修作业安全要求"],
+    "category": "多标准辨识",
+    "difficulty": "hard"
+  }
+]
