@@ -2875,5 +2875,245 @@
     "expected_keywords": ["新能源汽车", "维修作业安全要求"],
     "category": "多标准辨识",
     "difficulty": "hard"
+  },
+  {
+    "id": "R349",
+    "query": "GB/T 47351-2026 主要规定车控操作系统哪些方面的内容？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["车控操作系统", "技术要求", "试验方法"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R350",
+    "query": "车控操作系统主要面向哪些车辆控制功能？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["车控操作系统", "车辆控制", "控制功能"],
+    "category": "功能要求",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R351",
+    "query": "GB/T 47351-2026 对Ⅰ型车控操作系统系统软件性能有哪些要求？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["车控操作系统", "性能"],
+    "category": "功能要求",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R352",
+    "query": "车控操作系统对控制任务的实时性有哪些要求？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["车控操作系统", "控制任务", "实时性"],
+    "category": "实时性",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R353",
+    "query": "GB/T 47351-2026 对Ⅱ型车控操作系统内核有哪些要求？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["车控操作系统", "内核"],
+    "category": "资源管理",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R354",
+    "query": "多个控制任务同时运行时，车控操作系统对任务调度有哪些要求？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["控制任务", "任务调度", "车控操作系统"],
+    "category": "任务调度",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R355",
+    "query": "GB/T 47351-2026 对车控操作系统的通信功能有哪些要求？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["车控操作系统", "通信功能", "通信要求"],
+    "category": "通信要求",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R356",
+    "query": "车控操作系统需要满足哪些安全性要求？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["车控操作系统", "安全性", "安全要求"],
+    "category": "安全要求",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R357",
+    "query": "车控操作系统需要满足哪些可靠性要求？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["车控操作系统", "可靠性", "可靠性要求"],
+    "category": "可靠性",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R358",
+    "query": "GB/T 47341-2026 和 GB/T 47351-2026 都涉及智能网联汽车操作系统。如果问题关注车辆控制任务的实时性、任务调度和资源管理，应检索哪个标准？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["车控操作系统", "车辆控制", "实时性", "任务调度", "资源管理"],
+    "category": "相似标准区分",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R359",
+    "query": "GB/T 47315-2026 规定的汽车结构耐久性道路模拟台架试验条件有哪些？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["汽车结构耐久性", "道路模拟", "台架试验", "试验条件"],
+    "category": "语义检索",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R360",
+    "query": "汽车结构耐久性道路模拟台架试验所需数据有哪些？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["道路模拟", "实验数据"],
+    "category": "语义检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R361",
+    "query": "汽车结构耐久性道路模拟台架试验中如何生成驱动文件程序？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["驱动文件程序", "汽车结构耐久性", "道路模拟台架试验"],
+    "category": "语义检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R362",
+    "query": "GB/T 47315-2026 规定的道路模拟台架试验驱动文件开发如何获取起始驱动信号？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["试验系统", "驱动文件开发", "起始驱动信号"],
+    "category": "语义检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R363",
+    "query": "道路载荷数据在用于汽车结构耐久性台架试验之前需要进行哪些处理？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["道路载荷数据", "数据处理", "台架试验"],
+    "category": "语义检索",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R364",
+    "query": "进行汽车结构耐久性道路模拟台架试验时，试验车辆或试验对象应如何安装和固定在试验台架上？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["试验车辆", "试验对象", "安装", "固定", "台架"],
+    "category": "试验安装",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R365",
+    "query": "汽车结构耐久性道路模拟台架试验过程中需要采集和监测哪些数据？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["数据采集", "试验过程", "监测", "载荷"],
+    "category": "数据采集",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R366",
+    "query": "如何根据试验过程中的数据和试验对象状态判断汽车结构耐久性试验是否发生失效？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["结构耐久性", "失效判定", "试验对象", "试验数据"],
+    "category": "失效判定",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R367",
+    "query": "如果道路载荷数据不能直接用于台架加载，在进行道路模拟试验前应该如何处理这些数据？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["道路载荷数据", "数据处理", "台架加载", "道路模拟"],
+    "category": "试验方法",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R368",
+    "query": "汽车结构耐久性道路模拟台架试验中，故障检查的检查对象主要有哪些？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["试验载荷", "故障检查","检查对象"],
+    "category": "综合理解",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R369",
+    "query": "GB/T 47136-2026 主要规定什么内容？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["动力蓄电池", "健康与安全状态", "评估流程", "评估指标体系", "计算方法"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R370",
+    "query": "GB/T 47136-2026 适用于什么类型的动力蓄电池健康与安全状态评估？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["纯电动汽车", "动力蓄电池", "运行数据", "在役", "健康与安全状态评估"],
+    "category": "标准定位",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R371",
+    "query": "动力蓄电池健康状态评价主要关注什么？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["健康状态", "动力蓄电池", "评价指标", "健康状态评估"],
+    "category": "概念检索",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R372",
+    "query": "动力蓄电池安全状态评价主要关注哪些方面？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["安全状态", "动力蓄电池", "安全状态评估", "评价指标"],
+    "category": "概念检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R373",
+    "query": "动力蓄电池健康状态和安全状态分别表示什么，两者在状态评估中有什么区别？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["健康状态", "安全状态", "状态评估", "评价"],
+    "category": "概念检索",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R374",
+    "query": "如果需要利用车辆运行数据评价动力蓄电池当前状态，需要经过哪些主要评估步骤？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["运行数据", "评估流程", "健康状态", "安全状态", "评估结果"],
+    "category": "语义检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R375",
+    "query": "动力蓄电池状态评估需要采集哪些类型的数据，这些数据主要用于哪些评价指标的计算？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["数据采集", "运行数据", "评价指标", "计算方法", "健康状态", "安全状态"],
+    "category": "语义检索",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R376",
+    "query": "如果动力蓄电池运行数据出现异常，如何结合健康状态和安全状态评价结果进一步判断电池状态？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["运行数据", "异常", "健康状态", "安全状态", "评估结果", "判定"],
+    "category": "语义检索",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R377",
+    "query": "动力蓄电池健康状态评价中的评价指标、计算方法和最终评估结果之间有什么关系？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["健康状态", "评价指标", "计算方法", "评估结果"],
+    "category": "关联概念",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R378",
+    "query": "动力蓄电池的运行数据、健康状态评价、安全状态评价和评估结果之间如何形成完整的状态评估过程？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_keywords": ["运行数据", "健康状态", "安全状态", "评估流程", "评估结果"],
+    "category": "关联概念",
+    "difficulty": "hard"
   }
 ]

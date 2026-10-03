@@ -1,0 +1,256 @@
+[
+  {
+    "id": "R002",
+    "query": "GB 1589-2026 对车辆外廓尺寸主要有哪些方面的限制？",
+    "expected_documents": ["GB+1589-2026"],
+    "expected_chunks": ["gb_1589_2026_005_4.1_001", "gb_1589_2026_005_4.1_002","gb_1589_2026_005_4.1_003",
+    "gb_1589_2026_005_4.1_004", "gb_1589_2026_005_4.1_005"],
+    "expected_keywords": ["外廓尺寸", "长度", "宽度", "高度"],
+    "category": "概念检索",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R003",
+    "query": "新能源商用车的轴荷限制有哪些要求？",
+    "expected_documents": ["GB+1589-2026"],
+    "expected_chunks":["gb_1589_2026_006_4.2_001","gb_1589_2026_006_4.2_002"],
+    "expected_keywords": ["新能源", "商用车", "轴荷"],
+    "category": "语义检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R014",
+    "query": "GB 11557-2026 的适用对象是什么？",
+    "expected_documents": ["GB+11557-2026"],
+    "expected_chunks":["gb_11557_2026_009_1_001"],
+    "expected_keywords": ["适用范围", "汽车", "转向机构"],
+    "category": "范围检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R018",
+    "query": "GB 11562-2025 规定的驾驶员前方视野如何进行测量？",
+    "expected_documents": ["GB+11562-2025"],
+    "expected_chunks": ["gb_11562_2025_022_6_001", "gb_11562_2025_023_6.2_001", "gb_11562_2025_025_6.4_001"],
+    "expected_keywords": ["前方视野", "测量方法", "驾驶员"],
+    "category": "方法检索",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R020",
+    "query": "后视镜、雨刮器等部件是否会影响驾驶员前方视野？",
+    "expected_documents": ["GB+11562-2025"],
+    "expected_chunks": ["gb_11562_2025_009_4.4_001"],
+    "expected_keywords": ["后视镜", "雨刮器", "前方视野"],
+    "category": "语义检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R026",
+    "query": "GB 17675-2025 对汽车转向系统有哪些技术要求？",
+    "expected_documents": ["GB+17675-2025"],
+    "expected_chunks": ["gb_17675_2025_016_4.1_001", "gb_17675_2025_016_4.1_002", "gb_17675_2025_016_4.1_003", "gb_17675_2025_016_4.1_004",
+    "gb_17675_2025_016_4.1_005", "gb_17675_2025_016_4.1_006", "gb_17675_2025_017_4.2_001","gb_17675_2025_017_4.2_002", "gb_17675_2025_017_4.2_003",
+    "gb_17675_2025_017_4.2_004", "gb_17675_2025_017_4.2_005", "gb_17675_2025_017_4.2_006"],
+    "expected_keywords": ["转向系统", "技术要求"],
+    "category": "概念检索",
+    "difficulty": "easy"
+    },
+  {
+    "id": "R031",
+    "query": "全动力转向系统是否有额外的试验要求？",
+    "expected_documents": ["GB+17675-2025"],
+    "expected_chunks": ["gb_17675_2025_028_5.4_001", "gb_17675_2025_028_5.4_002", "gb_17675_2025_029_10_001", "gb_17675_2025_029_10_002", "gb_17675_2025_030_2_003",
+    "gb_17675_2025_030_2_004"],
+    "expected_keywords": ["全动力转向系统", "附加试验"],
+    "category": "细节检索",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R036",
+    "query": "ESC 系统的性能应该如何进行试验验证？",
+    "expected_documents": ["GB+30677-2026"],
+    "expected_chunks": ["gb_30677_2026_028_7.1_001", "gb_30677_2026_029_7.2_001", "gb_30677_2026_030_7.3_001",
+    "gb_30677_2026_031_7.4_001", "gb_30677_2026_032_7.5_001", "gb_30677_2026_032_7.5_002", "gb_30677_2026_032_7.5_003",
+    "gb_30677_2026_032_7.5_004", "gb_30677_2026_033_7.6_001", "gb_30677_2026_035_7.7_001", "gb_30677_2026_035_7.7_002",
+    "gb_30677_2026_035_7.7_003", "gb_30677_2026_035_7.7_004"],
+    "expected_keywords": ["ESC", "试验", "性能"],
+    "category": "方法检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R042",
+    "query": "GB 15082-2026 适用于哪些车辆上的车速表？",
+    "expected_documents": ["GB+15082-2026"],
+    "expected_chunks": ["gb_15082_2026_001_1_001"],
+    "expected_keywords": ["汽车", "摩托车", "车速表"],
+    "category": "范围检索",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R254",
+    "query": "GB/T 46926-2025的主题是动力电池耐久性还是视野辅助系统？",
+    "expected_documents": ["GBT+46926-2025"],
+    "expected_chunks": ["gbt_46926_2025_005_1_001"],
+    "expected_keywords": ["视野辅助系统"],
+    "category": "标准区分",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R260",
+    "query": "GB/T 46991.1-2025主要研究的是电动汽车车载动力电池的什么性能？",
+    "expected_documents": ["GBT+46991.1-2025"],
+    "expected_chunks": ["gbt_46991_1_2025_006_1_001"],
+    "expected_keywords": ["车载动力电池", "耐久性"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+    {
+    "id": "R342",
+    "query": "GB/T 47439-2026的核心对象是新能源汽车维修作业还是动力蓄电池状态评估？",
+    "expected_documents": ["GBT+47439-2026"],
+      "expected_chunks": ["gbt_47439_2026_009_1_001"],
+    "expected_keywords": ["新能源汽车", "维修作业", "安全要求"],
+    "category": "标准辨识",
+    "difficulty": "medium"
+  },
+    {
+    "id": "R351",
+    "query": "GB/T 47351-2026 对Ⅰ型车控操作系统系统软件性能有哪些要求？",
+      "expected_chunks": ["gbt_47351_2026_008_6_004"],
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_keywords": ["车控操作系统", "性能"],
+    "category": "功能要求",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R353",
+    "query": "GB/T 47351-2026 对Ⅱ型车控操作系统内核有哪些要求？",
+    "expected_documents": ["GBT+47351-2026"],
+    "expected_chunks": ["gbt_47351_2026_008_6_011"],
+    "expected_keywords": ["车控操作系统", "内核"],
+    "category": "资源管理",
+    "difficulty": "medium"
+  },
+   {
+    "id": "R359",
+    "query": "GB/T 47315-2026 规定的汽车结构耐久性道路模拟台架试验条件有哪些？",
+    "expected_documents": ["GBT+47315-2026"],
+     "expected_chunks": ["gbt_47315_2026_009_4_001"],
+    "expected_keywords": ["汽车结构耐久性", "道路模拟", "台架试验", "试验条件"],
+    "category": "语义检索",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R360",
+    "query": "汽车结构耐久性道路模拟台架试验所需数据有哪些？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_keywords": ["道路模拟", "实验数据"],
+    "expected_chunks": ["gbt_47315_2026_028_7.3_001"],
+    "category": "语义检索",
+    "difficulty": "medium"
+  },
+    {
+    "id": "R362",
+    "query": "GB/T 47315-2026 规定的道路模拟台架试验驱动文件开发如何获取起始驱动信号？",
+    "expected_documents": ["GBT+47315-2026"],
+      "expected_chunks": ["gbt_47315_2026_035_7.4_003"],
+    "expected_keywords": ["试验系统", "驱动文件开发", "起始驱动信号"],
+    "category": "试验系统",
+    "difficulty": "medium"
+  },
+    {
+    "id": "R361",
+    "query": "汽车结构耐久性道路模拟台架试验中如何生成驱动文件程序？",
+    "expected_documents": ["GBT+47315-2026"],
+      "expected_chunks": ["gbt_47315_2026_035_7.4_006", "gbt_47315_2026_035_7.4_007"],
+    "expected_keywords": ["驱动文件程序", "汽车结构耐久性", "道路模拟台架试验"],
+    "category": "语义检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R368",
+    "query": "汽车结构耐久性道路模拟台架试验中，故障检查的检查对象主要有哪些？",
+    "expected_documents": ["GBT+47315-2026"],
+    "expected_chunks": ["gbt_47315_2026_036_7.5_002"],
+    "expected_keywords": ["试验载荷", "故障检查","检查对象"],
+    "category": "综合理解",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R369",
+    "query": "GB/T 47136-2026 主要规定什么内容？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_chunks":["gbt_47136_2026_004_1_001"],
+    "expected_keywords": ["动力蓄电池", "健康与安全状态", "评估流程", "评估指标体系", "计算方法"],
+    "category": "标准定位",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R370",
+    "query": "GB/T 47136-2026 适用于什么类型的动力蓄电池健康与安全状态评估？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_chunks":["gbt_47136_2026_004_1_001"],
+    "expected_keywords": ["纯电动汽车", "动力蓄电池", "运行数据", "在役", "健康与安全状态评估"],
+    "category": "标准定位",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R371",
+    "query": "动力蓄电池健康状态评价主要关注什么？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_chunks":["gbt_47136_2026_006_3_001"],
+    "expected_keywords": ["健康状态", "动力蓄电池", "评价指标", "健康状态评估"],
+    "category": "概念检索",
+    "difficulty": "easy"
+  },
+  {
+    "id": "R372",
+    "query": "动力蓄电池安全状态评价主要关注哪些方面？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_chunks":["gbt_47136_2026_006_3_001"],
+    "expected_keywords": ["安全状态", "动力蓄电池", "安全状态评估", "评价指标"],
+    "category": "概念检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R373",
+    "query": "动力蓄电池健康状态和安全状态分别表示什么，两者在状态评估中有什么区别？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_chunks":["gbt_47136_2026_006_3_001"],
+    "expected_keywords": ["健康状态", "安全状态", "状态评估", "评价"],
+    "category": "概念检索",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R374",
+    "query": "如果需要利用车辆运行数据评价动力蓄电池当前状态，需要经过哪些主要评估步骤？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_chunks":["gbt_47136_2026_007_4_001"],
+    "expected_keywords": ["运行数据", "评估流程", "健康状态", "安全状态", "评估结果"],
+    "category": "语义检索",
+    "difficulty": "medium"
+  },
+  {
+    "id": "R375",
+    "query": "动力蓄电池状态评估需要采集哪些类型的数据，这些数据主要用于哪些评价指标的计算？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_chunks":["gbt_47136_2026_014_6.2_001", "gbt_47136_2026_014_6.2_002", "gbt_47136_2026_014_6.2_003",
+    "gbt_47136_2026_014_6.2_004", "gbt_47136_2026_014_6.2_005", "gbt_47136_2026_014_6.2_006", "gbt_47136_2026_014_6.2_007",
+    "gbt_47136_2026_014_6.2_008", "gbt_47136_2026_014_6.2_009", "gbt_47136_2026_014_6.2_010", "gbt_47136_2026_016_30_002","gbt_47136_2026_016_30_001",
+    "gbt_47136_2026_018_30_001", "gbt_47136_2026_018_30_002", "gbt_47136_2026_019_30_001", "gbt_47136_2026_019_30_002"],
+    "expected_keywords": ["数据采集", "运行数据", "评价指标", "计算方法", "健康状态", "安全状态"],
+    "category": "语义检索",
+    "difficulty": "hard"
+  },
+  {
+    "id": "R376",
+    "query": "如果动力蓄电池运行数据出现异常，如何结合健康状态和安全状态评价结果进一步判断电池状态？",
+    "expected_documents": ["GBT+47136-2026"],
+    "expected_chunks":["gbt_47136_2026_035_7.1_001", "gbt_47136_2026_035_7.1_002", "gbt_47136_2026_035_7.1_003",
+    "gbt_47136_2026_036_7.2_001","gbt_47136_2026_036_7.2_002"],
+    "expected_keywords": ["运行数据", "异常", "健康状态", "安全状态", "评估结果", "判定"],
+    "category": "语义检索",
+    "difficulty": "hard"
+  }
+]
