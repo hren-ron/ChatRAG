@@ -47,79 +47,153 @@ class Evaluator:
 
         query = item["query"]
 
-        expected = item["expected_documents"]
+        expected_documents = item.get("expected_documents", [])
+
+        expected_chunk_ids = item.get("expected_chunks", [])
 
         results = retriever.retrieve(query=query, top_k=top_k)
 
-        chunks = [result["chunk"] for result in results]
+        retrieved_chunks = [result["chunk"] for result in results]
 
-        metrics = {
+        # =========================
+        # Document-level metrics
+        # =========================
+
+        document_metrics = {
             "recall@1":
-                RetrievalMetrics.recall_at_k(
-                    expected,
-                    chunks,
+                RetrievalMetrics.document_recall_at_k(
+                    expected_documents,
+                    retrieved_chunks,
                     1,
                 ),
 
             "recall@3":
-                RetrievalMetrics.recall_at_k(
-                    expected,
-                    chunks,
+                RetrievalMetrics.document_recall_at_k(
+                    expected_documents,
+                    retrieved_chunks,
                     3,
                 ),
 
             "recall@5":
-                RetrievalMetrics.recall_at_k(
-                    expected,
-                    chunks,
+                RetrievalMetrics.document_recall_at_k(
+                    expected_documents,
+                    retrieved_chunks,
                     5,
                 ),
 
             "recall@10":
-                RetrievalMetrics.recall_at_k(
-                    expected,
-                    chunks,
+                RetrievalMetrics.document_recall_at_k(
+                    expected_documents,
+                    retrieved_chunks,
                     10,
                 ),
 
             "precision@5":
-                RetrievalMetrics.precision_at_k(
-                    expected,
-                    chunks,
+                RetrievalMetrics.document_precision_at_k(
+                    expected_documents,
+                    retrieved_chunks,
                     5,
                 ),
 
             "mrr":
-                RetrievalMetrics.reciprocal_rank(
-                    expected,
-                    chunks,
+                RetrievalMetrics.document_reciprocal_rank(
+                    expected_documents,
+                    retrieved_chunks,
                 ),
         }
 
-        # 转换成可以保存到 JSON 的普通字典
+        # =========================
+        # Chunk-level metrics
+        # =========================
+
+        chunk_metrics = {
+            "recall@1":
+                RetrievalMetrics.chunk_recall_at_k(
+                    expected_chunk_ids,
+                    retrieved_chunks,
+                    1,
+                ),
+
+            "recall@3":
+                RetrievalMetrics.chunk_recall_at_k(
+                    expected_chunk_ids,
+                    retrieved_chunks,
+                    3,
+                ),
+
+            "recall@5":
+                RetrievalMetrics.chunk_recall_at_k(
+                    expected_chunk_ids,
+                    retrieved_chunks,
+                    5,
+                ),
+
+            "recall@10":
+                RetrievalMetrics.chunk_recall_at_k(
+                    expected_chunk_ids,
+                    retrieved_chunks,
+                    10,
+                ),
+
+            "precision@5":
+                RetrievalMetrics.chunk_precision_at_k(
+                    expected_chunk_ids,
+                    retrieved_chunks,
+                    5,
+                ),
+
+            "mrr":
+                RetrievalMetrics.chunk_reciprocal_rank(
+                    expected_chunk_ids,
+                    retrieved_chunks,
+                ),
+        }
+
+        # =========================
+        # Serializable results
+        # =========================
+
         retrieved_results = []
 
-        for result in results:
+        for rank, result in enumerate(results, start=1):
             chunk = result["chunk"]
 
             retrieved_results.append({
+                "rank": rank,
                 "score": float(result["score"]),
                 "chunk_id": chunk.chunk_id,
                 "document": chunk.document,
                 "chapter": chunk.chapter,
                 "title": chunk.title,
                 "level": chunk.level,
+                "parent_path": chunk.parent_path,
                 "token_count": chunk.token_count,
             })
 
         return {
             "id": item["id"],
             "query": query,
-            "expected_documents": expected,
-            "category": item.get("category"),
-            "difficulty": item.get("difficulty"),
-            "metrics": metrics,
-            "results": retrieved_results,
+
+            "expected_documents":
+                expected_documents,
+
+            "expected_chunk_ids":
+                expected_chunk_ids,
+
+            "category":
+                item.get("category"),
+
+            "difficulty":
+                item.get("difficulty"),
+
+            "document_metrics":
+                document_metrics,
+
+            "chunk_metrics":
+                chunk_metrics,
+
+            "results":
+                retrieved_results,
         }
 
     def evaluate(self, dataset, top_k=10):

@@ -17,7 +17,9 @@ BGE_M3_PATH = MODEL_DIR / "bge-m3"
 FAISS_PATH = PROJECT_ROOT / "data" / "faiss"
 
 # 评估数据集
-EVALUATION_PATH = PROJECT_ROOT / "data" / "eval" / "retrieval_questions.json"
+DOCUMENT_EVALUATION_PATH = PROJECT_ROOT / "data" / "eval" / "retrieval_questions.json"
+CHUNK_EVALUATION_PATH = PROJECT_ROOT / "data" / "eval" / "retrieval_questions_top_50.json"
 
-# FAISS评估结果
-FAISS_RESULT_PATH = PROJECT_ROOT / "data" / "eval" / "faiss_bge_m3_result.json"
+# 评估结果
+DOCUMENT_RESULT_PATH = PROJECT_ROOT / "data" / "eval" / "bge_document_level_result.json"
+CHUNK_RESULT_PATH = PROJECT_ROOT / "data" / "eval" / "bge_chunk_level_result.json"

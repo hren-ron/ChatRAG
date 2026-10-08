@@ -2,7 +2,8 @@ import json
 from collections import defaultdict
 from pathlib import Path
 
-from config import EVALUATION_PATH, BGE_M3_PATH, FAISS_PATH, FAISS_RESULT_PATH
+from config import BGE_M3_PATH, FAISS_PATH, CHUNK_EVALUATION_PATH, \
+    DOCUMENT_EVALUATION_PATH, DOCUMENT_RESULT_PATH, CHUNK_RESULT_PATH
 from src.evaluator.evaluator import Evaluator
 from src.models.bge_m3_embedder import BGEEmbedder
 from src.retriever.vector_retriever import VectorRetriever
@@ -17,25 +18,35 @@ def load_dataset(path: Path):
     with path.open("r", encoding="utf-8") as f:
         return json.load(f)
 
-def aggregate_results(results):
+def calculate_average(results, metric_group):
+    """
+    metric_group:
+        document_metrics
+        chunk_metrics
+    """
+
     if not results:
         return {}
 
-    metric_names = [
-        "recall@1",
-        "recall@3",
-        "recall@5",
-        "recall@10",
-        "precision@5",
-        "mrr",
-    ]
+    metric_names = results[0][metric_group].keys()
 
-    return {
-        metric: sum(item["metrics"][metric] for item in results) / len(results)
-        for metric in metric_names
-    }
+    summary = {}
 
-def aggregate_by_field(results, field):
+    for metric_name in metric_names:
+
+        values = [
+            result[metric_group][metric_name]
+            for result in results
+        ]
+
+        summary[metric_name] = (
+            sum(values) / len(values)
+        )
+
+    return summary
+
+
+def aggregate_by_field(results, metric_group, field):
 
     groups = defaultdict(list)
 
@@ -48,7 +59,7 @@ def aggregate_by_field(results, field):
 
         groups[value].append(result)
     return {
-        value: aggregate_results(items)
+        value: calculate_average(items, metric_group=metric_group)
         for value, items in groups.items()
     }
 
@@ -88,9 +99,11 @@ def main():
     # 1. 加载评测数据
     # --------------------------------------------------
 
-    dataset = load_dataset(EVALUATION_PATH)
+    document_dataset = load_dataset(DOCUMENT_EVALUATION_PATH)
+    chunk_dataset = load_dataset(CHUNK_EVALUATION_PATH)
 
-    print(f"Evaluation Dataset: {len(dataset)}")
+    print(f"Document Level Evaluation Dataset: {len(document_dataset)}")
+    print(f"Chunk Level Evaluation Dataset: {len(chunk_dataset)}")
 
     # --------------------------------------------------
     # 2. 加载 BGE-M3
@@ -99,9 +112,7 @@ def main():
     print()
     print("Loading BGE-M3...")
 
-    embedder = BGEEmbedder(
-        model_path=BGE_M3_PATH
-    )
+    embedder = BGEEmbedder(model_path=BGE_M3_PATH)
 
     # --------------------------------------------------
     # 3. 加载 FAISS
@@ -138,28 +149,36 @@ def main():
 
     print()
     print("=" * 60)
-    print("Start Evaluation")
+    print("Start Document Level Evaluation")
     print("=" * 60)
 
-    results = evaluator.evaluate(
-        dataset,
+    document_results = evaluator.evaluate(
+        document_dataset,
         top_k=10,
     )
+
+    chunk_results = evaluator.evaluate(chunk_dataset, top_k=10)
 
     # --------------------------------------------------
     # 7. 计算整体指标
     # --------------------------------------------------
 
-    overall = aggregate_results(
-        results
-    )
+    document_overall = calculate_average(document_results, "document_metrics")
+    chunk_overall = calculate_average(chunk_results, "chunk_metrics")
 
     # --------------------------------------------------
     # 8. 按 difficulty 分组
     # --------------------------------------------------
 
-    by_difficulty = aggregate_by_field(
-        results,
+    document_by_difficulty = aggregate_by_field(
+        document_results,
+        "document_metrics",
+        "difficulty",
+    )
+
+    chunk_by_difficulty = aggregate_by_field(
+        chunk_results,
+        "chunk_metrics",
         "difficulty",
     )
 
@@ -167,8 +186,15 @@ def main():
     # 9. 按 category 分组
     # --------------------------------------------------
 
-    by_category = aggregate_by_field(
-        results,
+    document_by_category = aggregate_by_field(
+        document_results,
+        "document_metrics",
+        "category",
+    )
+
+    chunk_by_category = aggregate_by_field(
+        chunk_results,
+        "chunk_metrics",
         "category",
     )
 
@@ -177,17 +203,28 @@ def main():
     # --------------------------------------------------
 
     print_metrics(
-        "Overall",
-        overall,
+        "Document Level Overall",
+        document_overall,
+    )
+
+    print_metrics(
+        "Chunk Level Overall",
+        chunk_overall,
     )
 
     # --------------------------------------------------
     # 11. 打印 difficulty
     # --------------------------------------------------
 
-    for difficulty, metrics in by_difficulty.items():
+    for difficulty, metrics in document_by_difficulty.items():
         print_metrics(
-            f"Difficulty: {difficulty}",
+            f"Document Level Difficulty: {difficulty}",
+            metrics,
+        )
+
+    for difficulty, metrics in chunk_by_difficulty.items():
+        print_metrics(
+            f"Chunk Level Difficulty: {difficulty}",
             metrics,
         )
 
@@ -195,9 +232,15 @@ def main():
     # 12. 打印 category
     # --------------------------------------------------
 
-    for category, metrics in by_category.items():
+    for category, metrics in document_by_category.items():
         print_metrics(
-            f"Category: {category}",
+            f"Document Level Category: {category}",
+            metrics,
+        )
+
+    for category, metrics in chunk_by_category.items():
+        print_metrics(
+            f"chunk Level Category: {category}",
             metrics,
         )
 
@@ -206,11 +249,19 @@ def main():
     # --------------------------------------------------
 
     save_results(
-        FAISS_RESULT_PATH,
-        overall,
-        by_difficulty,
-        by_category,
-        results,
+        DOCUMENT_RESULT_PATH,
+        document_overall,
+        document_by_difficulty,
+        document_by_category,
+        document_results,
+    )
+
+    save_results(
+        CHUNK_RESULT_PATH,
+        chunk_overall,
+        chunk_by_difficulty,
+        chunk_by_category,
+        chunk_results,
     )
 
     print()
@@ -219,7 +270,7 @@ def main():
     print("=" * 60)
 
     print(
-        f"Result saved to: {FAISS_RESULT_PATH}"
+        f"Result saved to: {DOCUMENT_RESULT_PATH} and {CHUNK_RESULT_PATH}"
     )
 
 if __name__ == "__main__":
