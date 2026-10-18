@@ -7,6 +7,8 @@ from config import BGE_M3_PATH, FAISS_PATH, CHUNK_EVALUATION_PATH, \
 from src.evaluator.evaluator import Evaluator
 from src.models.bge_m3_embedder import BGEEmbedder
 from src.retriever.bm25_retriever import BM25Retriever
+from src.retriever.hybrid_retriever import HybridRetriever
+from src.retriever.vector_retriever import VectorRetriever
 from src.vector_store.vector_store import VectorStore
 
 
@@ -131,22 +133,24 @@ def main():
     # --------------------------------------------------
 
     # 向量检索
-    # retriever = VectorRetriever(
-    #     embedder=embedder,
-    #     vector_store=vector_store,
-    # )
+    vector_retriever = VectorRetriever(
+        embedder=embedder,
+        vector_store=vector_store,
+    )
 
     # BM25检索
-    retriever = BM25Retriever(
+    bm25_retriever = BM25Retriever(
         chunks=vector_store.chunks
     )
+
+    hybrid_retriever = HybridRetriever(bm25_retriever, vector_retriever)
 
     # --------------------------------------------------
     # 5. 创建 Evaluator
     # --------------------------------------------------
 
     evaluator = Evaluator(
-        retriever=retriever
+        retriever=hybrid_retriever
     )
 
     # --------------------------------------------------

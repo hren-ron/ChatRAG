@@ -37,7 +37,7 @@ class VectorStore:
             if index < 0:
                 continue
 
-            if index > len(self.chunks):
+            if index >= len(self.chunks):
                 continue
 
 

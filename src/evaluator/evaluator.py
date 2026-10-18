@@ -51,7 +51,7 @@ class Evaluator:
 
         expected_chunk_ids = item.get("expected_chunks", [])
 
-        results = retriever.retrieve(query=query, top_k=top_k)
+        results = self.retriever.retrieve(query=query, top_k=top_k)
 
         retrieved_chunks = [result["chunk"] for result in results]
 
