@@ -3,11 +3,12 @@ from collections import defaultdict
 from pathlib import Path
 
 from config import BGE_M3_PATH, FAISS_PATH, CHUNK_EVALUATION_PATH, \
-    DOCUMENT_EVALUATION_PATH, DOCUMENT_RESULT_PATH, CHUNK_RESULT_PATH
+    DOCUMENT_EVALUATION_PATH, DOCUMENT_RESULT_PATH, CHUNK_RESULT_PATH, RERANKER_PATH
 from src.evaluator.evaluator import Evaluator
 from src.models.bge_m3_embedder import BGEEmbedder
 from src.retriever.bm25_retriever import BM25Retriever
 from src.retriever.hybrid_retriever import HybridRetriever
+from src.retriever.reranker import Reranker
 from src.retriever.vector_retriever import VectorRetriever
 from src.vector_store.vector_store import VectorStore
 
@@ -143,7 +144,14 @@ def main():
         chunks=vector_store.chunks
     )
 
-    hybrid_retriever = HybridRetriever(bm25_retriever, vector_retriever)
+    reranker = Reranker(
+        model_path=RERANKER_PATH,
+        use_fp16=True,
+        devices=["cuda:0"],
+        normalize=True,
+    )
+
+    hybrid_retriever = HybridRetriever(bm25_retriever, vector_retriever, reranker)
 
     # --------------------------------------------------
     # 5. 创建 Evaluator
@@ -164,10 +172,17 @@ def main():
 
     document_results = evaluator.evaluate(
         document_dataset,
-        top_k=10,
+        top_k=5,
+        fusion_k=10,
+        candidate_k=25
     )
 
-    chunk_results = evaluator.evaluate(chunk_dataset, top_k=10)
+    chunk_results = evaluator.evaluate(
+        chunk_dataset,
+        top_k=5,
+        fusion_k=10,
+        candidate_k=25
+    )
 
     # --------------------------------------------------
     # 7. 计算整体指标

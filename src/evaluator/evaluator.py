@@ -43,7 +43,7 @@ class Evaluator:
     def __init__(self, retriever):
         self.retriever = retriever
 
-    def evaluate_query(self, item, top_k: int=10):
+    def evaluate_query(self, item, top_k: int=10, fusion_k: int=10, candidate_k: int=25):
 
         query = item["query"]
 
@@ -51,7 +51,7 @@ class Evaluator:
 
         expected_chunk_ids = item.get("expected_chunks", [])
 
-        results = self.retriever.retrieve(query=query, top_k=top_k)
+        results = self.retriever.retrieve(query=query, top_k=top_k, fusion_k=fusion_k, candidate_k=candidate_k)
 
         retrieved_chunks = [result["chunk"] for result in results]
 
@@ -196,7 +196,7 @@ class Evaluator:
                 retrieved_results,
         }
 
-    def evaluate(self, dataset, top_k=10):
+    def evaluate(self, dataset, top_k=10, fusion_k: int=10, candidate_k: int=25):
 
         results = []
 
@@ -206,7 +206,7 @@ class Evaluator:
             query = item["query"]
             print(f"[{index}/{len(dataset)}] id={id} query={query}")
 
-            result = self.evaluate_query(item, top_k=top_k)
+            result = self.evaluate_query(item, top_k=top_k, fusion_k=fusion_k, candidate_k=candidate_k)
 
             results.append(result)
         return results

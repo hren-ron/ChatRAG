@@ -11,7 +11,8 @@ TXT_PATH = PROJECT_ROOT / "data" / "txt"
 MODEL_DIR = PROJECT_ROOT / "models"
 # bge-m3模型路径
 BGE_M3_PATH = MODEL_DIR / "bge-m3"
-
+# reranker模型路径
+RERANKER_PATH = MODEL_DIR / "bge-reranker-v2-m3"
 
 # automotive专业词语
 DICTIONARY_PATH = PROJECT_ROOT / "data" / "dictionary" / "automotive.txt"
