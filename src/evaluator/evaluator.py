@@ -1,5 +1,4 @@
 from src.evaluator.metrics import RetrievalMetrics
-from src.retriever.test_vector_search import retriever
 
 
 def aggregate(results):
@@ -161,6 +160,11 @@ class Evaluator:
             retrieved_results.append({
                 "rank": rank,
                 "score": float(result["score"]),
+                "fusion_score": (
+                    float(result["fusion_score"])
+                    if result.get("fusion_score") is not None
+                    else None
+                ),
                 "chunk_id": chunk.chunk_id,
                 "document": chunk.document,
                 "chapter": chunk.chapter,
