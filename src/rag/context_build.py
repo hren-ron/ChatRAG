@@ -6,8 +6,8 @@ class ContextBuilder:
 
     def __init__(
             self,
-            max_chunks: int=10,
-            max_chars: int=120000
+            max_chunks: int=5,
+            max_chars: int=12000
     ):
         if max_chunks <= 0:
             raise ValueError("max_chunks must be positive")
