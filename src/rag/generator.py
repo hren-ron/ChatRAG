@@ -1,9 +1,12 @@
 import os
 from typing import Any
 
-from openai import api_key, OpenAI
-from pyexpat.errors import messages
+from openai import OpenAI
 
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Generator:
     """负责调用大模型生成 RAG 回答。"""
@@ -19,7 +22,7 @@ class Generator:
             raise ValueError("model must not be empty")
 
         self.model = model
-        self.temperature = temperature,
+        self.temperature = temperature
         self.max_tokens = max_tokens
 
         if client is not None:
