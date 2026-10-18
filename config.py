@@ -13,6 +13,9 @@ MODEL_DIR = PROJECT_ROOT / "models"
 BGE_M3_PATH = MODEL_DIR / "bge-m3"
 
 
+# automotive专业词语
+DICTIONARY_PATH = PROJECT_ROOT / "data" / "dictionary" / "automotive.txt"
+
 # FAISS 目录
 FAISS_PATH = PROJECT_ROOT / "data" / "faiss"
 

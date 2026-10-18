@@ -7,7 +7,6 @@ from config import BGE_M3_PATH, FAISS_PATH, CHUNK_EVALUATION_PATH, \
 from src.evaluator.evaluator import Evaluator
 from src.models.bge_m3_embedder import BGEEmbedder
 from src.retriever.bm25_retriever import BM25Retriever
-from src.retriever.vector_retriever import VectorRetriever
 from src.vector_store.vector_store import VectorStore
 
 
