@@ -1,7 +1,11 @@
+import json
+import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel, Field
+from starlette.middleware.cors import CORSMiddleware
+from starlette.responses import StreamingResponse
 
 from config import BGE_M3_PATH, FAISS_PATH, RERANKER_PATH
 from src.models.bge_m3_embedder import BGEEmbedder
@@ -79,6 +83,20 @@ app = FastAPI(
 print("当前加载的 API 文件：", __file__)
 print("当前 FastAPI 应用：", id(app))
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "null",
+        "http://localhost:63342",
+        "http://127.0.0.1:63342",
+        "http://localhost:5500",
+        "http://127.0.0.1:5500",
+    ],
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type", "Accept"],
+)
+
 
 
 class QueryRequest(BaseModel):
@@ -152,6 +170,49 @@ def query(body: QueryRequest, request: Request):
             status_code=500,
             detail="问答处理失败，请稍后重试",
         ) from exc
+
+
+
+
+@app.post("/api/v1/rag/query/stream")
+def query_stream(body: QueryRequest, request: Request):
+    pipeline = getattr(request.app.state, "pipeline", None)
+
+    if pipeline is None:
+        raise HTTPException(
+            status_code=503,
+            detail="RAGPipeline not initialized",
+        )
+
+    question = body.question.strip()
+    if not question:
+        raise HTTPException(
+            status_code=422,
+            detail="question must not be empty",
+        )
+
+    def generate_events():
+        try:
+            for event in pipeline.query_stream(question):
+                # 将每个事件编码成 SSE 格式
+                yield f"data: {json.dumps(event, ensure_ascii=False)}\n\n"
+
+        except Exception:
+            logging.exception("RAG streaming query failed")
+            error_event = {
+                "type": "error",
+                "message": "问答处理失败，请稍后重试",
+            }
+            yield f"data: {json.dumps(error_event, ensure_ascii=False)}\n\n"
+
+    return StreamingResponse(
+        generate_events(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+        },
+    )
 
 
 print("========== 当前注册的路由 ==========")

@@ -1,0 +1,185 @@
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatRAG 智能问答</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, "Microsoft YaHei", sans-serif;
+      background: #f4f6fa;
+      color: #1f2937;
+    }
+    header {
+      padding: 18px 24px;
+      background: #172033;
+      color: white;
+      font-size: 21px;
+      font-weight: bold;
+    }
+    main {
+      max-width: 900px;
+      margin: 28px auto;
+      padding: 0 16px;
+    }
+    #messages {
+      min-height: 55vh;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px #0000000a;
+    }
+    .message {
+      margin-bottom: 20px;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+    .user { color: #1d4ed8; }
+    .assistant { color: #166534; }
+    .sources {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f3f4f6;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #4b5563;
+      white-space: pre-wrap;
+    }
+    form {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    textarea {
+      flex: 1;
+      min-height: 60px;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      resize: vertical;
+      font: inherit;
+    }
+    button {
+      padding: 0 24px;
+      border: 0;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+    }
+    button:disabled { opacity: 0.6; cursor: wait; }
+    #status { margin-top: 10px; color: #6b7280; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <header>ChatRAG · 智能文档问答</header>
+  <main>
+    <div id="messages" aria-live="polite">
+      <div class="message assistant">
+        <strong>ChatRAG</strong>
+        <div>你好！请输入一个关于标准文档的问题。</div>
+      </div>
+    </div>
+
+    <form id="chat-form">
+      <textarea id="question" maxlength="2000"
+        placeholder="输入问题，例如：GB 1589-2026 对车辆外廓尺寸有哪些限制？"
+        required></textarea>
+      <button id="send" type="submit">发送</button>
+    </form>
+    <div id="status"></div>
+  </main>
+
+  <script>
+    const API_URL = "http://127.0.0.1:8001/api/v1/rag/query";
+
+    const form = document.getElementById("chat-form");
+    const input = document.getElementById("question");
+    const messages = document.getElementById("messages");
+    const sendButton = document.getElementById("send");
+    const status = document.getElementById("status");
+
+    function addTextMessage(role, text, className) {
+      const wrapper = document.createElement("div");
+      wrapper.className = `message ${className}`;
+
+      const title = document.createElement("strong");
+      title.textContent = role;
+
+      const content = document.createElement("div");
+      content.style.whiteSpace = "pre-wrap";
+      content.textContent = text;
+
+      wrapper.append(title, content);
+      messages.appendChild(wrapper);
+      return wrapper;
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const question = input.value.trim();
+      if (!question || sendButton.disabled) return;
+
+      addTextMessage("你", question, "user");
+      input.value = "";
+      sendButton.disabled = true;
+      status.textContent = "正在检索文档并生成答案，请稍候……";
+
+      const answerBox = addTextMessage("ChatRAG", "正在处理……", "assistant");
+
+      try {
+        const response = await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            typeof data.detail === "string"
+              ? data.detail
+              : JSON.stringify(data.detail || data)
+          );
+        }
+
+        answerBox.lastElementChild.textContent = data.answer || "没有返回答案。";
+
+        if (data.sources?.length) {
+          const sourceBox = document.createElement("div");
+          sourceBox.className = "sources";
+          sourceBox.textContent =
+            "参考来源：\n" +
+            data.sources.map((source, i) =>
+              `${i + 1}. ${source.title || source.source || source.chunk_id || JSON.stringify(source)}`
+            ).join("\n");
+          answerBox.appendChild(sourceBox);
+        }
+
+        if (data.retrieval) {
+          const metrics = document.createElement("div");
+          metrics.className = "sources";
+          metrics.textContent =
+            `检索片段数：${data.retrieval.chunk_count ?? "未知"}；` +
+            `上下文字符数：${data.retrieval.context_chars ?? "未知"}`;
+          answerBox.appendChild(metrics);
+        }
+
+        status.textContent = "回答完成";
+      } catch (error) {
+        answerBox.lastElementChild.textContent = "请求失败：" + error.message;
+        status.textContent = "请检查后端服务和浏览器控制台。";
+      } finally {
+        sendButton.disabled = false;
+        input.focus();
+        messages.scrollTop = messages.scrollHeight;
+      }
+    });
+  </script>
+</body>
+</html>
