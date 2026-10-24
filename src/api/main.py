@@ -73,6 +73,31 @@ async def lifespan(app: FastAPI):
     print("RAG service stopped.")
 
 
+def json_serializer(obj):
+    if isinstance(obj, set):
+        return list(obj)
+
+    if isinstance(obj, (tuple,)):
+        return list(obj)
+
+    if hasattr(obj, "item"):
+        # 兼容 NumPy 标量等对象
+        return obj.item()
+
+    if hasattr(obj, "tolist"):
+        # 兼容 NumPy 数组
+        return obj.tolist()
+
+    raise TypeError(
+        f"Object of type {type(obj).__name__} is not JSON serializable"
+    )
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(name)s - %(message)s",
+)
+
+
 app = FastAPI(
     title="LocalRAG API",
     description="基于混合检索与大语言模型的标准文档问答服务",
@@ -195,7 +220,7 @@ def query_stream(body: QueryRequest, request: Request):
         try:
             for event in pipeline.query_stream(question):
                 # 将每个事件编码成 SSE 格式
-                yield f"data: {json.dumps(event, ensure_ascii=False)}\n\n"
+                yield f"data: {json.dumps(event, ensure_ascii=False, default=json_serializer)}\n\n"
 
         except Exception:
             logging.exception("RAG streaming query failed")

@@ -1,4 +1,6 @@
+import logging
 import os
+import time
 from typing import Any
 
 from openai import OpenAI
@@ -91,21 +93,54 @@ class Generator:
 
         messages = self.build_messages(question, context)
 
+        request_start = time.perf_counter()
+
         stream = self.client.chat.completions.create(
             model=self.model,
             messages=messages,
             temperature=self.temperature,
             max_tokens=self.max_tokens,
-            stream=True
+            stream=True,
+            extra_body={
+                "enable_thinking": False,
+            },
         )
 
-        for chunk in stream:
-            if not chunk.choices:
-                continue
+        response_ready = time.perf_counter()
 
-            content = chunk.choices[0].delta.content
-            if content:
-                yield content
+        logging.info("LLM 请求建立耗时: %.3f 秒",response_ready - request_start)
+
+        first_chunk_time = None
+        first_content_time = None
+
+        try:
+            for chunk in stream:
+
+                now = time.perf_counter()
+
+                if first_chunk_time is None:
+                    first_chunk_time = now
+                    logging.info("LLM 首个 Chunk 延迟: %.3f 秒",now - request_start)
+
+                if not chunk.choices:
+                    continue
+
+                content = chunk.choices[0].delta.content
+                if content:
+                    if first_content_time is None:
+                        first_content_time = time.perf_counter()
+                        logging.info(
+                            "LLM 首个文本片段延迟: %.3f 秒",
+                            first_content_time - request_start,
+                        )
+
+                    yield content
+
+        finally:
+            logging.info(
+                "LLM 流式生成方法结束，总耗时: %.3f 秒",
+                time.perf_counter() - request_start,
+            )
 
     def generate(self, question: str, context: str):
         return "".join(self.generate_stream(question, context))

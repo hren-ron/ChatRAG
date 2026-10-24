@@ -1,3 +1,4 @@
+import time
 from typing import Any
 
 from config import BGE_M3_PATH, FAISS_PATH, RERANKER_PATH
@@ -80,6 +81,10 @@ class RAGPipeline:
         if not question or not question.strip():
             raise ValueError("question must not be empty")
 
+        pipeline_start = time.perf_counter()
+
+        retrieval_start = time.perf_counter()
+
         # 1. 检索相关 Chunk
         results = self.retriever.retrieve(
             query=question,
@@ -88,8 +93,15 @@ class RAGPipeline:
             candidate_k=self.candidate_k,
         )
 
+        retrieval_seconds = time.perf_counter() - retrieval_start
+
+
         # 2. 构造上下文和来源
+        context_start = time.perf_counter()
+
         context_result = self.context_builder.build(results)
+
+        context_seconds = time.perf_counter() - context_start
 
         context = context_result["context"]
         sources = context_result["sources"]
@@ -104,29 +116,61 @@ class RAGPipeline:
             "type": "sources",
             "sources": sources,
             "retrieval": retrieval,
+            "timings": {
+                "retrieval_seconds": round(retrieval_seconds, 3),
+                "context_seconds": round(context_seconds, 3),
+            }
         }
 
         # 4. 逐段生成回答
         full_answer = []
 
+        generation_start = time.perf_counter()
+        first_token_seconds = None
+
         for content in self.generator.generate_stream(
                 question=question,
                 context=context,
         ):
+
+            if content and first_token_seconds is None:
+                first_token_seconds = time.perf_counter() - generation_start
+
             full_answer.append(content)
 
             yield {
                 "type": "token",
                 "content": content,
             }
+        generation_seconds = time.perf_counter() - generation_start
+        pipeline_seconds = time.perf_counter() - pipeline_start
 
-        # 5. 发送结束事件
+        timings = {
+            "retrieval_seconds": round(retrieval_seconds, 3),
+            "context_seconds": round(context_seconds, 3),
+            "first_token_seconds": (
+                round(first_token_seconds, 3)
+                if first_token_seconds is not None
+                else None
+            ),
+            "generation_seconds": round(generation_seconds, 3),
+            "pipeline_seconds": round(pipeline_seconds, 3),
+        }
+
+        # 5. 输出性能指标
+        yield {
+            "type":"metrics",
+            "timings": timings,
+        }
+
+        # 6. 发送结束事件
         yield {
             "type": "done",
             "question": question,
             "answer": "".join(full_answer),
             "sources": sources,
             "retrieval": retrieval,
+            "timings": timings
         }
 
 

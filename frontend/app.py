@@ -18,6 +18,7 @@ st.caption("基于混合检索与大语言模型的智能文档问答")
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+timings = {}
 
 def stream_answer(question: str):
     """消费后端 SSE 事件，逐步返回生成的 token。"""
@@ -61,13 +62,22 @@ def stream_answer(question: str):
                         "type": "token",
                         "content": content,
                     }
+            elif event_type == "metrics":
+                timings = event.get("timings", {})
+                yield {
+                    "type": "metrics",
+                    "timings": timings,
+                }
 
             elif event_type == "done":
                 retrieval = event.get("retrieval", {})
+                timings = event.get("timings", timings)
+
                 yield {
                     "type": "done",
                     "sources": sources,
                     "retrieval": retrieval,
+                    "timings": timings,
                 }
                 return
 
@@ -81,6 +91,7 @@ def stream_answer(question: str):
         "type": "done",
         "sources": sources,
         "retrieval": retrieval,
+        "timings": timings,
     }
 
 
@@ -128,6 +139,7 @@ if question:
                 elif event["type"] == "done":
                     sources = event.get("sources", [])
                     retrieval = event.get("retrieval", {})
+                    timings = event.get("timings", {})
 
             answer_placeholder.markdown(answer or "模型没有返回答案。")
             status_placeholder.empty()
@@ -157,3 +169,27 @@ if question:
 
         except (ValueError, TypeError, RuntimeError) as exc:
             status_placeholder.error(f"流式问答失败：{exc}")
+
+if timings:
+    st.subheader("⏱️ 性能统计")
+
+    labels = {
+        "retrieval_seconds": "混合检索",
+        "context_seconds": "上下文构建",
+        "first_token_seconds": "首 Token 延迟",
+        "generation_seconds": "生成总耗时",
+        "pipeline_seconds": "Pipeline 总耗时",
+    }
+
+    for key, label in labels.items():
+        value = timings.get(key)
+        if value is None:
+            continue
+
+        if isinstance(value, (int, float)):
+            st.metric(label, f"{value:.3f} 秒")
+        else:
+            st.warning(
+                f"{label}的数据类型异常："
+                f"期望数字，实际为 {type(value).__name__}，值为 {value}"
+            )
