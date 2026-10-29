@@ -27,12 +27,23 @@ pip install -r requirements.txt
 cp example.env .env
 ```
 1. 在.env中配置云端模型信息（API_KEY, BASE_URL）；
-```aiignore
-如果使用本地模型，
-```
-3. 在config.py中配置本地数据集、模型、评测集等路径；
 
-4. 将本地embedding、reranker模型下载到models目录下；
+2. 在config.py中配置本地数据集、模型、评测集等路径；
+
+3. 将本地embedding、reranker模型下载到models目录下；
+
+如果使用本地模型（如ollama）
+1. ollama启动本地模型（qwen3.5:27b为例）：
+```aiignore
+ollama run qwen3.5:27b
+```
+
+2. 配置如下：
+```aiignore
+BASE_URL=http://localhost:11434/v1
+API_KEY=ollama
+MODEL=qwen3.5:27b
+```
 
 ### 步骤三：离线构建知识库
 

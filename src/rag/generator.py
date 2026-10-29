@@ -23,21 +23,21 @@ class Generator:
         if not model.strip():
             raise ValueError("model must not be empty")
 
-        self.model = model
+        self.model = os.getenv("MODEL", "qwen3.5:27b")
         self.temperature = temperature
         self.max_tokens = max_tokens
 
         if client is not None:
             self.client = client
         else:
-            api_key = os.getenv("BAILIAN_API_KEY")
-            base_url = os.getenv("BAILIAN_BASE_URL")
+            api_key = os.getenv("API_KEY")
+            base_url = os.getenv("BASE_URL")
 
             if not api_key:
-                raise ValueError("环境变量 BAILIAN_API_KEY 未配置")
+                raise ValueError("环境变量 API_KEY 未配置")
 
             if not base_url:
-                raise ValueError("环境变量 BAILIAN_BASE_URL 未配置")
+                raise ValueError("环境变量 BASE_URL 未配置")
 
             self.client = OpenAI(
                 api_key=api_key,
