@@ -47,7 +47,7 @@ MODEL=qwen3.5:27b
 
 ### 步骤三：离线构建知识库
 
-- [项目使用流程（usage.md）](docs/usage.md)
+[项目使用流程（usage.md）](docs/usage.md)
 
 ### 步骤四：启动后台服务
 ```aiignore
