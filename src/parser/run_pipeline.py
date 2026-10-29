@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from simple_pdf_parser import PDFTextParser
-from chapter_splitter import ChapterSplitter
+from .simple_pdf_parser import PDFTextParser
+from .chapter_splitter import ChapterSplitter
 
 
 class PDFPipeline:

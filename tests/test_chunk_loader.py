@@ -1,5 +1,4 @@
-from chunk_loader import ChunkLoader
-
+from src.chunker.chunk_loader import ChunkLoader
 
 loader = ChunkLoader(
     "../../data/txt"
