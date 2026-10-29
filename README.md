@@ -78,12 +78,71 @@ streamlit run frontend/app.py
 Python、BGE-M3、Sentence Transformers、FAISS、Pydantic、BM25、jieba。
 
 ## 项目执行过程
-![项目执行过程](docs/images/framework.PNG)
+```aiignore
+汽车标准 PDF
+    │
+    ▼
+PDF Parser
+    │  提取文本、清理页眉页脚、恢复标题
+    ▼
+Chapter Splitter
+    │  按一级/二级标题及附录生成章节文件
+    ▼
+ChunkLoader
+    │  TXT → Structured Chunk
+    ▼
+SecondaryChunker
+    │  按段落、句子和 Token 限制进行二次切分
+    │  保留标题上下文、设置 overlap
+    ▼
+Retrieval Chunks
+    ├──────────────────────────────┐
+    ▼                              ▼
+BGE-M3 Embedding                BM25 Tokenization
+    │                              │
+    ▼                              ▼
+FAISS Vector Index             BM25 Inverted Index
+    │                              │
+    ▼                              ▼
+Dense Retriever                BM25 Retriever
+    └──────────────┬───────────────┘
+                   ▼
+              Retrieval Results
+                   │
+                   ▼
+        Document-level / Chunk-level
+               Evaluation
+```
+![项目执行过程](docs/images/framework.png)
 
 
 ## 目录结构参考
 目录名以当前仓库实际代码为准，下面展示各模块的职责划分：
-![目录结构参考](docs/images/dictionary.PNG)
+
+```aiignore
+ChatRAG/
+├── src/
+│   ├── parser/             # PDF 解析、章节拆分、流程编排
+│   ├── chunker/            # Chunk 模型、加载与二次切分
+│   ├── models/              # BGE-M3 封装
+│   ├── embedding/           # Embedding 流程
+│   ├── vectorstore/         # FAISS 与 VectorStore
+│   ├── retriever/           # Dense Retriever、BM25 Retriever、文本分析
+│   └── evaluation/          # 指标、评测器、评测入口
+├── data/
+│   ├── pdf/                 # 原始 PDF
+│   ├── output/              # 章节 TXT
+│   ├── faiss/ 或 vectorstore/ # 索引和 chunks.json，按实际配置
+│   ├── eval/                # 评测集与评测结果
+│   └── dictionary/          # 汽车领域分词词典
+├── Models/
+│   └── bge-m3/              # 本地模型，不建议提交到 Git
+├── requirements.txt
+├── .gitignore
+└── README.md
+```
+
+![目录结构参考](docs/images/dictionary.png)
 
 
 

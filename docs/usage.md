@@ -1,6 +1,27 @@
 
 ## 整体流程
-![整体流程](images/rag.PNG)
+![整体流程](images/rag.png)
+```aiignore
+1. 准备汽车标准 PDF
+
+输入：data/pdf/
+
+2. PDF 解析与章节拆分
+
+src/parser/run_pipeline.py
+
+3. 生成检索 Chunk
+
+src/chunker/run_chunker.py
+
+4. BGE-M3 向量化并构建 FAISS 索引
+
+src/build/build_vector_store.py
+
+5. 保存离线知识库
+
+向量索引 + Chunk 元数据
+```
 
 ### 1. 数据准备
 1. 检查本地模型目录(**models**)
